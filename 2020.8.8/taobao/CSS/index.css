@@ -1,0 +1,41 @@
+.header-wrap{
+	height:35px;
+	border:1px solid #eee;
+}
+.header{
+	height:35px;
+	width:1190px;
+	margin:0px auto;
+}
+.header .list01{
+	float:left;
+}
+.header .list01 li{
+	float:left;
+	line-height:35px;
+	/* 只设行高，没设高度，高度就是行高，而行高作为文本属性可以继承 */
+}
+.header .list01 li a{
+	display:block;
+}
+.header .list01 .one{
+	margin-left:6px;
+}
+.header .list01 .two{
+	margin:0px 21px 0px 5px;
+}
+.header .list02{
+	float:right;
+}
+.white-wrap{
+	background-color: #FFFFFF;
+	height:150px;
+}
+.white{
+	height:150px;
+	width:1190px;
+	margin:0px auto;
+	/* 制作时用背景色，需删除 */
+	background-color: palevioletred;
+}
+	

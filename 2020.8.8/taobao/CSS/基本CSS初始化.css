@@ -1,0 +1,37 @@
+/* 以下为基本CSS设置 */
+body,div,ul,li,ol{
+	margin:0px;
+	padding:0px;
+}
+h1,h2,h3,h4,h5,h6{
+	/* 字体默认16px */
+	font-size:100%;
+}
+em,i{
+	/* 字体不倾斜 */
+	font-style:normal;
+}
+ul,ol{
+	/* 列表无标识符 */
+	list-style:none;
+}
+del,s,ins,u{
+	/* 文本无标识符 */
+	text-decoration: none;
+}
+img{
+	/* 解决底部留白 */
+	display:block;
+}
+button,input,select,textarea{
+	/* 去除点击时轮廓线效果 */
+	outline:none;
+	font-size:100%;
+}
+table{
+	/* 单元格之间距离 */
+	border-spacing:0px;
+	/* 单元格边框重叠 */
+	border-collapse:collapse;
+}
+/* 以上为基本CSS设置 */

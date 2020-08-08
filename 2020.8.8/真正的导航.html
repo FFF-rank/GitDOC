@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			.nav ul{
+				padding-left:20px;
+				margin:0px;
+			}
+			.nav ul li{
+				float:left;
+				margin:10px 10px;
+			}
+			.nav ul li a{
+				text-decoration: none;
+				font-size:14px;
+				display:block;
+				width:100px;
+				height:30px;
+				line-height:30px;
+				text-align: center;
+			}
+			.nav ul li a:link{
+				color:blue;
+				background-color: red;
+			}
+			.nav ul li a:hover{
+				color:red;
+				background-color: yellow;
+			}
+			.banner{
+				height:200px;
+				background-color: yellow;
+			}
+			.clearfix:after{
+				content:".";
+				display:block;
+				height:0px;
+				clear:both;
+				visibility:hidden;
+			}
+			.nav{
+				width:1000px;
+				margin:0px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<ul class="clearfix">
+				<li><a href="##">首页</a></li>
+				<li><a href="##">返回</a></li>
+				<li><a href="##">退出</a></li>
+			</ul>
+		</div>
+		<div class="banner"></div>
+	</body>
+</html>
