@@ -1,0 +1,215 @@
+.header-wrap{
+	height:35px;
+	border:1px solid #eee;
+}
+.header{
+	height:35px;
+	width:1190px;
+	margin:0px auto;
+}
+.header .list01{
+	float:left;
+}
+.header .list01 li{
+	float:left;
+	line-height:35px;
+	/* 只设行高，没设高度，高度就是行高，而行高作为文本属性可以继承 */
+}
+.header .list01 li a{
+	display:block;
+}
+.header .list01 .one{
+	margin-left:6px;
+}
+.header .list01 .two{
+	margin:0px 21px 0px 5px;
+}
+.header .list02{
+	float:right;
+}
+.white-wrap{
+	background-color: #FFFFFF;
+	height:150px;
+}
+.white{
+	height:150px;
+	width:1190px;
+	margin:0px auto;
+	background-color: #FFFFFF;
+}
+.white .logo .img1{
+	/* 解决底部留白 */
+	display:block;
+}
+.white .logo{
+	/* 右侧还有部件，横向排必须用浮动 */
+	float:left;
+	margin:42.5px 0px 42.5px 20px;
+	overflow: hidden;
+	/* 将盒子高度设为与图片高度一样，即可在视觉上隐藏关键字 */
+	height:65px;
+}
+.white .search{
+	margin:25px 0px 0px 100px;
+	float:left;
+}
+.search-top li{
+	float:left;
+	width:50px;
+	height:25px;
+	text-align: center;
+	line-height:25px;
+	color:#FF4400;
+	cursor:pointer;
+}
+.search .search-top .current{
+	background-color: #FF4400;
+	color:#FFFFFF;
+	font-weight:700;
+}
+.search-top li:hover{
+	background-color: #FFEEE5;
+}
+.search-center input{
+	width:466px;
+	height:34px;
+	border:3px solid #FF4400;
+	float:left;
+	border-right:none;
+	background-image: url(../images/images/放大镜符号_03.png);
+	background-repeat: no-repeat;
+	background-position: 9px 9px;
+	padding-left:34px;
+}
+.search-center button{
+	float:left;
+	height:40px;
+	width:122px;
+	background-color: #FF4400;
+	border:none;
+	color:#FFFFFF;
+	cursor:pointer;
+	font-size:18px;
+	font-weight:700;
+	font-family:"宋体"
+}
+.search-center .gao{
+	float:left;
+	margin-left:9px;
+}
+.search-bottom li{
+	float:left;
+	margin-right:9px;
+}
+.search-bottom li a{
+	display:block;
+	height:36px;
+	line-height:36px;
+}
+.search-bottom .more1{
+	margin-left:42px;
+}
+.main{
+	width:1190px;
+	height:555px;
+	background-color: pink;
+	margin:0px auto;
+}
+/* 制作时修改，完事需删除 */
+body{
+	height:10000px;
+}
+/* 制作时修改，完事需删除 */
+.main-left{
+	width:190px;
+	height:555px;
+	background-color:#ff6537 ;
+	float:left;
+}
+.main-right{
+	width:990px;
+	height:555px;
+	background-color: yellow;
+	float:right;
+}
+.main-right-top{
+	height:44px;
+	background-color: #f1f1f1;
+}
+.main-right-top ul{
+	margin-top:8px;
+}
+.main-right-top .list01{
+	float:left;
+}
+.main-right-top .list01 li{
+	float:left;
+	margin-right:6px;
+}
+.main-right-top .list01 li a{
+	height:28px;
+	line-height:28px;
+	font-size:16px;
+	font-weight:700;
+	padding:0px 8px;
+	text-align: center;
+	color: #ff4400;
+	display:block;
+	border-radius:13px;
+}
+.main-right-top .list01 li a:hover{
+	color:#ffffff;
+	background-color: #ff4400;
+}
+.main-right-top .list02{
+	float:left;
+}
+.main-right-top .list02 li{
+	float:left;
+	margin-right:7px;
+	font-size:14px;
+}
+.main-right-top .list02 li a{
+	display:block;
+	height:28px;
+	line-height:28px;
+	padding:0px 4px;
+	font-weight:700;
+	text-align: center;
+	border-radius: 13px;
+}
+.main-right-top .list02 li a:hover{
+	background-color: #ff4400;
+	color: #ffffff;
+}
+.main-right-top .list02 .shu{
+	height:28px;
+	line-height:28px;
+	color:#dddee2;
+}
+.main-right-top .list03{
+	float:left;
+}
+.main-right-top .list03 li{
+	float:left;
+	margin-right:7px;
+	font-size:14px;
+}
+.main-right-top .list03 li a{
+	display:block;
+	height:28px;
+	line-height:28px;
+	padding:0px 4px;
+	font-weight:700;
+	text-align: center;
+	border-radius: 13px;
+}
+.main-right-top .list03 li a:hover{
+	background-color: #ff4400;
+	color: #ffffff;
+}
+.main-right-top .list03 .shu{
+	height:28px;
+	line-height:28px;
+	color:#dddee2;
+}

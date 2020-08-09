@@ -1,0 +1,147 @@
+.head-wrap{
+	height:30px;
+	background-color: #e3e4e5;
+	border-bottom:1px #dddddd solid;
+}
+.head{
+	width:1190px;
+	height:30px;
+	background-color: #e3e4e5;
+	margin:0px auto;
+}
+.head .list01{
+	float:left;
+}
+.head .list01 li{
+	float:left;
+}
+.head .list01 li a{
+	float:left;
+	height:30px;
+	line-height:30px;
+	color:#999999;
+}
+.head .list01 li a img{
+	float:left;
+	margin:9px 5px 0px 21px
+}
+/* .head .list02{
+	float:right;
+}
+.head .list02 li{
+	float:right;
+}
+需要绝对定位
+ */
+.white-wrap{
+	background-color: #FFFFFF;
+	height:140px;
+	border-bottom:1px #dddddd solid;
+}
+.white{
+	display:block;
+	width:1190px;
+	height:140px;
+	background-color: #FFFFFF;
+	margin:0px auto;
+}
+.white .logo{
+	float:left;
+	margin:15px 70px 18px 54px;
+}
+.search{
+	float:left;
+}
+.search-top-left{
+	float:left;
+}
+.white .search-top-left input{
+	float:left;
+	width:409px;
+	height:32px;
+	border:2px #e1251b solid;
+	border-right:none;
+	padding-left:17px;
+	margin-top:25px;
+}
+.button-search{
+	float:left;
+	width:60px;
+	height:36px;
+	background-color:#e1251b ;
+	margin:25px 18px 0px 0px;
+	border:none;
+}
+.search-top-left .button-search img{
+	margin:0px auto;
+}
+.search-top-right{
+	float:left;
+}
+.shoppingcart{
+	margin-top:25px;
+	border:1px solid #eeeeee;
+}
+.shoppingcart:hover{
+	border:1px solid #e1251b;
+}
+.search-middle .list03{
+	height:20px;
+	line-height:20px;
+}
+.search-middle .list03 li{
+	float:left;
+	/* 估计值，原网页是用定位 */
+	margin-right:10px;
+}
+.search-middle .list03 li a:link{
+	color:#999999;
+}
+.search-middle .list03 li a:hover{
+	color:#e1251b;
+}
+.search-bottom .list04 li{
+	float:left;
+}
+.search-bottom .list04 li a{
+	display:block;
+	font-size:15px;
+	margin-top:25px;
+	margin-right:22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.main{
+	width:1190px;
+	height:470px;
+	margin:10px auto;
+}
+.main .main-left{
+	float:left;
+	width:190px;
+	height:470px;
+	background-color: #ffffff;
+	margin-right:10px;
+}
+.main .main-center{
+	float:left;
+	width:790px;
+	height:470px;
+	background-color: #ffffff;
+	margin-right:10px;
+}
+.main .main-right{
+	float:left;
+	width:190px;
+	height:470px;
+	background-color: #ffffff;
+}
