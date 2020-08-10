@@ -1,0 +1,44 @@
+.box{
+	width: 1226px;
+	height:460px;
+	margin:100px auto;
+	position: relative;
+}
+.box .box2{
+	width: 234px;
+	height:460px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(105,101,101,0.6);
+}
+.box .leftbtn{
+	width: 41px;
+	height: 69px;
+	line-height:69px;
+	background-image: url(../images/icon-slides.png);
+	background-position: -84px 0;
+	position: absolute;
+	left: 234px;
+	top:50%;
+	margin-top:-35px;
+	cursor:pointer;
+}
+.box .leftbtn:hover{
+	background-position: 0 0;
+}
+.box .rightbtn{
+	width: 41px;
+	height: 69px;
+	line-height:69px;
+	background-image: url(../images/icon-slides.png);
+	background-position: -125px 0;
+	position: absolute;
+	right:0;
+	top:50%;
+	margin-top:-35px;
+	cursor:pointer;
+}
+.box .rightbtn:hover{
+	background-position: -42px 0;
+}
