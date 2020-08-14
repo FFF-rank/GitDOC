@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 求n-m之间所有数的和
+			// function sum(n,m){
+			// 	var sum=0;
+			// 	for(var i=n;i<=m;i++){
+			// 		sum+=i;
+			// 	}
+			// 	return sum;
+			// }
+			// 输入n和m
+			// document.write(sum(5,8));
+			
+			// 求圆的面积
+			// function circleArea(r){
+			// 	s=Math.PI*r**2;
+			// 	return s;
+			// }
+			// document.write(circleArea(1));
+			
+			// 判断一个数是否是质数
+			function zhiShu(a){
+				for(var i=2;i<a;i++){
+					if(a%i==0){
+						return false;
+					}
+				}
+				return true;
+			}
+			// 输入任意一个大于1的正整数
+			document.write(zhiShu(19));
+		</script>
+	</body>
+</html>

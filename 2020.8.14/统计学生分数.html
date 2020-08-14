@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 主体
+			var people=4;
+			var Num=[];
+			for(var i=0;i<people;i++){
+				Num[i]=Number(prompt('请输入第'+(i+1)+'个学生分数'));
+			}
+			ave=Ave(Num);
+			max=Max(Num);
+			min=Min(Num);
+			document.write('三个学生的平均分是'+ave+'分<br/>');
+			document.write('三个学生中的最高分是'+max+'分<br/>');
+			document.write('三个学生中的最低分是'+min+'分');
+			// 求平均值函数
+			function Ave(Num){
+				var ave=0;
+				for(var i=0;i<Num.length;i++){
+					ave+=Num[i];
+				}
+				ave/=Num.length;
+				return ave;
+			}
+			// 求最大值函数
+			function Max(Num){
+				var max=Num[0];
+				for(var i=1;i<Num.length;i++){
+					if(max<Num[i]){
+						max=Num[i];
+					}
+				}
+				return max;
+			}
+			// 求最小值函数
+			function Min(Num){
+				var min=Num[0];
+				for(var i=1;i<Num.length;i++){
+					if(min>Num[i]){
+						min=Num[i];
+					}
+				}
+				return min;
+			}
+		</script>
+	</body>
+</html>
