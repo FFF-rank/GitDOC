@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var json01={"name":'周杰伦',"age":40,"gender":true};
+			console.log(json01);
+			var json02="{name:'周杰伦',age:40,gender:true}";
+			console.log(json02);
+			var json03=JSON.stringify(json01);
+			console.log(json03);
+			var json04=JSON.parse(json03);
+			console.log(json04);
+			for(var i in json01){
+				console.log(i+':'+json01[i]);
+			}
+		</script>
+	</body>
+</html>
