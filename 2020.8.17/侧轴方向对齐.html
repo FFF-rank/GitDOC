@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.wrap{
+				width: 300px;
+				height:500px;
+				margin:100px auto;
+				border: 1px solid #ccc;
+				/* 变为伸缩容器 */
+				display: flex;
+				/* 侧轴方向对齐 */
+				/* align-items:flex-start;
+				align-items:flex-end;
+				align-items:center;
+				align-items:baseline;
+				align-items:stretch; */
+				flex-wrap:wrap;
+				/* 多行侧对齐 */
+				align-content:center;
+			}	
+			.box{
+				width: 100px;
+				height:100px;
+			}
+			.box01{
+				background-color: red;
+				/* height:100px; */
+			}
+			.box02{
+				background-color: blue;
+				/* height:120px; */
+			}
+			.box03{
+				background-color: green;
+				/* height:140px; */
+			}
+			.box04{
+				background-color: yellow;
+				/* height:160px; */
+			}
+			.box05{
+				background-color: orange;
+				/* height:180px; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box box01">1</div>
+			<div class="box box02">2</div>
+			<div class="box box03">3</div>
+			<div class="box box04">4</div>
+			<div class="box box05">5</div>
+		</div>
+	</body>
+</html>

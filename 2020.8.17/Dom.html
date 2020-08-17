@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#app{
+				width: 100px;
+				height:100px;
+				background-color: pink;
+				border: #000000 1px solid;
+				text-align: center;
+				line-height:100px;
+				/* div垂直水平居中 */
+				position:absolute;
+				left: 0;
+				top:0;
+				right:0;
+				bottom:0;
+				margin:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<span>
+				app
+			</span>
+		</div>
+		<div class="item">
+			item-1
+		</div>
+		<div class="item">
+			item-2
+		</div>
+		<ul id='list'>
+			<li>0</li>
+			<li>1</li>
+			<li id='l'>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		// 通过id获取元素
+		var appNode=document.getElementById('app');
+		console.log(appNode);
+		// 通过class获取元素列表
+		var items=document.getElementsByClassName('item');
+		console.log(items);
+		// 通过标签名获取元素列表
+		var liNodes=document.getElementsByTagName('li');
+		console.log(liNodes);
+		// 将伪数组转化为真数组
+		var liNodes=Array.prototype.slice.call(liNodes);
+		console.log(liNodes);
+		// liNodes.forEach(function(item){
+		// 	console.log(item);
+		// })
+		// 子元素节点
+		var listNode=document.getElementById('list');
+		console.log(listNode.childNodes);
+		console.log(listNode.childNodes[1]);
+		console.log(listNode.firstChild);
+		console.log(listNode.lastChild);
+		// 父元素节点
+		var liNode=document.getElementById('l');
+		console.log(liNode.previousSibling);
+		console.log(liNode.nextSibling);
+	</script>
+</html>

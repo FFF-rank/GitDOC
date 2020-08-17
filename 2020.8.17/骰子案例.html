@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>骰子</title>
+		<style type="text/css">
+			html,body{
+				height:100%;
+			}
+			body{
+				display: flex;
+				justify-content: center;
+				align-items:center;
+				flex-direction:column;
+			}
+			.box{
+				width: 80px;
+				height: 80px;
+				padding:20px;
+				border:1px solid #ccc;
+				border-radius:5px;
+				display: flex;
+				margin:5px;
+			}
+			span{
+				width: 20px;
+				height: 20px;
+				background-color: #000;
+				border-radius: 50%;
+			}
+			.box01{
+				justify-content:center;
+				align-items:center;
+			}
+			.box02{
+				justify-content:space-between;
+				align-items:center;
+			}
+			.box03{
+				justify-content:space-between;
+				align-items:center;
+			}
+			.box03{
+				justify-content:space-between;
+				align-items:center;
+			}
+			.box04{
+				flex-direction:column;
+				justify-content:space-between;
+				align-items:center;
+			}
+			.box04 .row{
+				display: flex;
+				width: 100%;
+				height: 100%;
+				justify-content:space-between;
+			}
+			.box05{
+				flex-direction:column;
+				justify-content:space-between;
+				align-items:center;
+			}
+			.box05 .row{
+				display: flex;
+				width: 100%;
+				height: 100%;
+				justify-content:space-between;
+			}
+			.box06{
+				flex-direction:column;
+				justify-content:space-between;
+				align-items:center;
+			}
+			.box06 .row{
+				display: flex;
+				width: 100%;
+				height: 100%;
+				justify-content:space-around;
+				align-items:center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box box01">
+			<span></span>
+		</div>
+		<div class="box box02">
+			<span></span>
+			<span></span>
+		</div>
+		<div class="box box03">
+			<span style="align-self:flex-start;"></span>
+			<span></span>
+			<span style="align-self:flex-end;"></span>
+		</div>
+		<div class="box box04">
+			<div class="row" style="align-items:flex-start;">
+				<span></span>
+				<span></span>
+			</div>
+			<div class="row" style="align-items:flex-end;">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<div class="box box05">
+			<div class="row" style="align-items:flex-start;">
+				<span></span>
+				<span></span>
+			</div>
+			<div class="row" style="align-items:center;justify-content:center;">
+				<span></span>
+			</div>
+			<div class="row" style="align-items:flex-end;">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<div class="box box06">
+			<div class="row">
+				<span></span>
+				<span></span>
+			</div>
+			<div class="row">
+				<span></span>
+				<span></span>
+			</div>
+			<div class="row">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</body>
+</html>

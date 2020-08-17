@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,body{
+				height: 100%;
+			}
+			body{
+				display: flex;
+				justify-content:center;
+				align-items:center;
+			}
+			.box{
+				width: 400px;
+				height:400px;
+				border: 1px solid #000;
+				justify-content:center;
+				align-items:center;
+				display:flex;
+			}
+			.item{
+				width: 50px;
+				height: 50px;
+			}
+			.item01{
+				background-color: red;
+			}
+			.item02{
+				background-color: green;
+				align-self:flex-start;
+			}
+			.item03{
+				background-color: blue;
+				align-self:flex-end;
+			}
+			.item04{
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="item item01"></div>
+			<div class="item item02"></div>
+			<div class="item item03"></div>
+			<div class="item item04"></div>
+		</div>
+	</body>
+</html>
