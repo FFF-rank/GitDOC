@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.header,.footer{
+				height:50px;
+				background-color: gray;
+			}
+			.in{
+				display: flex;
+				flex-direction:column;
+				justify-content: center;
+				align-items:center;
+				font-weight:700;
+			}
+			.main{
+				display:flex;
+			}
+			.main .left{
+				background-color: red;
+				width: 200px;
+				flex:none;
+			}
+			.main .center{
+				background-color: green;
+				flex:auto;
+			}
+			.main .right{
+				background-color: blue;
+				width: 200px;
+				flex:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header in">
+			<p>#header</p>
+		</div>
+		<div class="main">
+			<div class="left in">
+				<p>#left</p>
+				<p>#left</p>
+				<p>#left</p>
+			</div>
+			<div class="center in">
+				<p>#center</p>
+			</div>
+			<div class="right in">
+				<p>#right</p>
+				<p>#right</p>
+				<p>#right</p>
+				<p>#right</p>
+			</div>
+		</div>
+		<div class="footer in">
+			<p>#footer</p>
+		</div>
+	</body>
+</html>
