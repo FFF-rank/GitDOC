@@ -867,3 +867,104 @@
 ### background-size:cover,将背景图自动拉伸至覆盖元素
 
 ### 使用 lorem数字+Tab键，可生成'数字'个英文单词
+
+# 2020/8/19（今日完成1.多列布局；2.H5新增标签及表单属性）
+### 多列布局
++ columns:     ；            c-width和c-count的复合属性
+	- column-width：100px；  每列宽度100px
+	- column-count：3；      分为3列
+	- 两者冲突按列数少的
++ column-gap:16px;   列间宽度16px，默认与font-size相同
++ column-rule：   ；  列边框复合属性
+	- column-rule-width:1px;     列边框宽度1px
+	- column-rule-style：solid；  列边框为实线
+	- column-rule-color：#000；   列边框黑色
++ column-span:all;    横跨所有列，none为默认不跨
++ column-fill:auto;   优先填满父元素高度，balance为默认列等高，此样式前提是父元素有高度
++ 换列：兼容性不佳，需带私有前缀，值：auto/always/avoid
+	- column-break-before:   元素前是否换列
+	- column-break-after:    元素后是否换列
+	- column-break-inside:   元素内是否允许换列
+
+### 标签语义化有利于seo
+
+### H5新增语义化结构标签
++ 《header》《/header》    定义页面或 section 的页眉
++ 《footer》《/footer》    定义页面或 section 的页脚
++ 《nav》《/nav》          定义页面的主要导航
++ 《main》《/main》        定义文档的主要内容 (whatwg 没有语义， IE不支持)
++ 《section》《/section》  定义页面中的一节或文章中的一段，里面通常带有标题
++ 《article》《/article》  定义文章、博客、论坛帖子、用户评论等
++ 《aside》《/aside》      定义侧边栏
++ 《hgroup》《/hgroup》    包裹连续的标题，如文章主标题和副标题的组合 （w3c将其删除）
+
+### H5新增状态标签（自带样式）
++ 《meter》状态度量
+	- 属性value：默认总量为1
+	- 属性min/max：最小最大值
+	- 属性low/high：警戒线
+	- 属性optimum：最优值，决定警戒线功能，默认总量中值
+	- 样式的改变兼容性不佳，要用再查吧
++ 《progress》进度
+	- 属性value：默认总体为1
+	- 属性max：总体
+	- 样式的改变兼容性不佳，要用再查吧
+
+### H5新增列表标签
++ 《datalist》输入提示
+	- 包含一组option元素,属性value为显示值
+	- 要与input连接，需让datalise的id属性值与input的list属性值相等
++ 《details》展开列表
+	- 包含《summary》标签,为展开前显示内容
+	- summary后可跟多组其他标签,为展开内容
+	- 属性open,无属性值,意味默认展开
+
+### H5新增注释标签
++ 《ruby》注释标签，内包裹需注释的内容
+	- 标签下包含《rt》标签，包裹注释的内容
+	- 可用于给汉族标注拼音或英文，注释内容出现在上方
+
+### H5新增标记标签
++ 《mark》标记标签，包裹的文本底色变黄
+
+### H5新增图像标签
++ 《figure》插图标签，包裹图片
+	- 《figcaption》标签，包裹图片标题，出现在图片下方
+
+### 属性box-sizing:border-box    在给定的宽高内放置边框和内边距
++ 实际体验，能让一组不同类型的元素看上去比较整齐
+
+### 表单控件新增属性
++ placeholder，文本输入位置显示灰色提示信息
++ required，必填项，无需赋值
++ autofocus,自动获取焦点，即一载入页面就开始输入，无需赋值
++ autocomplete,自动提示历史记录,如配合name="username"可提示账户名
+	- 有on/off两个值，默认为on
++ pattern，在提交时验证输入是否符合规则,赋值为输入规则表达式
+
+### input type属性旧值
++ text、password、checkbox、radio、submit、reset、button、file、image
+
+### input type属性新增值
++ email，验证输入的邮箱格式
++ url，验证输入的网址格式
++ number,验证输入的数字格式，并且可以上下调节，在移动端会弹出数字键盘
+	- 附带的属性min，允许输入的最小值
+	- 附带的属性max，允许输入的最大值
+	- 附带的属性step，允许输入数值的步长
++ search，搜索框，效果同text
++ tel，在pc端同text，但在移动端点击会弹出数字键盘
++ range，范围选择框
+	- 附带的属性min，允许输入的最小值
+	- 附带的属性max，允许输入的最大值
+	- 附带的属性step，允许输入数值的步长
++ color，颜色选择框
++ 日期时间选择
+	- date，日期
+	- month，月份
+	- week，周
+	- time，时间
+	- datetime-local，日期+时间
+
+### form元素新增属性
++ novalidate，表单不进行验证，不需赋值

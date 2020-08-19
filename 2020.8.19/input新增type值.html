@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			input{
+				box-sizing: border-box;
+				width:500px;
+				height:50px;
+				font-size:20px;
+				margin:10px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<table>
+				<!-- 文本选择 -->
+				<tr>
+					<td>邮箱</td>
+					<td><input type="email"></td>
+				</tr>
+				<tr>
+					<td>网址</td>
+					<td><input type="url"></td>
+				</tr>
+				<tr>
+					<td>数字</td>
+					<td><input type="number" min="0" max="100" step="10"></td>
+				</tr>
+				<tr>
+					<td>tel</td>
+					<td><input type="tel"></td>
+				</tr>
+				<!-- 范围选择 -->
+				<tr>
+					<td>范围</td>
+					<td><input type="range" min="0" max="100" step="10" value="25"></td>
+				</tr>
+				<!-- 颜色选择 -->
+				<tr>
+					<td>颜色</td>
+					<td><input type="color"></td>
+				</tr>
+				<!-- 日期选择 -->
+				<tr>
+					<td>年月日</td>
+					<td><input type="datetime-local"></td>
+				</tr>
+				<tr>
+					<td>
+						<button>提交</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
