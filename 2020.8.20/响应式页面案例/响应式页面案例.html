@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>响应式案例</title>
+		<link rel="stylesheet" type="text/css" href="响应式页面案例.css"/>
+	</head>
+	<body>
+		<header id="header">
+			<div class="logo">
+				<img src="img/icon_study.png" alt="logo" class="big">
+				<img src="img/icon_cspace.png" alt="logo" class="middle">
+				<img src="img/icon_wechat.png" alt="logo" class="small">
+			</div>
+			<div class="search">
+				<form>
+					<input type="text" name="kw" placeholder="请输入搜索内容">
+					<button>搜索</button>
+				</form>
+			</div>
+			<nav class="nav">
+				<button id="btn">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<ul>
+					<li><a href="javascript">首页</a></li>
+					<li><a href="javascript">课程</a></li>
+					<li><a href="javascript">公告</a></li>
+					<li><a href="javascript">登录</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div id="banner">
+			<img src="img/banner.jpg" alt="banner">
+		</div>
+		<div id="main" class="clearfix">
+			<!-- 641~1280-2，小于640-1 -->
+			<div class="row row01">
+				<div class="col col01">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>HTML5</p>
+					</a>
+				</div>
+				<div class="col col02">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>CSS3</p>
+					</a>
+				</div>
+				<div class="col col03">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>Less</p>
+					</a>
+				</div>
+				<div class="col col04">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>Bootstrap</p>
+					</a>
+				</div>
+			</div>
+			<div class="row row02">
+				<div class="col col01">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>HTML5</p>
+					</a>
+				</div>
+				<div class="col col02">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>CSS3</p>
+					</a>
+				</div>
+				<div class="col col03">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>Less</p>
+					</a>
+				</div>
+				<div class="col col04">
+					<a href="javascript">
+						<img src="img/icon_wechat.png">
+						<p>Bootstrap</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+			
+		</footer>
+		
+		<script>
+			(function(){
+				var btn=document.querySelector('#btn');
+				var navList=document.querySelector('.nav ul');
+				
+				btn.onclick=function(){
+					navList.classList.toggle('open');
+				}
+			})();
+		</script>
+	</body>
+</html>

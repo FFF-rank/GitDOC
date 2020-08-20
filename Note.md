@@ -1,3 +1,5 @@
+### 薄弱点：原型、原型链、DOM
+
 # 2020/8/4(今日完成1.网页结构；2.HTML文本)
 ### 网页基础
 + 结构：html
@@ -968,3 +970,40 @@
 
 ### form元素新增属性
 + novalidate，表单不进行验证，不需赋值
+
+# 2020/8/20（今日完成响应式布局，根据页面或设备屏幕宽度调整自动调整布局，感觉最近关于html和css的篇幅有点多了，这个老师讲的有点啰嗦，而且穿插了一些js的交互，听得一头雾水）
+### H5兼容性处理
++ 《meta http-equiv="X-UA-Compatible" content="IE=Edge"》
+	- 设置IE总是使用最新的文档模式进行渲染
++ 《meta name="renderer" content="webkit"》
+	- 优先使用webkit（Chromium）内核进行渲染，针对360等浏览器
++ 在script标签下创建新元素：document.creatElement('header');
+	- 或footer、nav、article、aside、section等
+	- 将新元素设为块状元素
+	- 或引用外部js《script src="js/html5shiv.js"》
+	- 要写在head标签内，在页面加载前执行
+
+### 响应式布局
++ 为了适配PC和移动端，要么制作两套网站，要么使用响应式布局
++ 媒体查询：在CSS中使用@media为特定条件的媒体设置样式
+	- 媒体类型：all、screen、print（打印机及预览）
+		* 设置方式如@media screen
+	- 媒体特性：width页面可见宽度
+		* min-width，大于等于，设置方式如@media (min-width:640px)
+		* max-width，小于等于
+		* 可同时设置多个大于等于，或多个小于等于，形成梯度，语句数序靠后的满足时优先执行（即设置断点、阈值）
+	- 媒体特性：device-width页面可见宽度
+		* min-device-width，大于等于，设置方式如@media (min-width:640px)
+		* max-device-width，小于等于
+	- 媒体查询运算符
+		* and，并且，需两个条件均满足，如@media screen and (min-width:640px)
+		* ',',逗号，或者，只需一个满足即可
+		* not，否定，除了后面内容以外，都执行
+		* only，放在最前，让选中的样式在老式浏览器中不被应用
++ 移动优先：默认样式是小屏幕样式，使用媒体查询设置更大屏幕的样式
++ PC优先：默认样式是大屏幕样式，使用媒体查询设置更小屏幕的样式，对旧版本IE兼容性好
+### span:last-child     同一个父元素下最后一个span
+### 颜色属性值：transparent，透明
+### height:auto      自动被子元素撑开，为默认值
+### clear:both;      清除浮动，用在浮动元素后的元素中
+
