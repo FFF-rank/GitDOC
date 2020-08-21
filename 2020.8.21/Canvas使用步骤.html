@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Canvas</title>
+		<style type="text/css">
+			canvas{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="300">
+			您的浏览器版本不支持Canvas，请升级！
+		</canvas>
+		<script type="text/javascript">
+			(function(){
+				// 第一步 获取Canvas元素
+				var canvasNode=document.querySelector('#myCanvas');
+				
+				// 第二步 设置画布大小
+				canvasNode.width=800;
+				canvasNode.height=600;
+				
+				// 第三步 获取绘图上下文(绘图环境)
+				var ctx=canvasNode.getContext('2d');   //参数： 2d，webGL
+				
+				// 第四步 绘制图像 线、矩形、圆、多边形
+				
+				// 开始路径 把不同图形隔离，不互相干扰
+				ctx.beginPath();
+				// 绘制路径
+				ctx.moveTo(100,100);  // 设置线段的起点
+				ctx.lineTo(300,100);  // 设置线段的连接点
+				ctx.lineTo(300,200);
+				// 闭合路径 将自动把末端和开始点连接
+				ctx.closePath();
+				// 描边
+				ctx.lineWidth=5;         //设置描边宽度，默认是1
+				ctx.strokeStyle="#f90";  //设置描边颜色，默认是黑色
+				ctx.stroke();            // 沿着路径描边
+				// 填充
+				ctx.fillStyle="green";
+				ctx.fill();
+				
+				ctx.beginPath();
+				// 绘制路径
+				ctx.moveTo(200,300);  // 设置线段的起点
+				ctx.lineTo(500,300);  // 设置线段的连接点
+				ctx.lineTo(500,400);
+				// 闭合路径
+				ctx.closePath();
+				// 描边
+				ctx.lineWidth=5;         //设置描边宽度，默认是1
+				ctx.strokeStyle="blue";  //设置描边颜色，默认是黑色
+				ctx.stroke();            // 沿着路径描边
+				// 描边的样式不受路径开始闭合影响
+			})();
+		</script>
+	</body>
+</html>

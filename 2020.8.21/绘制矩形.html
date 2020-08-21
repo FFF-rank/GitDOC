@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#myCanvas{
+				border:1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="800" height="600">
+			浏览器不支持Canvas！
+		</canvas>
+		<script type="text/javascript">
+			(function(){
+				var canvasNode=document.querySelector("#myCanvas");
+				var ctx=canvasNode.getContext('2d');
+				// ctx.beginPath();
+				// ctx.moveTo(100,100);
+				// ctx.lineTo(200,200);
+				// ctx.lineTo(100,300);
+				// ctx.closePath();
+				// ctx.stroke();
+				// ctx.fillStyle="red";
+				// ctx.fill();
+				
+				ctx.beginPath();
+				ctx.rect(100,100,200,100);
+				ctx.lineWidth=10;
+				ctx.strokeStyle="blue";
+				ctx.stroke();
+				ctx.fillStyle="red";
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.fillStyle="red";
+				ctx.fillRect(500,100,100,200);
+				
+				ctx.beginPath();
+				ctx.lineWidth=10;
+				ctx.strokeStyle="blue";
+				ctx.strokeRect(500,350,100,200);
+				
+				// ctx.clearRect(0,0,800,600);
+			})();
+		</script>
+	</body>
+</html>
