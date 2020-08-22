@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#can{
+				border: 1px solid #000;
+				display: block;
+				margin:20px auto 0 auto;
+			}
+			#btn{
+				display: flex;
+				width:800px;
+				height:200px;
+				margin:0 auto;
+				justify-content:space-evenly;
+				align-items:center;
+				border: 1px solid #000;
+				border-top:none;
+			}
+			#btn button{
+				width: 300px;
+				height:100px;
+				font-size:64px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can"></canvas>
+		
+
+		<div id="btn">
+			<button onclick="zhuan()">
+				转
+			</button>
+			<button onclick="int=clearInterval(int)">
+				停
+			</button>
+		</div>
+		<script type="text/javascript">
+			var canNode=document.querySelector("#can")
+			canNode.width=800;
+			canNode.height=800;
+			ctx=canNode.getContext("2d");
+			// 原始图形，放在画布中央
+			ctx.strokeStyle="green";
+			ctx.lineWidth=10;
+			ctx.strokeRect(250,250,300,300);
+			// 定时旋转
+			// 开始执行
+			ctx.translate(canNode.width/2,canNode.height/2);
+			var int;
+			
+			//转的函数
+			function zhuan(){
+				int=clearInterval(int);   //每次调用之前要清除之前定时
+				int=setInterval(function(){
+					ctx.clearRect(-canNode.width/2,-canNode.height/2,canNode.width,canNode.height);
+					ctx.rotate(10/180*Math.PI);
+					ctx.strokeRect(-150,-150,300,300);
+				},100)
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

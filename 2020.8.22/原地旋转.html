@@ -19,17 +19,11 @@
 			canNode.height=800;
 			ctx=canNode.getContext("2d");
 			// 原始图形
-			ctx.strokeRect(100,100,100,100);
-			// 位移画布
-			ctx.translate(100,100);
-			ctx.strokeRect(100,100,100,100);
-			// 缩放画布
-			ctx.scale(2,2);
-			ctx.strokeRect(100,100,100,100);
-			// 旋转画布
+			ctx.strokeRect(350,350,100,100);
+			// 原地旋转
+			ctx.translate(canNode.width/2,canNode.height/2);
 			ctx.rotate(45/180*Math.PI);
-			ctx.strokeRect(100,100,100,100);
-			
+			ctx.strokeRect(-50,-50,100,100);
 			
 			
 		</script>
