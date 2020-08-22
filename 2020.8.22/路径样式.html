@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#can{
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can">
+			不支持！
+		</canvas>
+		<script type="text/javascript">
+			(function(){           //构造一个匿名函数
+				var canNode=document.getElementById("can");//获取canvas元素
+				canNode.width=800;
+				canNode.height=600;
+				var ctx=canNode.getContext("2d");//创建绘图环境
+				
+				ctx.beginPath();
+				ctx.moveTo(0,20);
+				ctx.lineTo(100,20);
+				ctx.arcTo(150,20,150,70,50);
+				ctx.lineTo(150,170);
+				// ctx.arcTo(150,120,200,120,50);
+				ctx.lineWidth=5;
+				ctx.strokeStyle="green";
+				ctx.stroke();
+				ctx.fillStyle="red"
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.moveTo(100,300);
+				ctx.lineTo(500,300);
+				ctx.lineTo(500,350)
+				ctx.lineWidth=20;
+				ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(100,400);
+				ctx.lineTo(500,400);
+				ctx.lineTo(500,450)
+				ctx.lineWidth=20;
+				ctx.lineCap="round";
+				ctx.lineJoin="round";
+				ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.moveTo(100,500);
+				ctx.lineTo(500,500);
+				ctx.lineTo(500,550)
+				ctx.lineWidth=20;
+				ctx.lineCap="square";
+				ctx.lineJoin="bevel";
+				ctx.stroke();
+				
+			})();
+		</script>
+	</body>
+</html>

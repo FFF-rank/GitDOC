@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#can{
+				border:1px solid #000;
+				display: block;
+				margin: 20px auto;
+			}
+			.polygon{
+				display: flex;
+				justify-content: space-between;
+				align-items:center;
+				width: 800px;
+				margin: 20px auto;
+			}
+			span{
+				font-size:48px;
+			}
+			input{
+				box-sizing: border-box;
+				width:500px;
+				height: 200px;
+				font-size:100px;
+				border: 1px solid #000;
+				text-align:center;
+			}
+			#draw{
+				width: 800px;
+				height:200px;
+				display: block;
+				margin:20px auto;
+				font-size:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can">
+			不支持
+		</canvas>
+		<div class="polygon">
+			<span>多边形边数:</span>
+			<input type="number" min="0" step="3" id="num" style="padding: 10px;">
+		</div>
+		<div class="polygon">
+			<span>边框颜色:</span>
+			<input type="color" id="strokeStyle">
+		</div>
+		<div class="polygon">
+			<span>边框宽度:</span>
+			<input type="range" id="lineWidth" min="1" max="100" step="1" value="50">
+		</div>
+		<div class="polygon">
+			<span>填充颜色:</span>
+			<input type="color" id="fillStyle">
+		</div>
+		<button id="draw">绘制多边形</button>
+		
+		<script type="text/javascript">
+			var canNode=document.querySelector("#can");
+			canNode.width=800;
+			canNode.height=800;
+			var ctx=canNode.getContext("2d");
+			var btn=document.querySelector("#draw");
+			btn.onclick=function(){
+				ctx.clearRect(0,0,800,800);
+				var num=document.getElementById("num").value;
+				console.log(num);
+				var strokeStyle=document.getElementById("strokeStyle").value;
+				console.log(strokeStyle);
+				var lineWidth=document.getElementById("lineWidth").value;
+				console.log(lineWidth);
+				var fillStyle=document.getElementById("fillStyle").value;
+				console.log(fillStyle);
+				polygon(num,strokeStyle,lineWidth,fillStyle);
+			}
+			
+			function polygon(num,strokeStyle,lineWidth,fillStyle){
+				ctx.beginPath()
+				var num=num;
+				var strokeS=strokeStyle;
+				var lineW=lineWidth;
+				var fillS=fillStyle;
+				var x=400;
+				var y=400;
+				var r=300;
+				for(var i=0;i<num;i++){
+					var angle=(360/num)*i/180*Math.PI;
+					var pointX=x-r*Math.sin(angle);
+					var pointY=y-r*Math.cos(angle);
+					ctx.lineTo(pointX,pointY);
+				}
+				ctx.closePath();
+				ctx.strokeStyle=strokeS;
+				ctx.lineWidth=lineW;
+				ctx.stroke();
+				ctx.fillStyle=fillS;
+				ctx.fill();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding:0;
+			}
+			#can{
+				border:1px solid #000;
+				display: block;
+				margin:20px auto 0 auto;
+				cursor: pointer;
+			}
+			.menu{
+				background-color: #ccc;
+				border:1px solid #000;
+				border-top:none;
+				width: 800px;
+				height:100px;
+				display: flex;
+				margin:0 auto;
+				justify-content: space-around;
+				align-items: center;
+			}
+			#color{
+				box-sizing: border-box;
+				width: 100px;
+				height:50px;
+				margin-right:20px;
+				cursor: pointer;
+			}
+			#width{
+				box-sizing: border-box;
+				width: 100px;
+				height:50px;
+				margin-right:20px;
+				cursor: pointer;
+			}
+			
+			#clear{
+				box-sizing: border-box;
+				width: 100px;
+				height:50px;
+				cursor: pointer;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="can" width="800" height="600">
+			不支持Canvas！
+		</canvas>
+		
+		<div class="menu">
+			<span>签字笔颜色：</span>
+			<input type="color" id="color">
+			<span>签字笔粗细：</span>
+			<input type="range" id="width" min="1" max="20" step="1" value="5">
+			<button id="clear">清空签名板</button>
+		</div>
+		<script type="text/javascript">
+			(function(){
+				
+				
+				
+				var canNode=document.querySelector("#can");
+				var ctx=canNode.getContext("2d");
+				// 设置画笔固定样式
+				ctx.lineCap="round";
+				ctx.lineJoin="round";
+				// 绑定鼠标按下事件
+				canNode.onmousedown=function(event){
+					console.log(event.offsetX,event.offsetY);
+					ctx.beginPath();
+					// 设置画笔颜色
+					var color=document.getElementById("color")
+					var panColor=color.value;
+					ctx.strokeStyle=panColor;
+					console.log(panColor);
+					// 设置画笔宽度
+					var width=document.getElementById("width")
+					var panWidth=width.value;
+					ctx.lineWidth=panWidth;
+					console.log(panWidth);
+					
+					ctx.moveTo(event.offsetX,event.offsetY);
+					// 跟随鼠标移动描边
+					// 元素用document是为了防止鼠标移出画布，无法解绑
+					// 位置使用视口坐标-画布左边距，是为了防止鼠标移出画布时，用视口坐标在画布内作画
+					document.onmousemove=function(event){
+						ctx.lineTo(event.clientX-canNode.offsetLeft,event.clientY-canNode.offsetTop);
+						ctx.stroke();
+					}
+					// 鼠标抬起时，为onmousemove解绑
+					// 元素用document是为了防止鼠标移出画布，无法解绑
+					document.onmouseup=function(){
+						document.onmousemove=null;  //可用this指代canNode
+					}
+				}
+				
+				
+				
+				// 增加清空画板
+				var btn=document.querySelector("#clear")
+				btn.onclick=function(){
+					ctx.clearRect(0,0,800,600);
+				}
+			})();
+		</script>
+	</body>
+</html>
