@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#can{
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can" width="800" height="800">
+			不支持！
+		</canvas>
+		<script type="text/javascript">
+			var canNode=document.querySelector("#can");
+			var ctx=canNode.getContext("2d");
+			ctx.shadowOffsetX=5;
+			ctx.shadowOffsetY=5;
+			ctx.shadowColor="blue";
+			ctx.shadowBlur=20;
+			ctx.fillRect(100,100,200,100);
+		</script>
+	</body>
+</html>

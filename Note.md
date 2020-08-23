@@ -1086,8 +1086,60 @@
 + 缩放：绘图环境名.scale（宽度缩放比例，高度缩放比例）
 	- 缩放比例1=100%
 + 旋转：绘图环境名.rotate（angle），angle为旋转弧度值，旋转方向为顺时针
+	- 原地旋转：现将画布原点位移至原图形中心，旋转画布，以原图形中心重新绘制原图形
 
 ### DOM Window方法：setInterval（函数，毫秒周期），定时调用函数，以若干毫秒为周期
 + 通过将上述方法赋值给变量a，再进行a=clearInterval(a)，可以结束调用
 + 若设置了定时调用的按钮，则要在调用函数的开始先清除已有的计时，否则重复摁计时调用按钮会导致计时错乱！
 + 这个应该就是轮播图的原理了，后面再加上循环应该就可以实现了
++ 把步进调小，频率调高，动画更为流畅
+
+# 2020/8/23（今日继续完成canvas，效率下降很多，明天加油）
+### 绘图环境的保存和还原：将坐标系和样式保存和还原，不影响已绘制的图形
++ 绘图环境名.save（），保存
++ 绘图环境名.restore（），还原
++ 可以多层嵌套
+
+### 文字操作
++ 绘图环境名.fillText（"内容",x,y）:填充文字,指定坐标
++ 绘图环境名.fillText（"内容",x,y）：镂空文字
++ 绘图环境名.font="bold 40px 微软雅黑"：设置文字样式
++ 水平对齐方式：绘图环境名.textAlign="start（默认）/center/end/left/right",在指定位置开始/中心在指定位置/在指定位置结束/文本左对齐/文本右对齐
++ 垂直对齐方式：绘图环境名.textBaseline="top/middle/alphabetic（默认）/bottom",顶部对齐/中部对齐/基线对齐/底部对齐
+
+### 渐变
++ var 对象名=绘图环境名.creatLinearGradient（x1，y1，x2，y2），线性渐变起点到终点，以及渐变方向
+	- 对象名.addColorStop(0,"red")，添加起点渐变色
+	- 对象名.addColorStop(1,"blue")，添加终点渐变色
+	- 通过将对象赋值给颜色样式，取得颜色的渐变效果
++ var 对象名=绘图环境名.createRadialGradient（x1,y1,r1,x2,y2,r2），径向渐变内圆到外圆
+
+### 插入图片
+```
+var imgNode=document.createElement("img");   <!-- 必须为图片创建对象-->
+imgNode.src="banner.jpg";
+imgNode.onload=function(){        <!-- 页面一加载即运行-->
+var pat=ctx.createPattern(imgNode,"repeat");
+ctx.fillStyle=pat;
+ctx.fillRect(0,0,800,800);
+```
++ 图片平铺方式
+	- repeat ： 默认。该模式在水平和垂直方向重复
+	- repeat-x ： 该模式只在水平方向重复
+	- repeat-y ： 该模式只在垂直方向重复
+	- no-repeat： 该模式只显示一次（不重复）
+
+### 阴影
+```
+ctx.shadowOffsetX=5;     <!-- 设置水平方向偏移量（默认往右） -->
+ctx.shadowOffsetY=5;     <!-- 设置垂直方向偏移量（默认往下） -->
+ctx.shadowColor="blue";  <!-- 设置阴影颜色 -->
+ctx.shadowBlur=20;       <!-- 设置阴影模糊程度（数值越大，程度越深）-->
+```
+
+### 透明度
++ 绘图环境名.globalAlpha=数字，数字在0-1之间，0位完全透明，1为不透明
+
+### 将画布尺寸设为视口宽高
++ canvasNode.width=window.innerWidth；
++ canvasNode.width=window.innerHeight；
