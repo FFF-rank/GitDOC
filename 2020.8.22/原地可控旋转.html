@@ -57,13 +57,10 @@
 				int=clearInterval(int);   //每次调用之前要清除之前定时
 				int=setInterval(function(){
 					ctx.clearRect(-canNode.width/2,-canNode.height/2,canNode.width,canNode.height);
-					ctx.rotate(10/180*Math.PI);
+					ctx.rotate(0.1/180*Math.PI);
 					ctx.strokeRect(-150,-150,300,300);
-				},100)
+				},1)
 			}
-			
-			
-			
 		</script>
 	</body>
 </html>
