@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding: 0;
+			}
+			html,body{
+				width:100%;
+				height:100%;
+				/* 会去掉浏览器自带滚动条，并且无法滚动页面 */
+				overflow:hidden;
+			}
+			body{
+				background-color: pink;
+				/* height:3000px; */
+			}
+			#box01{
+				background-color: red;
+				width: 500px;
+				height:500px;
+			}
+			#box02{
+				background-color: green;
+				width: 500px;
+				height:500px;
+			}
+			#box03{
+				background-color: blue;
+				width: 500px;
+				height:500px;
+			}
+			.scrollbar{
+				position:absolute;
+				top:0;
+				right:0;
+				width: 40px;
+				height:100%;
+				background-color: lightgray;
+			}
+			.slider{
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:80px;
+				background-color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div id='box01'></div>
+		<div id='box02'></div>
+		<div id='box03'></div> -->
+		<!-- 滚动条 -->
+		<div class="scrollbar">
+			<!-- 滑块 -->
+			<div class="slider"></div>
+		</div>
+		<script type="text/javascript">
+			var scrollbar=document.querySelector('.scrollbar');
+			var slider=document.querySelector('.slider');
+			slider.onmousedown=function(event){
+				var sliTop=event.offsetY;
+				document.onmousemove=function(event){
+					var top=event.clientY-sliTop;
+					if(top<0){
+						top=0;
+					}else if(top>window.innerHeight-slider.offsetHeight){
+						top=window.innerHeight-slider.offsetHeight;
+					}
+					slider.style.top=top+'px';
+				};
+				document.onmouseup=function(){
+					document.onmousemove=null;
+				}
+			};
+		</script>
+	</body>
+</html>

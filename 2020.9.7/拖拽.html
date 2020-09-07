@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#box{
+				width: 100px;
+				height:100px;
+				background-color:pink;
+				/* 使用定位移动元素 */
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			// 获取元素
+			var boxNode=document.querySelector('#box');
+			// 定义鼠标按下事件
+			boxNode.onmousedown=function(event){
+				// 获取在元素上按下的坐标
+				var eleLeft=event.offsetX;
+				var eleTop=event.offsetY;
+				// 定义鼠标移动事件
+				document.onmousemove=function(event){
+					// 计算移动后位置
+					var X=event.clientX-eleLeft;
+					var Y=event.clientY-eleTop;
+					// 设置元素移动边界
+					if(X<0){
+						X=0;
+					}else if(X>window.innerWidth-boxNode.offsetWidth){
+						X=window.innerWidth-boxNode.offsetWidth;
+					};
+					if(Y<0){
+						Y=0;
+					}else if(Y>window.innerHeight-boxNode.offsetHeight){
+						Y=window.innerHeight-boxNode.offsetHeight;
+					};
+					// 将元素移动
+					boxNode.style.left=X+'px';
+					boxNode.style.top=Y+'px';
+				};
+				// 定义鼠标松开后终止移动
+				document.onmouseup=function(){
+					document.onmousemove=null;
+				};
+			};
+		</script>
+	</body>
+</html>
