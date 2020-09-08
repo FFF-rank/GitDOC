@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#douyin{
+				background-color: #000;
+				/* 去除标签后的空格 */
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<video src="https://s3.pstatp.com/aweme/resource/web/static/image/index/tvc-v3_0b9db49.mp4" id="douyin" controls ></video>
+		<button id="bofang">播放</button>
+		<button id="zanting">暂停</button>
+		<button id="jiasu">加速</button>
+		<button id="kuaijin">快进</button>
+		<script type="text/javascript">
+			var videoNode=document.querySelector('#douyin');
+			videoNode.width=window.innerWidth;
+			// videoNode.height=window.innerHeight;
+			// 播放按钮
+			var bofangNode=document.querySelector('#bofang');
+			bofangNode.onclick=function(){
+				videoNode.play();
+			};
+			// 暂停按钮
+			var zantingNode=document.querySelector('#zanting');
+			zantingNode.onclick=function(){
+				videoNode.pause();
+			};
+			// 加速按钮
+			var jiasuNode=document.querySelector('#jiasu');
+			jiasuNode.onclick=function(){
+				videoNode.playbackRate=1.5;
+			};
+			// 快进按钮
+			var kuaijinNode=document.querySelector('#kuaijin');
+			kuaijinNode.onclick=function(){
+				videoNode.currentTime+=5;
+			};
+		</script>
+	</body>
+</html>

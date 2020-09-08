@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			.box{
+				width: 200px;
+				height:200px;
+				background-color: blue;
+				position:absolute;
+				top:0;
+				left:0;
+				bottom:0;
+				right:0;
+				margin:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script type="text/javascript">
+			var boxNode=document.querySelector('.box');
+			// chorme/IE
+			document.onmousewheel=scrollFn;
+			// firefox
+			document.addEventListener('DOMMouseScroll',scrollFn);
+			// 封装事件监听的函数
+			function scrollFn(event){
+				// 判断event.wheelDelta是否存在
+				if(event.wheelDelta){
+					console.log(event.wheelDelta);
+					if(event.wheelDelta==120){
+						boxNode.style.width=boxNode.offsetWidth+50+'px';
+						boxNode.style.height=boxNode.offsetHeight+50+'px';
+					}else if(event.wheelDelta==-120){
+						boxNode.style.width=boxNode.offsetWidth-50+'px';
+						boxNode.style.height=boxNode.offsetHeight-50+'px';
+					}
+				}else if(event.detail){
+					console.log(event.detail);
+					if(event.detail==-3){
+						boxNode.style.width=boxNode.offsetWidth+50+'px';
+						boxNode.style.height=boxNode.offsetHeight+50+'px';
+					}else if(event.detail==3){
+						boxNode.style.width=boxNode.offsetWidth-50+'px';
+						boxNode.style.height=boxNode.offsetHeight-50+'px';
+					}
+				};
+			}
+			
+		</script>
+	</body>
+</html>

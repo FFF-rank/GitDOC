@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding: 0;
+			}
+			html,body{
+				width:100%;
+				height:100%;
+				/* 会去掉浏览器自带滚动条，并且无法滚动页面 */
+				overflow:hidden;
+			}
+			body{
+				background-color: pink;
+				/* height:3000px; */
+			}
+			#box01{
+				background-color: orange;
+				width: 100%;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			.scrollbar{
+				position:absolute;
+				top:0;
+				right:0;
+				width: 40px;
+				height:100%;
+				background-color: lightgray;
+			}
+			.slider{
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				/* height:80px; */
+				background-color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='box01'></div>
+		<!-- 滚动条 -->
+		<div class="scrollbar">
+			<!-- 滑块 -->
+			<div class="slider"></div>
+		</div>
+		<script type="text/javascript">
+			var scrollbar=document.querySelector('.scrollbar');
+			var slider=document.querySelector('.slider');
+			var box01=document.querySelector('#box01');
+			
+			for(var i=0;i<300;i++){
+				box01.innerHTML += i + '<br>';
+			};
+			// 让滑块长度根据内容高度自动调整
+			var scale=window.innerHeight/box01.offsetHeight;
+			if(scale>=1){
+				scrollbar.remove();
+			};
+			slider.style.height=scale*window.innerHeight+'px';
+			
+			slider.onmousedown=function(event){
+				// 阻止浏览器默认行为
+				event.preventDefault();
+				
+				var sliTop=event.offsetY;
+				document.onmousemove=function(event){
+					var scrTop=event.clientY-sliTop;
+					if(scrTop<0){
+						scrTop=0;
+					}else if(scrTop>window.innerHeight-slider.offsetHeight){
+						scrTop=window.innerHeight-slider.offsetHeight;
+					}
+					slider.style.top=scrTop+'px';
+					var persent=scrTop/(window.innerHeight-slider.offsetHeight);
+					box01.style.top=-(box01.offsetHeight-window.innerHeight)*persent+'px';
+				};
+				document.onmouseup=function(){
+					document.onmousemove=null;
+				}
+			};
+			// 滚轮
+			var changeTop01=0;
+			var changeTop02=0;
+			// chrome/IE
+			document.onmousewheel=scrollFn;
+			// firefox
+			document.addEventListener('DOMMouseScroll',scrollFn);
+			// 监听函数
+			function scrollFn(event){
+				if(event.wheelDelta){
+					if(event.wheelDelta==120){
+						changeTop01=-50;
+					}else if(event.wheelDelta==-120){
+						changeTop01=50;
+					};
+				};
+				if(event.detail){
+					if(event.detail==-3){
+						changeTop01=-50;
+					}else if(event.detail==3){
+						changeTop01=50;
+					};
+				};
+				var scale02=(box01.offsetHeight-window.innerHeight)/(window.innerHeight-slider.offsetHeight);
+				changeTop02=changeTop01*scale02;
+				if(slider.offsetTop+changeTop01<0){
+					changeTop01=-slider.offsetTop;
+					changeTop02=box01.offsetTop;
+				}else if(slider.offsetTop+changeTop01>window.innerHeight-slider.offsetHeight){
+					changeTop01=window.innerHeight-slider.offsetHeight-slider.offsetTop;
+					changeTop02=box01.offsetHeight-window.innerHeight+box01.offsetTop;
+				};
+				console.log(box01.offsetHeight-window.innerHeight);
+				console.log(box01.offsetTop);
+				console.log(changeTop02);
+				slider.style.top=slider.offsetTop+changeTop01+'px';
+				box01.style.top=box01.offsetTop-changeTop02+'px';
+			}
+		</script>
+	</body>
+</html>
