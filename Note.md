@@ -1231,3 +1231,66 @@ ctx.shadowBlur=20;       <!-- 设置阴影模糊程度（数值越大，程度�
 + 属性：.currentTime，当前播放时间，单位为秒，可设置也可获取
 + 事件：.pause，暂停的时候
 + 事件：.ended，播放结束的时候
+
+# 2020/9/9（今天做了一个播放器，但音量和全屏的api还没用过，不过想来应该不难，明天按课程要开始做一个比较复杂的网页项目了）
+### 切换、增减类名
++ 对象名.classList.add('active'),为元素增加active的类名
++ 对象名.classList.remove('active'),为元素移除active的类名
++ 对象名.classList.toggle('active'),为元素切换是否有active的类名（如有则移除，如无则增加）
++ 在类选择器中可用".原类名.新类名"的方式定义CSS
++ 同理，在id选择器中可用".原id.新类名"
+
+### 增加监听事件：对象名.addEventListener('事件名'，方法名/方法)
+
+### 移除监听事件：对象名.removeEventListener('事件名'，方法名)
+
+### 当使用如onmouseup的方法时，会覆盖之前的操作，而使用监听时如果不移除，则会新建重复的监听事件
+
+### 项目准备工作
++ 简单的兼容性设置
+```
+<!--使用最高级标准模式渲染页面, 用于IE浏览器-->
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<!--采用webkit内核渲染， 用于国产双内核浏览器-->
+<meta name="renderer" content="webkit"> 
+```
++ cssreset:清空所有的默认样式，保证个浏览器表现一致；最早来自于雅虎的 YUI 框架
+```
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { font:14px "Microsoft YaHei","Arial","黑体",sans-serif; color:#333}
+td,th,caption { font-size:14px; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:100%; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+a { color:#333; text-decoration:none; }
+img { border:none; }
+ol,ul,li { list-style:none; }
+input, textarea, select, button { font:14px "Microsoft YaHei","Arial","黑体",sans-serif; }
+table { border-collapse:collapse; }
+```
++ 清除浮动
+```
+.clearfix{*zoom: 1;}
+.clearfix:after{content: "";display: block;clear: both;}
+```
++ 公共类
+```
+.fl { float:left}
+.fr {float:right}
+.al {text-align:left}
+.ac {text-align:center}
+.ar {text-align:right}
+```
++ 书写规范
+	- class命名规范，使用有意义的英文单词命名，多个单词建议使用 kebab-case 命名方式，如 page-header、list-group-item 等。
+	- id命名规范，使用有意义的英文单词命名，多个单词建议使用小驼峰命名法，如 currentNav、myModalContent 等。
+	- 不随意使用id，id在JS是唯一的，不能多次使用，而使用class类选择器却可以重复使用，另外id的优先级优先与class，所以id应该按需使用，而不能滥用。
+	- 使用CSS复合属性，如 padding、margin、font、background等，这样精简代码同时又能提高用户的阅读体验。
+	- 去掉小数点前的 0 ，0.8em 可以写成 .8em
+	- 用16进制代码表示颜色
+	- CSS选择器层级不过过深 像 .nav ul li a ul li p这样的选择器是不建议的
++ CSS样式书写顺序
+	- 位置属性(position, top, right, z-index, display, float等)
+	- 大小(width, height, padding, margin)
+	- 文字系列(font, line-height, letter-spacing, color, text-align等)
+	- 背景(background, border等)
+	- 其他(animation, transition等)

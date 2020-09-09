@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#back{
+				display: flex;
+				flex-direction: column;
+				background-color:#383838;
+				align-items:center;
+			}
+			#player{
+				background-color: #000;
+				display: flex;
+				cursor:pointer;
+			}
+			#video{
+				display: block;
+			}
+			#control{
+				background-color: #2a2a2a;
+				display: flex;
+				flex-direction: column;
+				height:50px;
+			}
+			#progress{
+				height:15px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			#totalPg{
+				height:4px;
+				background-color:#737373;
+				border-radius: 2px;
+				cursor:pointer;
+			}
+			#currentPg{
+				width:0px;
+				height:4px;
+				background-color:dodgerblue;
+				border-radius: 2px;
+			}
+			#slider01{
+				width: 10px;
+				height:10px;
+				position:absolute;
+				left:5px;
+				right:auto;
+				top:auto;
+				bottom:auto;
+				background-color: #FFF;
+				/* border-radius:5px; */
+				cursor:pointer;
+			}
+			#ctrlBar{
+				height:35px;
+				display: flex;
+				align-items: center;
+				justify-content:space-between;
+			}
+			#ctrl-left{
+				width:250px;
+				display: flex;
+				align-items:center ;
+				justify-content: space-between;
+			}
+			#ctrl-left img{
+				width: 30px;
+				height:30px;
+				cursor:pointer;
+			}
+			#ctrl-left span{
+				color: #FFF;
+			}
+			#ctrl-right{
+				width: 150px;
+				display: flex;
+				align-items: center;
+				justify-content:space-between;
+			}
+			#ctrl-right img{
+				width: 30px;
+				height:30px;
+				cursor:pointer;
+				margin:auto 5px auto 5px;
+			}
+			#voicePg{
+				width: 50px;
+				height: 5px;
+				background-color: #737373;
+				border-radius:2.5px;
+			}
+			#voiceCu{
+				width: 25px;
+				height: 5px;
+				background-color: dodgerblue;
+				border-radius:2.5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='back'>
+			<div id="player">
+				<video src="https://s3.pstatp.com/aweme/resource/web/static/image/index/tvc-v3_0b9db49.mp4" id="video" autoplay ></video>
+			</div>
+			<div id='control' >
+				<div id="progress">
+					<div id="totalPg">
+						<div id="currentPg"></div>
+					</div>
+					<div id="slider01"></div>
+				</div>
+				<div id="ctrlBar">
+					<div id='ctrl-left'>
+						<img src="icon/playfill.png" id='play' >
+						<img src="icon/stop.png" id="stop" >
+						<span id="currentT">00:00:00</span>
+						<span>/</span>
+						<span id="totalT">00:00:00</span>
+					</div>
+					<div id="ctrl-right">
+						<img src="icon/喇叭.png" id="voice">
+						<div id="voicePg">
+							<div id="voiceCu"></div>
+						</div>
+						<img src="icon/全屏.png" id="fullScreen">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 设置视频播放尺寸
+			var videoNode=document.querySelector('#video');
+			videoNode.width=window.innerWidth-200;
+			// 设置视频区域尺寸
+			var playerNode=document.querySelector('#player');
+			playerNode.style.height=window.innerHeight-50+'px';
+			playerNode.style.width=videoNode.width+'px';
+			// 设置控制区域尺寸
+			var controlNode=document.querySelector('#control');
+			controlNode.style.width=window.innerWidth+'px';
+			// 设置进度条
+			// 总进度
+			var totalPgNode=document.querySelector('#totalPg');
+			totalPgNode.style.width=window.innerWidth-10+'px';
+			// 当前进度
+			var currentPgNode=document.querySelector('#currentPg');
+			var slider01Node=document.querySelector('#slider01');
+			video.addEventListener('timeupdate',function(){
+				// console.log(videoNode.currentTime);
+				// console.log(videoNode.duration);
+				var long01=totalPgNode.offsetWidth-slider01Node.offsetWidth;
+				var scale01=videoNode.currentTime/videoNode.duration;
+				currentPgNode.style.width=(totalPgNode.offsetWidth-slider01.offsetWidth)*scale01+'px';
+				slider01Node.style.left=5+long01*scale01+'px';
+			});
+			// 进度条拖动
+			slider01Node.addEventListener('mousedown',function(event){
+				event.preventDefault();
+				// 用this，将eleLeft变为slider01Node的属性，以继承到子作用域
+				videoNode.pause();
+				playNode.src='icon/playfill.png';
+				this.eleLeft=event.offsetX;
+				document.addEventListener('mousemove',slider01Move);
+			})
+			document.addEventListener('mouseup',function(){
+				document.removeEventListener('mousemove',slider01Move);
+				if(count01%2==1){
+					videoNode.pause();
+					playNode.src='icon/playfill.png';
+				}else if(count01%2==0){
+					videoNode.play();
+					playNode.src='icon/pause.png';
+				}
+			});
+			function slider01Move(event){
+				var left=event.clientX-totalPgNode.offsetLeft-slider01Node.eleLeft;
+				var long01=totalPgNode.offsetWidth-slider01Node.offsetWidth;
+				if(left<totalPgNode.offsetLeft){
+					left=totalPgNode.offsetLeft
+				}else if(left>totalPgNode.offsetLeft+long01){
+					left=totalPgNode.offsetLeft+long01;
+				};
+				slider01Node.style.left=left+'px';
+				var scale02=left/long01;
+				console.log(slider01Node.style.left);
+				currentPgNode.style.width=long01*scale02+'px';
+				videoNode.currentTime=scale02*videoNode.duration;
+			}
+			// 设置播放/暂停
+			var playNode=document.querySelector('#play');
+			var count01;
+			if(videoNode.autoplay==true){
+				playNode.src='icon/pause.png';
+				count01=2;
+			}else if(videoNode.autoplay==false){
+				playNode.src='icon/playfill.png';
+				count01=1;
+			};
+			playNode.onclick=function(){
+				if(count01%2==1){
+					videoNode.play();
+					playNode.src='icon/pause.png';
+				}else if(count01%2==0){
+					videoNode.pause();
+					playNode.src='icon/playfill.png';
+				};
+				count01++;
+			};
+			playerNode.onclick=function(){
+				if(count01%2==1){
+					videoNode.play();
+					playNode.src='icon/pause.png';
+				}else if(count01%2==0){
+					videoNode.pause();
+					playNode.src='icon/playfill.png';
+				};
+				count01++;
+			};
+			// 设置停止按钮
+			var stopNode=document.querySelector('#stop');
+			stopNode.onclick=function(){
+				videoNode.pause();
+				videoNode.currentTime=0;
+				playNode.src='icon/playfill.png';
+				count01=1;
+			};
+			// 设置播放时间
+			var currentTNode=document.querySelector('#currentT')
+			setInterval(function(){
+				// console.log(videoNode.currentTime);
+				// currentTNode.innerHTML=videoNode.currentTime;
+			},1000);
+			// 设置音量
+			var voiceNode=document.querySelector('#voice');
+			var count02;
+			if(videoNode.muted==false){
+				voiceNode.src='icon/喇叭.png';
+				count02=1;
+			}else if(videoNode.muted==true){
+				voiceNode.src='icon/静音.png';
+				count02=2;
+			};
+			voiceNode.onclick=function(){
+				if(count02%2==1){
+					video.muted=true;
+					voiceNode.src='icon/静音.png';
+				}else if(count02%2==0){
+					video.muted=false;
+					voiceNode.src='icon/喇叭.png';
+				};
+				count02++;
+			};// 设置全屏
+			var fullScreenNode=document.querySelector('#fullScreen');
+			var count03=1;
+			fullScreenNode.onclick=function(){
+				if(count03%2==1){
+					fullScreenNode.src='icon/退出全屏.png';
+				}else if(count03%2==0){
+					fullScreenNode.src='icon/全屏.png';
+				};
+				count03++;
+			};
+			// 设置播放结束之后
+			videoNode.addEventListener('ended',function(){
+				videoNode.currentTime="0";
+				count01=1;
+				playNode.src='icon/playfill.png';
+			});
+			// 根据窗口大小改变调整页面
+			window.addEventListener('resize',function(){
+				videoNode.width=window.innerWidth-200;
+				playerNode.style.width=videoNode.width+'px';
+				playerNode.style.height=window.innerHeight-50+'px';
+				controlNode.style.width=window.innerWidth+'px';
+				totalPgNode.style.width=window.innerWidth-10+'px';
+				var long01=totalPgNode.offsetWidth-slider01Node.offsetWidth;
+				var scale01=videoNode.currentTime/videoNode.duration;
+				currentPgNode.style.width=totalPgNode.offsetWidth*scale01+'px';
+				slider01Node.style.left=5+long01*scale01+'px';
+			});
+		</script>
+	</body>
+</html>

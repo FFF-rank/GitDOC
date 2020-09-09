@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/* 第一组 */
+			#item{
+				width: 100px;
+				height:100px;
+				background-color: red;
+			}
+			#item.active{
+				background-color: blue;
+			}
+			/* 第二组 */
+			.item2{
+				width: 100px;
+				height:100px;
+				background-color: yellow;
+			}
+			.item2.active{
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="item"></div>
+		<button id="btn">切换颜色</button>
+		<button id="red">红</button>
+		<button id="blue">蓝</button>
+		<br>
+		<div class="item2"></div>
+		<button id="btn2">切换颜色</button>
+		<button id="yellow">黄</button>
+		<button id="green">绿</button>
+		<script type="text/javascript">
+			// 第一组
+			var btnNode=document.querySelector('#btn');
+			var itemNode=document.querySelector('#item');
+			btnNode.addEventListener('click',(function(){
+				itemNode.classList.toggle('active');
+			}));
+			var redNode=document.querySelector('#red');
+			redNode.addEventListener('click',(function(){
+				itemNode.classList.remove('active');
+			}));
+			var blueNode=document.querySelector('#blue');
+			blueNode.addEventListener('click',(function(){
+				itemNode.classList.add('active');
+			}));
+			// 第二组
+			var btn2Node=document.querySelector('#btn2');
+			var item2Node=document.querySelector('.item2');
+			btn2Node.addEventListener('click',(function(){
+				item2Node.classList.toggle('active');
+			}));
+			var yellowNode=document.querySelector('#yellow');
+			yellowNode.addEventListener('click',(function(){
+				item2Node.classList.remove('active');
+			}));
+			var greenNode=document.querySelector('#green');
+			greenNode.addEventListener('click',(function(){
+				item2Node.classList.add('active');
+			}));
+		</script>
+	</body>
+</html>
