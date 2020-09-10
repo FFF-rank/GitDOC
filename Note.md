@@ -228,6 +228,7 @@
  + 图片位置也可用0px 0px（左上），坐标的形式设置
  + 可使用center center，显示中间部分
  + background也可使用复合元素
+ + background-size:cover,铺满元素，可能进行裁切
  
 ### PS基本使用
 + 切片为保存web格式
@@ -1294,3 +1295,76 @@ table { border-collapse:collapse; }
 	- 文字系列(font, line-height, letter-spacing, color, text-align等)
 	- 背景(background, border等)
 	- 其他(animation, transition等)
+
+# 2020/9/10（今天做了PC网页项目的一部分，主要是导航等交互，稍微试用了一下css3的动画，视频顺序应该是有问题，又出现了之前没讲过的内容，比如动画，再接着做下去看看）
+### 字体
++ 衬线字体：serif：横竖不一样粗，宋体、仿宋体、楷体
++ 非衬线字体：sans-serif：横竖一样粗，微软雅黑、黑体、思源黑体、兰亭黑
+
+### reset.css：清除所有元素默认样式，统一各浏览器样式
+
+### normalize.css：统一各浏览器的样式，对h5新增的标签进行了设置
+
+###常用命名单词：中文	英文
++ 容器	container
++ 包裹	wrapper
++ 头	header
++ 页脚	footer
++ 导航	nav
++ 子导航	subnav
++ 菜单	menu
++ 子菜单	submenu 
++ 侧边栏	sidebar
++ 栏目	column
++ 登陆条	loginbar
++ 标志	logo
++ 广告	banner
++ 主体	main
++ 内容	content
++ 热点	hot
++ 新闻	news
++ 下载	download
++ 搜索	search
++ 友情链接	friendlink
++ 版权	copyright
++ 滚动	scroll
++ 标签	tags
++ 列表	list
++ 信息	msg
++ 小提示	tips
++ 标题	title
++ 加入我们	joinus
++ 指南	guide
++ 服务	service
++ 注册	register
++ 状态	status
++ 投票	vote
++ 合作伙伴	partner
+
+### CSS过渡时间样式：transition:1s;
+
+### CSS不换行样式：white-space:nowrap;
+
+### 关于load事件
++ load事件：等到页面中一切（页面中的dom、外部图片、各种文件）都加载完毕才触发
++ DOMContentLoaded：等到页面中的dom元素加载完毕（jQuery的ready事件就是对其的封装）
+
+### 选择多个选择器，并将之放到一个数组元素中，document.querySelectorAll（）
+
+### 同时操作数组元素内的每个元素：数组元素名.forEach(function(子元素代称){})
+
+### 可监听窗口尺寸变化事件：resize
+
+### 事件防抖
++ 应用场景：事件触发频繁，如滚轮事件、input事件
+
+### setTimeout(方法,延迟时间)，延迟一定时间后执行方法，时间以毫秒计
++ 可以用 定时句柄=setTimeout 的方法监控定时状态，当处于定时时返回值为1，定时结束后返回值为null
++ 可以用 clearTimeout（定时句柄） 的方式取消定时
++ 可以为定时句柄赋初始值null，当其！==null时，即处于定时状态
+
+### CSS样式：transform:对元素进行变换
+
+### CSS样式：animation，将动画与div元素绑定
+
+### 创建动画规则：@keyframes 动画名称{0%{css样式} ... 100%{css样式}}，将多套css样式通过变化转换
