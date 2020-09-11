@@ -1368,3 +1368,29 @@ table { border-collapse:collapse; }
 ### CSS样式：animation，将动画与div元素绑定
 
 ### 创建动画规则：@keyframes 动画名称{0%{css样式} ... 100%{css样式}}，将多套css样式通过变化转换
+
+# 2020/9/11（今天做了3个页面，明天收尾完成这个项目，完成之后把用到的css3样式总结一下）
+### .子元素类名:first-child ，选择子元素对应的父元素下第一个子元素
++ last-child同理
+
+### .子元素名:nth-child(n)，选择子元素对应的父元素下第n个子元素,从1开始计数
+
+### css样式：transform-style:preserve-3d，为父元素建立3d样式，对其子元素设置的转换即可呈现3d效果
++ backface-visibility:hidden,为子元素设置，3d翻转时可隐藏背面
+
+### css样式：perspective:2000px，为父元素设置景深为2000px
+
+### css样式：letter-spacing:10px,字符间距设为10px，默认为0
+
+### css样式：box-shadow:1px 2px 3px #000,元素阴影，水平位置为3，垂直位置为2,模糊距离为3，颜色为黑
+
+### css样式：visibility:hidden,元素不可见，但仍然占据位置当值为visible时可见
++ display:none,不占据位置
++ 隐藏元素的多种方法
+	- display: none;
+	- visibility: hidden;
+	- opacity:0;
+	- width: 0;
+	- height: 0;
+	- transform: scale(0);
+	- transform: translate(-10000px)
