@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#can{
+				border:1px #000 solid;
+				position:absolute;
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				margin:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can"></canvas>
+		<script type="text/javascript">
+			var canNode=document.querySelector('#can');
+			canNode.width=600;
+			canNode.height=600;
+			var ctx=canNode.getContext('2d');
+			var circleArr=[];
+			setInterval(function(){
+				var circle={};
+				circle.x=Math.floor(Math.random()*canNode.width);
+				circle.y=Math.floor(Math.random()*canNode.height);
+				circle.r=10;
+				circle.red=Math.floor(Math.random()*256);
+				circle.green=Math.floor(Math.random()*256);
+				circle.blue=Math.floor(Math.random()*256);
+				circle.opacity=1;
+				circleArr.push(circle);
+			},50);
+			setInterval(function(){
+				ctx.clearRect(0,0,canNode.width,canNode.height);
+				for(var i=0;i<circleArr.length;i++){
+					circleArr[i].r++;
+					circleArr[i].opacity-=0.01;
+				};
+				for(var i=0;i<circleArr.length;i++){
+					ctx.beginPath();
+					ctx.arc(circleArr[i].x,circleArr[i].y,circleArr[i].r,0,2*Math.PI);
+					ctx.fillStyle='rgba('+circleArr[i].red+','+circleArr[i].green+','+circleArr[i].blue+','+circleArr[i].opacity+')';
+					ctx.fill();
+				};
+			},17);
+		</script>
+	</body>
+</html>

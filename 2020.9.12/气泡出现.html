@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#can{
+				border:1px #000 solid;
+				position:absolute;
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				margin:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="can"></canvas>
+		<script type="text/javascript">
+			var canNode=document.querySelector('#can');
+			canNode.width=600;
+			canNode.height=600;
+			var ctx=canNode.getContext('2d');
+			var r=10;
+			setInterval(function(){
+				var X=Math.floor(Math.random()*canNode.width);
+				var Y=Math.floor(Math.random()*canNode.height);
+				var red=Math.floor(Math.random()*256);
+				var green=Math.floor(Math.random()*256);
+				var blue=Math.floor(Math.random()*256);
+				ctx.beginPath();
+				ctx.arc(X,Y,r,0,2*Math.PI);
+				ctx.fillStyle='rgb('+red+','+green+','+blue+')';
+				ctx.fill();
+			},500)
+		</script>
+	</body>
+</html>

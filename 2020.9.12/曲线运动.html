@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.brush{
+				position:absolute;
+				top:200px;
+				left:0;
+				width: 50px;
+				height:50px;
+				background-color: deeppink;
+				border-radius: 50%;
+				z-index:100;
+			}
+			.line{
+				width: 100%;
+				height:1px;
+				background-color: #000;
+				position: absolute;
+			}
+			.l1{
+				top:200px;
+			}
+			.l2{
+				top:100px;
+			}
+			.l3{
+				top:300px;
+			}
+			.box{
+				position:absolute;
+				width: 4px;
+				height:4px;
+				border-radius: 50%;
+				background-color: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="brush"></div>
+		<div class="line l1"></div>
+		<div class="line l2"></div>
+		<div class="line l3"></div>
+		<script type="text/javascript">
+			setTimeout(function(){
+				var brushNode=document.querySelector('.brush');
+				var i=0;
+				var top=brushNode.offsetTop;
+				var left=brushNode.offsetLeft;
+				console.log(top);
+				var a=setInterval(function(){
+					if(i<=7200){
+						brushNode.style.left=left+0.1*i+'px';
+						brushNode.style.top=top-Math.sin(i/360*Math.PI)*100+'px';
+						var boxNode=document.createElement('div');
+						boxNode.className='box';
+						boxNode.style.left=left+0.1*i+'px';
+						boxNode.style.top=top-Math.sin(i/360*Math.PI)*100+'px';
+						document.body.appendChild(boxNode);
+					}else{
+						a=clearInterval(a);
+					};
+					console.log(i);
+					console.log(brushNode.offsetLeft);
+					console.log(brushNode.offsetTop);
+					i++;
+					// 划线
+				},1);
+			},1000);
+		</script>
+	</body>
+</html>
