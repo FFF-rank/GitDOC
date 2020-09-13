@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.can{
+				position:absolute;
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				margin:auto;
+				border:1px #000 solid;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas class="can"></canvas>
+		<script type="text/javascript">
+			var canNode=document.querySelector('.can');
+			canNode.width=236;
+			canNode.height=448;
+			ctx=canNode.getContext('2d');
+			
+			var circleArr=[];
+			setInterval(function(){
+				var circle={};
+				circle.r=5+Math.floor(Math.random()*10);
+				circle.x=Math.floor(Math.random()*canNode.width);
+				circle.y=canNode.height+circle.r;
+				circle.red=128+Math.floor(Math.random()*128);
+				circle.green=128+Math.floor(Math.random()*128);
+				circle.blue=128+Math.floor(Math.random()*128);
+				circle.opacity=1;
+				circle.X=circle.x;
+				circleArr.push(circle);
+			},100);
+			
+			setInterval(function(){
+				ctx.clearRect(0,0,canNode.width,canNode.height);
+				for(var i=0;i<circleArr.length;i++){
+					if(circleArr[i].y>0-circleArr[i].r){
+						ctx.beginPath();
+						ctx.arc(circleArr[i].x,circleArr[i].y,circleArr[i].r,0,2*Math.PI);
+						ctx.fillStyle="rgba("+circleArr[i].red+","+circleArr[i].green+","+circleArr[i].blue+","+circleArr[i].opacity+")";
+						ctx.fill();
+						circleArr[i].x=circleArr[i].X+Math.sin(circleArr[i].y/180*Math.PI)*circleArr[i].r*5;
+						circleArr[i].y-=5;
+						circleArr[i].r+=0.05;
+						circleArr[i].opacity-=0.01;
+					};
+				};
+			},17);
+		</script>
+	</body>
+</html>

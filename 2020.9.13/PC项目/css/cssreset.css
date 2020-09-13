@@ -1,0 +1,14 @@
+/* cssreset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { font:14px "Microsoft YaHei","Arial","黑体",sans-serif; color:#333}
+td,th,caption { font-size:14px; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:100%; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+a { color:#333; text-decoration:none; }
+img { border:none;display:block; }
+ol,ul,li { list-style:none; }
+input, textarea, select, button { font:14px "Microsoft YaHei","Arial","黑体",sans-serif; }
+table { border-collapse:collapse; }
+/* 清除浮动 */
+.clearfix{*zoom: 1;}
+.clearfix:after{content: "";display: block;clear: both;}

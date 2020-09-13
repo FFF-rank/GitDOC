@@ -1400,3 +1400,14 @@ table { border-collapse:collapse; }
 + 所以通常为了照顾60hz频率屏幕，动画的计时器周期通常设为16.67ms以上
 + setTimeout函数最小值可以是4
 + setInterval函数最小值可以是10
+
+# 2020.9.13
+### 父元素名.appendChild(子元素名)，为父元素添加子元素
++ 父元素名.removeChild(子元素名)，为父元素移除子元素
+
+### var 元素名= document.createElement('元素标签')，创建元素
+
+### 元素名.className='can'，为元素创建类名
+
+### 元素事件：mouseenter，鼠标移入元素区域
++ mouseleave，鼠标移出元素区域
