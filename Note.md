@@ -1401,7 +1401,7 @@ table { border-collapse:collapse; }
 + setTimeout函数最小值可以是4
 + setInterval函数最小值可以是10
 
-# 2020.9.13
+# 2020.9.13(完成PC项目)
 ### 父元素名.appendChild(子元素名)，为父元素添加子元素
 + 父元素名.removeChild(子元素名)，为父元素移除子元素
 
@@ -1411,3 +1411,14 @@ table { border-collapse:collapse; }
 
 ### 元素事件：mouseenter，鼠标移入元素区域
 + mouseleave，鼠标移出元素区域
+
+# 2020.9.14（今天休息一哈，明天开始啃js）
+### 元素名.remove()，即可从dom中移除元素
+
+### 对象的分类
++ 内建对象
+	- 由ES标准中定义的对象，在任何的ES的实现中都可以使用
+	- 比如：Math String Number Boolean Function Object
++ 宿主对象
+	- 由js的运行环境提供的对象，目前来讲主要指由浏览器提供的对象
+	- 比如：BOM（浏览器对象模型） DOM（文档对象模型）
