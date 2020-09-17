@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="box1"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var box1Node=document.querySelector('.box1');
+				console.log(box1Node);
+				var box2Node=document.createElement('div');
+				box2Node.className='box2';
+				box1Node.insertAdjacentElement('afterbegin',box2Node);
+				var box3Node=document.createElement('div');
+				box3Node.className='box3';
+				box1Node.insertBefore(box3Node,box2Node);
+			};
+		</script>
+	</body>
+</html>
