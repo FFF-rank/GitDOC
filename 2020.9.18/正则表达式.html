@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var str="agFd3154sdfgSdf";
+			var result=str.split('4');
+			console.log(result);
+			var arr=[1,2,3];
+			console.log(arr);
+			var result2=str.match(/[A-z]/g);
+			console.log(result2);
+			var result3=str.replace(/d/g,'@_@');
+			console.log(result3);
+			reg=/ab+c/;
+			console.log(reg.test('abc'));
+			reg=/ab*c/;
+			console.log(reg.test('abbac'));
+			reg=/ab?c/;
+			console.log(reg.test('abbc'));
+			reg=/\./;
+			console.log(reg.test('aa.'));
+		</script>
+	</body>
+</html>
