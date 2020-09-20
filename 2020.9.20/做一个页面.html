@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin:0;
+				padding:0;
+			}
+			.main{
+				width:720px;
+				height:800px;
+				position:relative;
+				left:0;
+				right:0;
+				margin:10px auto;
+				display: flex;
+				justify-content:space-between;
+			}
+			.left{
+				width: 400px;
+			}
+			.left-top{
+				border:1px solid #000;
+				padding:10px;
+				margin-bottom:10px;
+			}
+			.left-bottom{
+				border:1px solid #000;
+				padding:10px;
+			}
+			.gender{
+				display: flex;
+				align-items:center;
+				margin-bottom:10px;
+			}
+			ul,li{
+				list-style: none;
+			}
+			ul{
+				display: flex;
+				padding-inline-start:0;
+				margin-block-start:0;
+				margin-block-end:0;
+			}
+			.left-top li{
+				border:1px solid #000;
+			}
+			li{
+				margin-right:10px;
+				padding:5px;
+			}
+			span,input{
+				display:block;
+				margin-right:10px;
+			}
+			.name{
+				display: flex;
+			}
+			button{
+				width: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='main'>
+			<div class="left">
+				<div class="left-top">
+					<p>你最喜欢哪个城市？</p>
+					<ul class="city">
+						<li class="beijing">北京</li>
+						<li class="shanghai">上海</li>
+						<li class="dongjing">东京</li>
+						<li class="shouer">首尔</li>
+					</ul>
+					<p>你最喜欢哪款单机游戏？</p>
+					<ul class="game">
+						<li class="hongjing">红警</li>
+						<li class="shikuang">实况</li>
+						<li class="jipinfeiche">极品飞车</li>
+						<li class="moshou">魔兽</li>
+					</ul>
+					<p>你手机的操作系统是？</p>
+					<ul class="city">
+						<li class="IOS">IOS</li>
+						<li class="Android">Android</li>
+						<li class="windows">Windows</li>
+					</ul>
+				</div>
+				<div class="left-bottom">
+					<div class="gender">
+						<span>gender:</span>
+						<input type='radio' id='male' name='gender'>
+						<span>Male</span>
+						<input type='radio' id="female" name='gender'>
+						<span>Female</span>
+					</div>		
+					<div class="name">
+						<span>name:</span>
+						<input type="text">
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<button id="button01">查找#bj节点</button>
+				<button id="button02">查找所有li节点</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var button01=document.querySelector('#button01');
+			button01.onclick=function(){
+				var beijing=document.querySelector('.beijing');
+				alert(beijing.innerHTML);
+			};
+			button02.onclick=function(){
+				var liList=document.querySelectorAll('li');
+				alert(liList.length);
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 邮件地址规则
+			// 任意字母数字下划线 .任意字母数字下划线（可有可无） @ 任意字母数字 .任意字母数字（2-5位） .任意字母（2-5位）
+			
+			// \w (\.\w)* @ [A-z 0-9] (\.[A-z]{2,5}){1,2}
+			var reg=/^\w+(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+			var str='5290@qq.com';
+			console.log(reg.test(str));
+		</script>
+	</body>
+</html>
