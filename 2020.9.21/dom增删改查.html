@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="city">
+			<div class="beijing">北京</div>
+			<div class="shanghai">上海</div>
+		</div>
+		<script type="text/javascript">
+			// 顺序插入一个元素
+			// var cityNode=document.querySelector('.city');
+			// var guangzhou=document.createElement('div');
+			// guangzhou.className='guangzhou';
+			// cityNode.appendChild(guangzhou);
+			// var gzText=document.createTextNode('广州');
+			// guangzhou.appendChild(gzText);
+
+			// 在某元素前插入新的元素
+			// var guangzhou=document.createElement('div');
+			// guangzhou.className='guangzhou';
+			// var gzText=document.createTextNode('广州');
+			// guangzhou.appendChild(gzText);
+			// var cityNode=document.querySelector('.city');
+			// var shanghai=document.querySelector('.shanghai');
+			// cityNode.insertBefore(guangzhou,shanghai);
+
+			// 替换某元素
+			// var guangzhou=document.createElement('div');
+			// guangzhou.className='guangzhou';
+			// var gzText=document.createTextNode('广州');
+			// guangzhou.appendChild(gzText);
+			// var cityNode=document.querySelector('.city');
+			// var beijing=document.querySelector('.beijing');
+			// cityNode.replaceChild(guangzhou,beijing);
+
+			// 删除子元素
+			// var cityNode=document.querySelector('.city');
+			// var beijing=document.querySelector('.beijing');
+			// // cityNode.removeChild(beijing);
+			// 通过自身删除，不需要定义其父元素
+			// beijing.parentNode.removeChild(beijing);
+
+			// 用修改html的方式添加新元素
+			var cityNode=document.querySelector('.city');
+			cityNode.innerHTML +="<div class='guangzhou'>广州</div>";
+		</script>
+	</body>
+</html>

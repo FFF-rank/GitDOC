@@ -1530,3 +1530,22 @@ table { border-collapse:collapse; }
 
 # 2020/9/20(这两天在看这个，https://www.bilibili.com/video/BV1YW411T7GX?p=94)
 ### 正则表达式中不能加无谓的空格
+
+# 2020/9/21（增删改查，大概知道接下来要学啥了，状态好了一些）
+### 每个节点都有的三个属性：nodeName、nodeType、nodeValue
+
+### getElementsByName,根据name属性获取元素，并放在一个数组中
+
+### input的checkbox类型中，属性checked=true/false 对应是否被选中
+
+### document中有一个属性body，保存的是body的引用
+
+### document.documentElement保存的是html根标签
+
+### document.all代表页面中所有元素
++ 等同于document.getElementByTagName('*')
+
+### 替换父元素下的某元素：父元素.replaceChild（新元素，旧元素）
+
+### 用innerHTML也可以完成一些dom增删改的操作，将代码作为字符串添加
+

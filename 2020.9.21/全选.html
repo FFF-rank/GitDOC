@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			button{
+				width: 100px;;
+			}
+		</style>
+	</head>
+	<body>
+		<span>你爱好的运动是？</span>
+		<input id='all' type='checkbox'>
+		<span>全选</span>
+		
+		<br/>
+		
+		<input id='football' type='checkbox' name='item' value='足球'>
+		<span>足球</span>
+		<input id='basketball' type='checkbox' name='item' value='篮球'>
+		<span>篮球</span>
+		<input id='badminton' type='checkbox' name='item' value='羽毛球'>
+		<span>羽毛球</span>
+		<input id='tableTennis' type='checkbox' name='item' value='乒乓球'>
+		<span>乒乓球</span>
+		
+		<br/>
+		
+		<button id='selectAll'>全选</button>
+		<button id='selectAllNo'>全不选</button>
+		<button id='selectInverse'>反选</button>
+		<button id='submit'>提交</button>
+		
+		<script>
+			var all=document.querySelector('#all');
+			var selectAll=document.querySelector('#selectAll');
+			var selectAllNo=document.querySelector('#selectAllNo');
+			var selectInverse=document.querySelector('#selectInverse');
+			var submit=document.querySelector('#submit');
+			
+			var items=document.getElementsByName('item');
+			items.forEach(function(item){
+				item.addEventListener('click',function(){
+					isItAll();
+				});
+			});
+			all.onclick=function(){
+				items.forEach(function(item){
+					item.checked=all.checked;
+				});
+			};
+			selectAll.onclick=function(){
+				items.forEach(function(item){
+					item.checked=true;
+				});
+				isItAll();
+			};
+			selectAllNo.onclick=function(){
+				items.forEach(function(item){
+					item.checked=false;
+				});
+				isItAll();
+			};
+			selectInverse.onclick=function(){
+				items.forEach(function(item){
+					if(item.checked){
+						item.checked=false;
+					}else if(item.checked==false){
+						item.checked=true;
+					};
+				});
+				isItAll();
+			};
+			submit.onclick=function(){
+				items.forEach(function(item){
+					if(item.checked){
+						alert(item.value);
+					};
+				});
+			};
+			// 判断当前是否为全选
+			function isItAll(){
+				var index=true;
+				items.forEach(function(item){
+					if(item.checked==false){
+						index=false;
+					};
+				});
+				all.checked=index;
+			};
+		</script>
+	</body>
+</html>
