@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            console.log(navigator.userAgent);
+            var ua=navigator.userAgent;
+            if(/chrome/i.test(ua)){
+                console.log('你是谷歌浏览器');
+            }else if(/firefox/i.test(ua)){
+                console.log('你是火狐浏览器');
+            }else if("ActiveXObject" in window){
+                console.log('你是IE浏览器');
+                console.log(window.ActiveXObject);
+            };
+        </script>
+    </body>
+</html>

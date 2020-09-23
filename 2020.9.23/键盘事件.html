@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            div{
+                width: 800px;
+                height:600px;
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <script>
+            document.onkeydown=function(event){
+                // console.log('按键被按下');
+                // console.log(event.keyCode);
+                if(event.keyCode==89 && event.ctrlKey){
+                    console.log('ctrl+y');
+                }else if(event.keyCode==89 && event.altKey){
+                    console.log('alt+y');
+                }else if(event.keyCode==89 && event.shiftKey){
+                    console.log('shift+y');
+                };
+            };
+            // document.onkeyup=function(){
+            //     console.log('按键被松开');
+            // };
+        </script>
+    </body>
+</html>

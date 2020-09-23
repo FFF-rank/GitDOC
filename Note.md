@@ -1094,6 +1094,7 @@
 + 若设置了定时调用的按钮，则要在调用函数的开始先清除已有的计时，否则重复摁计时调用按钮会导致计时错乱！
 + 这个应该就是轮播图的原理了，后面再加上循环应该就可以实现了
 + 把步进调小，频率调高，动画更为流畅
++ 此函数有返回值，为一个数字，即定时器的编号
 
 # 2020/8/23（今日继续完成canvas，效率下降很多，明天加油）
 ### 绘图环境的保存和还原：将坐标系和样式保存和还原，不影响已绘制的图形
@@ -1590,5 +1591,42 @@ table { border-collapse:collapse; }
 
 ### addEventListener可同时为一个元素的相同事件绑定多个响应函数，当触发时按绑定顺序执行
 
-### IE8中可用attachEvent绑定事件，只有带on的事件名和方法两个参数
+### IE8中可用attachEvent绑定事件，只有带on的事件名和方法两个参数,其中的this指代的是windows
+
+# 2020/9/23（今天对js的基础学习基本结束了【差一个json】，明天开始进行cookie、ajax）
+### 事件的捕获阶段，从最外层（祖先辈）往里（后代）捕获，此时默认不会触发事件，触发时则相反，因此冒泡是从里向外
++ 如果希望在捕获阶段触发事件，则可以将addEventListener的第三个参数设为true
+
+### 键盘事件：一般绑定给一些可以获取焦点的对象（如输入框，有输入光标即是获取了焦点）或document
++ onkeydown/onkeyup，按键被按下/按键被松开
+	- 当长按连续触发onkeydown时，第一次和第二次之间会有一段时间的硬直
+	- onkeydown.keyCode可以返回按键的unicode字符码
+	- altKey、ctrlKey、shiftKey可返回相应键是否被按下（true/false），event.keyCode==89 && event.ctrlKey可判断是否同时按下ctrl+y
+
+### 对input。onkeydown设置return false，则输入的内容不会出现在文本框中
+
+### BOM为我们提供了一组对象，用来对浏览器进行操作
++ window，代表整个浏览器窗口，也是网页的全局对象
++ navigator，代表当前浏览器的信息，可识别不同浏览器
+	- 由于历史原因，大部分属性已经无法用来识别
+	- 一般只会使用userAgent来判断浏览器信息
+		* /chrome/i.test(navigator.userAgent),判断是否为chrome
+		* /firefox/i.test(navigator.userAgent),判断是否为firefox
+		* /msie/i.test(navigator.userAgent),判断是否为ie10及以下的浏览器
+	- 如要判断浏览器是否为ie，可用“ActiveXObject” in window 来判断是否为ie，只有ie有这个方法（edge不行，已用chrome内核）
++ location，代表当前浏览器的地址栏信息，可获取地址信息，跳转页面
+	- 直接打印location可获取当前路径
+	- 修改即跳转到新的路径，并会生成历史记录
+	- location.assign（“地址”），跟直接修改一样
+	- location.reload（），重新加载页面
+		* 如果在（）中传递参数true，将强制清空缓存刷新页面
+	- location.replace(“地址”),替换成一个新的页面，无历史记录
++ history，代表浏览器的历史记录，可以操作浏览器的历史记录
+	- 由于隐私原因，不能获取历史记录，只能操作浏览器向前或向后翻页
+	- history.length,可以获取当前访问的链接数量
+	- history.back（），可以返回上一个页面
+	- history.forward（），可以返回下一个页面
+	- history.go（n），表示跳转n个页面，正数向前，负数向后
++ screen，代表用户的屏幕信息，可获取显示器的相关信息
+
 
