@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            // 设置cookie的函数
+			function setCookie(name,value,day){
+				var overDate=new Date();
+				overDate.setDate(overDate.getDate()+day);
+				document.cookie=name+'='+value+';expires='+overDate;
+			};
+			// 例子：设置cookie
+			setCookie('userName1','hlz',15);
+			setCookie('userName2','zhy',15);
+			console.log(document.cookie);
+			
+			// 获取cookie的函数
+			function getCookie(name){
+				var arr=document.cookie.split('; ');
+				for(var i=0;i<arr.length;i++){
+					var arr1=arr[i].split('=');
+					if(arr1[0]==name){
+						return arr1[1];
+					};
+				};
+			};
+			// 例子：获取cookie
+			console.log(getCookie('userName2'));
+			
+			// 删除cookie的函数
+			function removeCookie(name){
+				setCookie(name,1,-1);
+			};
+			// 例子：删除cookie
+			removeCookie('userName');
+        </script>
+    </body>
+</html>

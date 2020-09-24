@@ -594,8 +594,9 @@
 # 2020/8/16（今日完成1.json、math、date对象；2.字符串常用方法；3.数组常用方法）
 ### json对象：是一种网络传输数据的格式,用在前后台交互
 + 在传输数据时不能直接传对象，要将对象转换成字符串，即在大括号外加引号
-+ 可用JSON.stringify(对象名)将对象转换成字符串
-+ 可用JSON.parse（字符串化的对象名）将字符串化的对象转换成对象
++ JSON是一个JS提供的工具
+	- 可用JSON.stringify(对象名)将对象转换成字符串
+	- 可用JSON.parse（字符串化的对象名）将字符串化的对象转换成对象
 
 ### 遍历对象的属性名与属性值
 + for(var i in json01){console.log(i+':'+json01[i]);}
@@ -1628,5 +1629,75 @@ table { border-collapse:collapse; }
 	- history.forward（），可以返回下一个页面
 	- history.go（n），表示跳转n个页面，正数向前，负数向后
 + screen，代表用户的屏幕信息，可获取显示器的相关信息
+
+# 2020.9.24（今天尝试了下先学ajax，感觉不太对，应该从jQuery学起）
+### json分为对象和数组两类，用{}、[]包裹
++ json中允许的值（对象或数组中）：
+	- 字符串
+	- 数字
+	- 布尔值
+	- null
+	- 对象
+	- 数组
++ json中的属性名必须加双引号
+
+### eval（），此函数可以执行一段字符串形式的js代码，并将执行结果返回（用于兼容ie7以下版本）
++ 如果eval执行的字符串中含有{}，他会将{}当成是代码块，如不希望将其当成代码块解析，则需要在字符串前后加（）
+
+### cookie，是指缓存在本地客户端的数据，用来保存用户数据信息，在浏览器与服务器之间传递信息，以保存状态、识别身份（如是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等）
++ 最大可以存储4kb，每一个域名最多可以存储50条cookie（不同浏览器有差异）
++ 只能存储字符串
++ 可以用document.cookie访问cookie
++ 记录数据的格式为name=value，用分号和一个空格隔开，同名的数据会被覆盖
++ 可以设置过期时间，未设置会默认为会话cookie，当浏览器关闭时，cookie消失
+	- expires=时间对象，可用new Date（）获取当前时间，再用getDate和setDate更改日期
+	- 当expires=-1时，会立即删除该cookie(利用此实现删除cookie)
+
+### AJAX，就是异步的js和XML，通过AJAX可以再浏览器中向服务器发送异步请求，在不刷新网页的情况下获取数据，其不是一种编程语言，而是将现有的标准组合在一起使用的新方式
++ 典型场景：搜索框备选项、注册页面格式审查、下滑加载新数据等，可提高网页初次加载速度，按需加载，并可与后台交换数据
++ 优点：无需刷新页面即可与服务端通信；允许根据事件更新部分页面内容
++ 缺点：没有浏览历史，不能回退；存在跨域问题；对seo不友好
+
+### XML，可拓展标记语言，被设计用来传输和存储数据，与HTML类似，不同的是HTML都是预定义标签，二XML中没有预定义标签，都是自定义标签，曾被用于ajax
+
+### HTTP，超文本传输协议，规定了浏览器和万维网服务器之间互相通信的规则
++ 请求报文：
+```
+行（3个部分）   POST     /url路径    HTTP/1.1
+头(名字：空格+值)    Host: atguigu.com
+                    Cookie: name=guigu
+					Content-type: application/x-www-form-urlencoded
+					User-Agent: chrome 83
+空行
+体（GET为空，POST可以不为空）   username=admin&password=admin
+```
++ 响应报文
+```
+行      HTTP/1.1    200    OK
+头      Content-type: text/html;charset=utf-8
+        Content-length: 2048
+		Content-encoding: gzip
+空行
+体      <html>
+			<head></head>
+			<body></body>
+		</html>
+```
+
+### jQuery是一款javascript库，主要用途是用来做查询，对html文档遍历和操作、事件处理、动画以及ajax变得更加简单（还能跨浏览器兼容）
++ 本质上就是封装了常用功能的代码的js文件，对其的学习就是学习调用这些函数（方法）
++ 版本1.x，兼容ie678，不再更新
++ 版本2.x，不兼容ie678，不再更新
++ 版本3.x，不兼容ie678
+
+### jQuery地址
++ 百度：http://libs.baidu.com/jquery/1.9.1/jquery.min.js
++ 字节跳动：https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js
+
+### $是jQuery的别称，两者可以互相代替，作为代码开头
+
+### jquery方法：$('选择器').hide()，隐藏某元素，等同display：none
+
+### jquery方法：$(function(){...})，jqury代码的入口函数，待页面加载完成后运行
 
 
