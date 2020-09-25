@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		全选<input type="checkbox" class="allSelect">
+		<br>
+		商品1<input type="checkbox" class="jSelect">
+		商品2<input type="checkbox" class="jSelect">
+		商品3<input type="checkbox" class="jSelect">
+		<br>
+		全选<input type="checkbox" class="allSelect">
+		<script type="text/javascript">
+			$(function(){
+				$('.allSelect').change(function(){
+					$('.allSelect,.jSelect').prop('checked',$(this).prop('checked'));
+				});
+				$('.jSelect').change(function(){
+					console.log($('.jSelect:checked').length);
+					if($('.jSelect:checked').length===$('.jSelect').length){
+						$('.allSelect').prop('checked',true);
+					}else if($('.jSelect:checked').length!==$('.jSelect').length){
+						$('.allSelect').prop('checked',false);
+					};
+				});
+			});
+		</script>
+	</body>
+</html>

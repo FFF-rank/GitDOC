@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				float:left;
+			}
+			button{
+				float:left;
+				width:20px;
+				height:20px;
+				border:1px solid #000;
+				text-align:center;
+				line-height:20px;
+				padding:0;
+				outline:none;
+			}
+			input{
+				float:left;
+				width:50px;
+				height:20px;
+				border:1px solid #000;
+				text-align:center;
+				line-height:20px;
+				padding:0;
+				box-sizing: border-box;
+			}
+		</style>
+		<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>￥9.90</div>
+		<button>-</button>
+		<input type="text" value=1></input>
+		<button>+</button>
+		<div>￥9.90</div>
+		<script type="text/javascript">
+			$(function(){
+				$('button').eq(0).click(function(){
+					if($(this).siblings('input').val()>1){
+						$(this).siblings('input').val($(this).siblings('input').val()-1);
+						$(this).siblings('div').eq(1).html('￥'+($(this).siblings('input').val()*$(this).siblings('div').eq(0).html().substr(1)).toFixed(2));
+					};
+				});
+				$('button').eq(1).click(function(){
+					$(this).siblings('input').val(Number($(this).siblings('input').val())+1);
+					$(this).siblings('div').eq(1).html('￥'+($(this).siblings('input').val()*$(this).siblings('div').eq(0).html().substr(1)).toFixed(2));
+				});
+				$('input').change(function(){
+				$(this).siblings('div').eq(1).html('￥'+($(this).val()*$(this).siblings('div').eq(0).html().substr(1)).toFixed(2));
+				})
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height:200px;
+				background-color: pink;
+				display: none;
+			}
+		</style>
+		<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button>淡入</button>
+		<button>淡出</button>
+		<button>切换</button>
+		<button>修改透明度</button>
+		<div></div>
+		<script type="text/javascript">
+			$(function(){
+				$('button').eq(0).click(function(){
+					$('div').stop();
+					$('div').fadeIn(1000);
+				});
+				$('button').eq(1).click(function(){
+					$('div').stop();
+					$('div').fadeOut(1000);
+				});
+				$('button').eq(2).click(function(){
+					$('div').stop();
+					$('div').fadeToggle(1000);
+				});
+				$('button').eq(3).click(function(){
+					$('div').stop();
+					$('div').fadeTo(1000,0.5);
+				});
+			});
+		</script>
+	</body>
+</html>

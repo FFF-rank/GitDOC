@@ -1700,4 +1700,115 @@ table { border-collapse:collapse; }
 
 ### jquery方法：$(function(){...})，jqury代码的入口函数，待页面加载完成后运行
 
+# 2020/9/25(今天学了一天jQuery，感觉还可以，明天估计能结束这部分)
+### DOM对象与jQuery对象
++ DOM对象：用原生JS获取的对象，不能使用jQuery方法
++ jQuery对象：用jQuery方式获取的对象（如$('div'))，本质是通过$把DOM元素进行了包装，以伪数组形式存储，只能使用jQuery方法
++ DOM对象转换为jQuery对象：$(DOM对象)
++ jQuery转换为DOM对象：$('对象名')[index(在伪数组中的序号)]或$('对象名').get（index）
+
+### jQuery选择器使用方法与css一致
+
+### css选择器 父节点>子节点，限定了层级关系必须是父子关系
+
+### jQuery样式设置方法$('对象').css('样式名','样式值')
++ $('对象').css({样式名1：'样式值1'，样式名2：'样式值2'})可以同时修改多个样式
++ 但带 - 的都要改为驼峰命名法
++ 当不传样式值时，会返回当前的样式值
+
+### 隐式迭代：为匹配到的所有元素进行遍历执行,不需手动遍历循环
+
+### jQuery筛选选择器
++ $('li:first'),获取第一个li
++ $('li:last'),获取最后一个li
++ $('li.eq(index)'),获取索引为index的元素，从0开始
++ $('li.odd'),获取到的元素中，选择索引为奇数的元素
++ $('li.even'),获取到的元素中，选择索引为偶数的元素
+
+### jQuery筛选方法
++ $('选择器').parent(),返回最近一级父元素
+	- parents（），返回所有祖先元素，顺序从近到远
+		* 可在括号中指定选择器
++ $('选择器').children('选择器'),返回最近一级子元素
++ $('选择器').find('选择器'),返回后代元素（不光是最近一级）
++ $('选择器').siblings('选择器'),返回兄弟元素（不包含自己）
+	- 此方法可以配合隐式迭代，进行排他处理，完成特定样式在兄弟元素之间的切换
++ $('选择器').nextAll('选择器'),返回当前元素之后的同辈元素
++ $('选择器').prevAll('选择器'),返回当前元素之前的同辈元素
++ $('选择器').eq(index),返回当前选择器对应索引值的元素
++ $('选择器').hasClass('类名'),检查当前元素是否含有某个特定的类，有则返回true，没有则返回false
+
+### 使用jQuery中的this不需要加引号
+
+### jQuery方法：show（[speed,[easing],[fn]]），显示元素
++ 三个参数都可以不传，则无动画直接显示
++ speed有三种预设速度：slow、normal、fast，或直接给毫秒数值
++ easing：指定切换效果，默认是swing（先快后慢），可用linear（匀速）
++ fn:动画完成时执行的函数
++ 动画为从左上角开始放大
++ hide（）、toggle（）方法的参数相同
+
+### jQuery方法：toggle（[speed,[easing],[fn]]），切换是否显示元素
+
+### jQuery事件：mouseover（），鼠标经过
+
+### jQuery事件：mouseout（），鼠标离开
+
+### jQuery方法：index(),得到当前元素索引号
+
+### jQuery方法：addClass('类名')，添加类，等同与classList操作
++ removeClass，删除类
++ toggleClass，切换类
+
+### jQuery方法：上下滑动出现收起
++ slideDown，下滑出现
++ slideUp，上滑收起
++ slideToggle，切换
++ 参数同show（）
+
+### jQuery事件：hover（[over,]out），鼠标经过离开事件切换的复合写法
++ over:鼠标移到元素上触发的函数，相当于mouseenter
++ out：鼠标移出元素触发的函数，相当于mouseleave
++ 如果只写一个方法，则经过和离开都会触发，此时就可以放toggle类的方法
+
+### 当动画事件触发得过于频繁时，会有动画滞后效果，可以用stop（）停止上一次动画
+
+### 这个视频里的老师说官方网站都是用双引号，我们最好也用双引号
+
+### jQuery方法：淡入淡出效果
++ fadeIn，淡入
++ fadeOut，淡出
++ fadeToggle，切换
++ fadeTo，修改透明度，参数除了show（）的3个之外，还有一个透明度的参数opacity,取值范围0~1之间,设置此方法时需设置动画时间，否则容易被误认为动画时间
+
+### jQuery方法：animate（params,[speed],[easing],[fn]），自定义动画
++ params：想要更改的样式属性，必须写,如{left:100,top:100}
+
+### jQuery方法：prop（‘属性名’），可返回元素的属性值
++ prop('属性名','属性值')可以设置属性值
++ 只能获取元素固有属性值
+
+### jQuery方法：attr（‘属性名’），可以返回元素自定义的属性值
++ attr('属性名','属性值')可以设置属性值
+
+### jQuery事件：input/select元素.change（fn），当元素属性值发生改变时
+
+### jQuery方法：data（'key'，'value'），将数据存放在元素的缓存里
++ data（'key'）可以返回对应的值
++ 此方法可以获取h5自定义属性，前提是自定义属性以data-key命名，获取时不用加data-
+
+### jQuery选择器：checkbox元素：checked，返回所有被勾选的checkbox元素伪数组，可用于判断被勾选复选框的个数
+
+### jQuery方法：html（）,获取元素的内容
++ 括号内传值，则会变更元素的内容
+
+### jQuery方法：text（），获取元素的文本内容
++ 括号内传值，则会变更元素的内容
+
+### jQuery方法：val（），获取表单中的value值，如input标签的value值
++ 括号内传值，则会变更元素的内容
+
+### js方法：substr（n），从索引为n的位开始截取字符串，索引从0开始
+
+### js方法：数值.toFixed（n），四舍五入保留n位小数，但会将数值类型转换为字符型
 
