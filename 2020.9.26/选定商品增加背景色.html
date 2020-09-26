@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #000;
+			}
+			div:nth-child(1){
+				background-color: red;
+			}
+			div:nth-child(2){
+				background-color: green;
+			}
+			div:nth-child(3){
+				background-color: blue;
+			}
+			p{
+				cursor: pointer;
+			}
+			span{
+				cursor: pointer;
+			}
+		</style>
+		<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>
+			<input type="checkbox">
+		</div>
+		<div>
+			<input type="checkbox">
+		</div>
+		<div>
+			<input type="checkbox">
+		</div>
+		<p>删除所选商品</p>
+		<span>清空购物车</span>
+		<script type="text/javascript">
+			$(function(){
+				$('p').click(function(){
+					$('input:checked').parents('div').remove();
+				});
+				$('span').click(function(){
+					$('div').remove();
+				})
+			});
+		</script>
+	</body>
+</html>

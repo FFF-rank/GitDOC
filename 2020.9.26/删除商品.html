@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				display: flex;
+			}
+			button{
+				width:20px;
+				height:20px;
+				border:1px solid #000;
+				text-align:center;
+				line-height:20px;
+				padding:0;
+				outline:none;
+			}
+			input{
+				width:50px;
+				height:20px;
+				border:1px solid #000;
+				text-align:center;
+				line-height:20px;
+				padding:0;
+				box-sizing: border-box;
+			}
+			.del{
+				cursor:pointer;
+				text-decoration:underline;
+			}
+		</style>
+		<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="box">
+			<div>￥9.90</div>
+			<button class="decrease">-</button>
+			<input type="text" value=1></input>
+			<button class="increase">+</button>
+			<div class="iPrice">￥9.90</div>
+			<span class="del">删除</span>
+		</div>
+		<div class="box">
+			<div>￥9.90</div>
+			<button class="decrease">-</button>
+			<input type="text" value=1></input>
+			<button class="increase">+</button>
+			<div class="iPrice">￥9.90</div>
+			<span class="del">删除</span>
+		</div>
+		<div>
+			<span>合计</span>
+			<span class="iSum">2</span>
+			<span>件</span>
+		</div>
+		<div>
+			<span>合计￥</span>
+			<span class="pSum"></span>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				sum();
+				$('.decrease').click(function(){
+					if($(this).siblings('input').val()>1){
+						$(this).siblings('input').val($(this).siblings('input').val()-1);
+						$(this).siblings('.iPrice').html('￥'+($(this).siblings('input').val()*$(this).siblings('div').eq(0).html().substr(1)).toFixed(2));
+						sum();
+					};
+				});
+				$('.increase').click(function(){
+					$(this).siblings('input').val(Number($(this).siblings('input').val())+1);
+					$(this).siblings('.iPrice').html('￥'+($(this).siblings('input').val()*$(this).siblings('div').eq(0).html().substr(1)).toFixed(2));
+					sum();
+				});
+				$('input').change(function(){
+				$(this).siblings('.iPrice').html('￥'+($(this).val()*$(this).siblings('div').eq(0).html().substr(1)).toFixed(2));
+				sum();
+				});
+				$('.del').click(function(){
+					$(this).parents('.box').remove();
+					sum();
+				});
+				function sum(){
+					var itemsSum=0;
+					var priceSum=0;
+					$('input').each(function(i,ele){
+						itemsSum+=Number($(ele).val());
+					});
+					$('.iPrice').each(function(i,ele){
+						priceSum+=Number($(ele).html().substr(1));
+					});
+					$('.iSum').eq(0).html(itemsSum);
+					$('.pSum').eq(0).html('￥'+priceSum.toFixed(2));
+				};
+			});
+		</script>
+	</body>
+</html>

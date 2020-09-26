@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.win{
+				width: 500px;
+				border: 1px #000 solid;
+				position: absolute;
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				margin: auto;
+			}
+			textarea{
+				/* display: block; */
+				width: 350px;
+				height: 200px;
+				margin-top:20px;
+				outline: none;
+			}
+			li{
+				list-style: none;
+				display:none;
+			}
+		</style>
+		<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="win">
+			微博发布
+			<textarea name="" id="" cols="30" rows="10"></textarea>
+			<button>发布</button>
+			<ul></ul>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				$('button').click(function(){
+					if($('textarea').val()){
+						var newMessage=$('<li></li>');
+						newMessage.html($('textarea').val()+'<a href="javascript:;" class="del">删除</a>');
+						newMessage.css({
+							width:'350px',
+							marginLeft:'auto',
+							marginRight:'auto',
+							borderBottom:'1px #000 dashed',
+							position:'relative',
+						});
+						newMessage.children('.new').css({
+							display:'block',
+							width:'300px',
+							wordBreak:'break-word'
+						});
+						newMessage.children('.del').css({
+							position:'absolute',
+							top:0,
+							right:0
+						})
+						$('ul').prepend(newMessage);
+						newMessage.slideDown();
+						$('textarea').val('');
+					};
+				// console.log($('.del'))
+				});
+				$('ul').on('click','.del',function(){
+					// 上拉完毕后移除元素
+					$(this).parent().slideUp(function(){
+						$(this).remove();
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
