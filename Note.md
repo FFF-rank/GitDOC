@@ -1860,3 +1860,48 @@ $('ul').on('click','li',function(){
 + 如要解除事件委托，则$('父元素').off('事件名','子元素')
 
 ### jQuery方法：one（）,此方法绑定的事件只能触发一次，绑定方法与on（）类似
+
+# 2020/9/27(今天又出门了，明天完成)
+### jQuery方法：自动触发事件：元素.事件（） 
++ 第二种方式： 元素.trigger('事件')
++ 第三种方式：元素.triggerHandler('事件')，此方法不会触发元素的默认行为
+
+### jQuery事件：focus（），获得焦点，如文本框
+
+### jQuery事件对象：element.on('事件名',function(event){}),其中的event指代的就是事件触发时产生的事件对象
++ 可对事件对象阻止默认行为：event.preventDefault()或return false
++ 也可阻止冒泡：event.stopPropagation()
+
+### jQuery方法：$.extend([deep],target,object1,[objectN])
++ deep:如果设为true为深拷贝，默认为false,浅拷贝
+	- 浅拷贝在拷贝复杂数据类型(对象)时，只会拷贝对象地址，修改拷贝对象，会影响被拷贝对象，深拷贝则不然
+	- 浅拷贝时，当拷贝到对象型数据时，会直接覆盖同名的对象
+	- 深拷贝时，当拷贝到对象型数据时，可以保留原先同名的对象中的属性
++ target：要拷贝的对象
++ objectN：要被拷贝的第N个对象
++ 当对象的属性名重复时，会覆盖原来的属性
+
+### 当作为标识符的$与自建函数或别的库冲突时，可以用jQuery代替，实现多库共存
++ 也可以使用 var 新标识符=$.noConflict() 的方式，自己更改标识符
+
+### jQuery插件：先引入jQuery文件，再调用插件
++ jQuery插件常用网站：
+	- jQuery插件库 http://www.jq22.com/
+	- jQuery之家：http://www.htmleaf.com/
++ jQuery插件使用步骤：
+	- 引入相关文件。（jQuery文件和插件文件）
+	- 复制相关html、css、js（调用插件）
++ 调用代码要写在引入的下方
+
+### 一些jQuery插件：
++ 瀑布流，这个应该就是列布局
++ 图片懒加载（跟随页面滑动加载），代码看不懂
+	- 比较有名的：https://www.jq22.com/jquery-info11629
++ 全屏滚动，这个之前做的PC项目已经实现过了，就是不用滚动条，只用滚轮和按钮，实现网页不同屏之间的切换
+	- 比较有名的：https://github.com/alvarotrigo/fullPage.js
+	- 中文版：https://www.dowebok.com/demo/2014/77/
+
+### bootstrap框架，依赖于jQuery开发的插件
+
+### 字符实体：&copy； ，版权符号
+
