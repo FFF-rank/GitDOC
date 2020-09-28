@@ -1756,7 +1756,7 @@ table { border-collapse:collapse; }
 
 ### jQuery方法：index(),得到当前元素索引号
 
-### jQuery方法：addClass('类名')，添加类，等同与classList操作
+### jQuery方法：addClass('类名')，添加类，等同于classList操作
 + removeClass，删除类
 + toggleClass，切换类
 
@@ -1905,3 +1905,40 @@ $('ul').on('click','li',function(){
 
 ### 字符实体：&copy； ，版权符号
 
+# 2020/9/28（jQuery基础搞定，现在应该还剩这几块：es6，构造继承，ajax，明天捋一捋）
+### localStorage，浏览器中的本地存储，以名值对的形式存储
++ localStorage.setItem('key','value'),增加或修改本地存储
++ localStorage.getItem('key'),返回对应名的值
++ localStorage.removeItem('key'),删除对应名的数据
++ localStorage.clear(),清除所有本地存储
++ 只能存储字符串数据，因此存储时要先经过JSON.stringify（需存储数据）转换，取出后也要用JSON.parse（字符串）转回
++ sessionStorage为临时存储，会话结束时会被清空
++ 只支持IE8以上版本
+
+### 要删除数组中的元素，没法用remove，只能splice，花了我几个小时才得到的血的教训
+
+### jQuery尺寸方法：
++ width()/height(),元素宽高（纯）
++ innerWidth()/innerHeight(),元素宽高（含padding）
++ outerWidth()/outerHeight(),元素宽高（含padding、border）
++ outerWidth(true)/outerHeight(true),元素宽高（含padding、border、margin）
++ 以上参数为空，则获取相应数值，返回数值型
++ 如果参数为数字，则是修改相应值
++ 参数可不必写单位
+
+### jQuery位置方法：
++ offset（），相对文档的位置
+	- 参数为空，返回一个带有top和left属性的对象
+	- offset（）.left/top可获得相应属性值
+	- offset（{top：y，left：x），可修改相应属性值
++ position（），相对父元素的位置，如无父元素，则以文档为准
+	- 参数与offset相同，只能查询不能设置
++ scrollTop()/scrollLeft(),已滚动过的距离
+	- 传参数即可设置距离
+	- 此方法可为document操作
+	- animate函数也有scrollTop属性，可设置动画效果
+		* 此方法不能为document操作，只能为html或body等元素做动画，如$('html,body')
+
+### jQuery链式编程：可以将同一对象的不同操作连在同一行里书写，如$(this).css('color','red').siblings().css('color','')
+
+### 节流阀/互斥锁：当两种事件会互相影响时，可以立一个flag，判断flag的true/false，在执行其中一件事件时，锁死另一种
