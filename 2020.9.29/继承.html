@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name,age){
+				this.name=name;
+				this.age=age;
+			};
+			Person.prototype.show=function(){
+				console.log('我的名字叫'+this.name+'，我今年'+this.age+'岁。');
+			};
+			
+			var xiaoming=new Person('小明',16);
+			xiaoming.show();
+			
+			function PersonItem(name,age,weight){
+				Person.call(this,name,age);
+				this.weight=weight;
+			}
+			PersonItem.prototype=Object.create(Person.prototype);
+			PersonItem.prototype.constructor=PersonItem;
+			PersonItem.prototype.show=function(){
+				console.log('我的名字叫'+this.name+'，我今年'+this.age+'岁,我体重'+this.weight+'斤。');
+			}
+			var xiaohong=new PersonItem('小红',15,100);
+			console.log(xiaohong);
+			xiaohong.show();
+			
+			var xiaogang=new Person('小刚',17);
+			console.log(xiaogang);
+			xiaogang.show();
+		</script>
+	</body>
+</html>

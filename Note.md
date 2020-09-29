@@ -1942,3 +1942,62 @@ $('ul').on('click','li',function(){
 ### jQuery链式编程：可以将同一对象的不同操作连在同一行里书写，如$(this).css('color','red').siblings().css('color','')
 
 ### 节流阀/互斥锁：当两种事件会互相影响时，可以立一个flag，判断flag的true/false，在执行其中一件事件时，锁死另一种
+
+# 2020/9/29（今天发现一个问题，学ajax需要先搭建网站环境，所以前面又有些东西要先学，找了个视频里面好像是用php搭建）
+### Ajax技术需要运行在网站环境中才能生效
+
+### 面向过程与面向对象编程思想，例子：有一辆车时速36km/h，360km路程多久可以跑完
++ 面向过程：只关心数学逻辑
+```
+var hours=360/36;
+```
++ 面向对象：找出实体，分析实体属性和功能，让实体间相互作用
+```
+var car={
+	speed:36,
+	run:function(load){
+		return load.length/this.speed；
+	}
+};
+var load={
+	length:360
+};
+var hours=car.run(load);
+```
+
+### 类：一类具有相同特征的抽象概念
+
+### 对象：具体的某一个实例，唯一的某一个个体
+
+### 数据类型：普通数据（单个）==>数组（多个）==>对象（还可存储函数等）
+
+### 构造函数创建对象时，使用new，会自动在函数内完成创建新对象和返回新对象的步骤，并会将函数内的this指向新创建对象
++ 构造函数一般首字母大写
++ 原型继承：当为构造函数的原型prototype对象添加方法，则构造函数构造出来的对象将共享同一个方法，如 构造函数.prototype.方法=...
++ 原型链，访问一个对象的属性时，会先从该对象上搜寻，再通过该对象的__proto__搜寻该对象的原型prototype，以及该对象的原型的原型，直到找到一个名字匹配的属性或到达原型链的末尾（即Object.prototype）
+
+### 面向对象，就是封装、继承、多态
+
+### 属性的继承：
+```
+function Son(parameterFromFather,newParameterOfSon){
+	<!-- 继承原对象的属性 -->
+	Father.call(this,parameterFromFather);
+	<!-- 新增属性 -->
+	this.newParameterOfSon=newParameterOfSon;
+}
+```
+### 方法的继承：
+```
+<!-- 继承原对象的方法，需新创建一个对象作为prototype -->
+<!-- 因为对象的赋值会变成引用，后续可能对原对象产生影响 -->
+Son.prototype=Object.create(Father.prototype);
+<!-- 改变对象继承来的的构造器指向 -->
+Son.prototype.constructor=Son;
+<!-- 新增方法 -->
+Son.prototype.newMethod=function(){...};
+```
+
+### 如上条，虽然子级对象继承了父级对象的属性及方法，但其仍然可以新增属性与方法，并且不会影响父级对象，这就叫做多态
+
+### 支撑面向对象编程思想的语法是类（ECMA6之前没有类这个概念，构造函数充当类的角色）和对象

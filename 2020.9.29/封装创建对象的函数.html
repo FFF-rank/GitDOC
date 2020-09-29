@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 工厂模式创建对象
+			function createPerson(name,gender){
+				// 1.创建一个对象
+				var obj=new Object();
+				// 2.根据输入创建对象的属性
+				obj.name=name;
+				obj.gender=gender;
+				// 3.创建对象的方法
+				obj.showName=function(){
+					alert('我的名字叫'+this.name);
+				};
+				obj.showGender=function(){
+					alert('我的性别是'+this.gender);
+				};
+				// 4.返回对象
+				return obj;
+			};
+			
+			var xiaoming=createPerson('小明','男');
+			console.log(xiaoming);
+			// xiaoming.showName();
+			// xiaoming.showGender();
+			
+			var xiaohong=createPerson('小红','女');
+			console.log(xiaohong);
+			// xiaohong.showName();
+			// xiaohong.showGender();
+			
+			// alert(xiaoming.showName===xiaohong.showName);
+			//以上结果false,用官方的new Object等函数创建对象即为true
+			
+			// 构造函数创建对象
+			function Person(name,gender){
+				// 1.创建一个对象
+				// this=new Object();
+				// 2.根据输入创建对象的属性
+				this.name=name;
+				this.gender=gender;
+				// 4.返回对象
+				// return this;
+				
+			};
+			// 3.在原型中创建对象的方法
+			Person.prototype.showName=function(){
+				alert('我的名字叫'+this.name);
+			};
+			Person.prototype.showGender=function(){
+				alert('我的性别是'+this.gender);
+			};
+			
+			
+			var xiaogang=new Person('小刚','男');
+			console.log(xiaogang);
+			// xiaogang.showName();
+			// xiaogang.showGender();
+			
+			var xiaohua=new Person('小花','女');
+			console.log(xiaohua);
+			// xiaohua.showName();
+			// xiaohua.showGender();
+			
+			alert(xiaogang.showGender===xiaohua.showGender);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 有一辆车时速36km/h，360km路程多久可以跑完
+			var car={
+				speed:36,
+				run:function(load){
+					return load.length/this.speed;
+				}
+			};
+			var load={
+				length:360
+			};
+			var hours=car.run(load);
+			alert(hours);
+		</script>
+	</body>
+</html>
