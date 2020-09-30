@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 
+			action 点击submit以后跳转到的url
+			method 表单的提交数据方式
+				get（默认）
+					http://localhost/phpLearn/2020.9.30/1.get.php?username=xxx&age=26&password=123
+					提交方式：直接将数据拼接在url后面进行提交，通过？进行拼接，查询字符串
+					好处：简单
+					缺点：
+						1.不安全
+						2.地址栏数据最大只能是2kb
+						3.没法实现上传
+				post
+					提交方式：post提交通过浏览器内部进行提交
+					好处：
+						1.安全
+						2.数据量理论上没有上线
+						3.可以上传
+					缺点：比get复杂
+		 -->
+		<form action="1.post.php" method="post" enctype="application/x-www-form-urlencoded">
+			<input type="text" name='username' placeholder='用户名'/>
+			<br/>
+			<input type="text" name='age' placeholder='年龄'/>
+			<br/>
+			<input type="text" name='password' placeholder='密码'/>
+			<br/>
+			<input type="submit" value='提交信息'/>
+		</form>
+	</body>
+</html>

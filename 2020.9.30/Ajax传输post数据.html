@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload=function(){
+				var oBtn=document.querySelector('#btn1');
+				oBtn.onclick=function(){
+					// 1.创建ajax对象
+					// XMLHttpRequest在IE8以下不兼容
+					var xhr=new XMLHttpRequest();
+					// 2.调用open
+					/* 
+						第一个参数：请求方式 get post
+						第二个参数：url
+						第三个参数：是否异步
+					 */
+					xhr.open("post","1.post.php",true);
+					// 3.调用send
+					xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+					xhr.send("username=xxx&age=26&password=123");
+					// 4.等待数据响应
+					/* 
+						请求状态监控
+						onreadystatechange 事件
+						xhr.readyState属性：请求状态
+						0 （初始化）调用open方法之前
+						1 （载入）已调用send（）方法，正在发送请求
+						2 （载入完成）send（）方法完成，已收到全部相应内容
+						3 （解析）正在解析响应内容
+						4 （完成）相应内容解析完成，可以在客户端调用了
+					 */
+					xhr.onreadystatechange=function(){
+						if(xhr.readyState==4){
+							if(xhr.status==200){
+								alert(xhr.responseText);
+							}else{
+								alert('Error:'+xhr.status);
+							};
+						};
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<button id="btn1">POST下载</button>
+	</body>
+</html>

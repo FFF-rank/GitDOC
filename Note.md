@@ -561,7 +561,7 @@
 
 ### console.dir：可展开显示构造函数
 
-### 实例对象 instanceof 构造函数，可用于判断某一实例是否属于某一类型
+### 实例对象 instanceof 构造函数，可用于判断某一实例是否是由该构造函数构造出来的（Object是所有对象的构造函数）
 
 ### 原型对象作用之一：是一个公共存储空间，可以把公共的属性和方法存储在原型对象中，当创建实例对象时，可以直接访问，实现资源共享
 + 可以直接添加原型对象的方法或属性，使用函数名.prototype.方法名（或属性名）定义
@@ -2001,3 +2001,212 @@ Son.prototype.newMethod=function(){...};
 ### 如上条，虽然子级对象继承了父级对象的属性及方法，但其仍然可以新增属性与方法，并且不会影响父级对象，这就叫做多态
 
 ### 支撑面向对象编程思想的语法是类（ECMA6之前没有类这个概念，构造函数充当类的角色）和对象
+
+# 2020/9/30（今天开始ajax了，先用php学一下）
+### ECMA6 class语法，封装class类
+```
+class Father{
+	<!-- class属性添加 -->
+	constructor(name,gender,age){
+		this.name=name;
+		this.gender=gender;
+		this.age=age;
+	}
+	<!-- class方法添加 -->
+	showSelf(){
+		alert('My name is'+this.name+',my gender is'+this.gender+',my age is'+this.age+'.');
+	}
+}
+```
+
+### 遍历继承父级对象方法：
+```
+for(var funcName in Father.prototype){
+	Son.prototype[funcName]=Father.prototype[funcName];
+}
+```
+
+### 调用构造函数继承父级对象方法
+```
+Son.prototype=new Father();
+```
+
+### ECMA6 继承
+```
+class Son extends Father{
+	constructor(name,gender,age,job){
+		super(name,gender,age);
+		this.job=job;
+	}
+	showJob(){
+		alert('My name is'+this.name+',my gender is'+this.gender+',my age is'+this.age+',my job is'+this.job+'.');
+	}
+}
+```
+
+### 服务器：资源提供方，别人可以通过IP或者域名访问到，运行apache软件的服务器电脑上的某一个磁盘
+
+### 服务器安装（集成开发环境）：
++ WAMP：windows+apache+mysql+php
++ LAMP：Linux+apache+mysql+php
++ PHPnow：apache+mysql+php（视频里用这个）
+
+### PHPnow/htdocs 服务器的根目录
++ localhost（或127.0.0.1或本电脑IP）/网页地址/网页文件 直接访问本地电脑服务器
++ 上条的前提是将网页文件或文件夹放入根目录下
+
+### 默认访问的是 htdocs下index开头的文件
++ index.php
++ index.html
++ index.jsp
+
+### php代码兼容html和css所有的代码
++ 后端开发工程师：php + mysql
++ 前端开发工程师：html + css + javascript
+
+### php语法
++ php语法较严格，每条语句后必须加分号
++ php是弱数据类型
++ php的数值类型分为integer和float
++ php输出：
+```
+<?php
+	header('content-type:text/html;charset="utf-8"');
+	// php的输出函数,如果含有标签会自动解析
+	echo "<h1>hello world</h1>";//空格输出
+	echo("<h1>hello world</h1>");//括号输出
+	print_r("<h1>hello world</h1>");//括号输出
+	var_dump(100);//不光输出数据本身，还能输出数据类型
+	var_dump('hello');//还能输出字符串长度
+?>
+```
++ php声明变量通过$符号，并且每次使用变量时都要带上$符号
++ php进行字符串拼接时，用的不是加号，而是 .
++ 字符串拼接也可用{}包裹变量/表达式
++ 分支语句及函数的语法与js相同
++ 数组
+	- 索引数组：下标是数字
+		* 必须通过array(1,2,...)的方法生成数组
+	- 关联数组：下标是字符串（类似于ecma6的map类型）
+		* 必须通过array('王五'=>'打鱼的','李四'=>'种地的','张三'=>'打猎的')的方式生成
+		* 关联数组遍历方式：
+```
+foreach($arr as $key=>$value){
+		echo "<br>下标:{$key},数据:{$value}";
+	};
+```
+	- 全局关联数组（以键值对的形式存放数据）：
+		* $_GET 接收通过GET提交的数据
+		* $_POST 接收通过POST提交的数据
+	- 索引数组和关联数组可以相互结合成多维数组
+		* 二级数组的访问用 $数组名[一级下标][二级下标] 的方式
+	- count(数组) 可返回数组长度
+
+### 数据传输格式
++ xml（大型门户网站）
+	- 优点
+		* 1.种类丰富
+		* 2.传输量非常大
+	- 缺点
+		* 1.解析麻烦
+		* 2.不太适合轻量级数据
++ json（字符串，覆盖95%的移动端应用）
+	- 优点
+		* 1.轻量级数据
+		* 2.解析比较轻松
+	- 缺点
+		* 1.数据种类比较少
+		* 2.传输数据量比较小
+
+### 同步与异步
++ 任何一个程序都是由多个小程序组成的
++ 同步：阻塞，下一个程序，必须等当前程序运行完毕以后，才能运行
++ 异步：非阻塞，当前程序运行，和前面程序的运行没有任何关系
++ Ajax是前后端数据交互的搬运工，可以异步执行
+
+### Ajax下载数据
+```
+// 1.创建ajax对象
+// XMLHttpRequest在IE8以下不兼容
+var xhr=new XMLHttpRequest();
+// 2.调用open
+/* 
+	第一个参数：请求方式 get post
+	第二个参数：url
+	第三个参数：是否异步
+*/
+xhr.open("get","1.txt",true);
+// 3.调用send
+xhr.send();
+// 4.等待数据响应
+xhr.onreadystatechange=function(){
+	if(xhr.readyState==4){
+		if(xhr.status==200){
+			alert(xhr.responseText);
+		}else{
+			alert('Error:'+xhr.status);
+		};
+	};
+};
+```
+
+### HTTP状态码 ajax.status，ajax对象的属性
++ 200 交易成功
++ 400 错误请求，如语法错误
++ 404 没有发现文件、查询或URL
+
+### responseText/responseXML，ajax的属性
++ responseText，如果来自服务器的响应并非XML，则由此属性返回字符串形式的响应
++ responseXML，如果来自服务器的响应是XML，且需要作为XML对象进行解析，需要使用此属性
+
+### onreadystatechange事件，用于请求状态监控
++ 属性：ajax对象.readyState，请求状态
++ 属性值：
+	- 0 （初始化）调用open方法之前
+	- 1 （载入）已调用send（）方法，正在发送请求
+	- 2 （载入完成）send（）方法完成，已收到全部相应内容
+	- 3 （解析）正在解析响应内容
+	- 4 （完成）相应内容解析完成，可以在客户端调用了
+
+### echo后要跟双引号，单引号会出现问题，会将引号内的变量作为字符串输出
+
+### form表单的get和post
+```
+action 点击submit以后跳转到的url
+method 表单的提交数据方式
+	get（默认）:
+		http://localhost/phpLearn/2020.9.30/1.get.php?username=xxx&age=26&password=123
+		提交方式：直接将数据拼接在url后面进行提交，通过？进行拼接，查询字符串
+		好处：简单
+		缺点：
+			1.不安全
+			2.地址栏数据最大只能是2kb
+			3.没法实现上传
+	post:
+		提交方式：post提交通过浏览器内部进行提交
+		好处：
+			1.安全
+			2.数据量理论上没有上线
+			3.可以上传
+		缺点：比get复杂
+```
++ get提交中的html代码
+```
+<form action="1.get.php" method="get">
+<input type="text" name='username' placeholder='用户名'/>
+```
++ post提交中的html代码
+```
+<form action="1.post.php" method="post" enctype="application/x-www-form-urlencoded">
+<input type="text" name='username' placeholder='用户名'/>
+```
++ get/post提交中的php代码，将GET替换为POST即可
+```
+$username=$_GET['username'];
+	$age=$_GET['age'];
+	$password=$_GET['password'];
+	echo "你的名字：{$username}，年龄：{$age}，密码：{$password}";
+```
++ get/post在ajax提交中的数据传输方式，详见今日html文件
+	- get在open的url中传输数据
+	- post在send中传输数据，并且要在send前设置数据格式
