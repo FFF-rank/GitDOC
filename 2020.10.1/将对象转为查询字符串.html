@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function querystring(obj){
+				var str="";
+				for(var attr in obj){
+					str+=attr+"="+obj[attr]+"&";
+				};
+				return str.substring(0,str.length-1);
+			};
+			querystring({
+				name1:"value1",
+				name2:"value2"
+			});
+		</script>
+	</body>
+</html>

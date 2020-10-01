@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="$ajax函数.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var oBtn=document.querySelector('#btn1');
+				var ul=document.querySelector('#ul1');
+				oBtn.onclick=function(){
+					$ajax({
+						method:"get",
+						url:"getNews.php",
+						success:function(result){
+							var arr=JSON.parse(result);
+							ul.innerHTML="";
+							// 正儿八经创建元素
+							// for(var i=0;i<arr.length;i++){
+							// 	var newLi=document.createElement('li');
+							// 	var newA=document.createElement('a');
+							// 	var newSpan=document.createElement('span');
+							// 	newA.href="javascript:;";
+							// 	newA.innerHTML=arr[i].title;
+							// 	newSpan.innerHTML="【"+arr[i].date+"】";
+							// 	newLi.appendChild(newA);
+							// 	newLi.appendChild(newSpan);
+							// 	ul.appendChild(newLi);
+							// }
+							
+							
+							
+							// 用字符串直接添加元素
+							var str='';
+							for(var i=0;i<arr.length;i++){
+								str+=`<li>
+								<a href="javascript:;">${arr[i].title}</a>
+								<span>【${arr[i].date}】</span>
+								</li>`;
+							}
+							alert(str);
+							ul.innerHTML=str;
+						},
+						error:function(msg){
+							alert(msg);
+						}
+					})
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn1">获取新的列表</button>
+		<ul id="ul1"></ul>
+	</body>
+</html>

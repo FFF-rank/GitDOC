@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// alert(JSON);
+			var arr=[100,true,"hello"];
+			var str=JSON.stringify(arr);
+			var arr2=JSON.parse(str);
+			console.log(arr);//100,true,hello
+			console.log(str);//[100,true,"hello"]
+			console.log(arr2);//100,true,hello
+			
+			var obj={
+				username:"钢铁侠",
+				age:18,
+				weight:70
+			};
+			var str2=JSON.stringify(obj);
+			var obj2=JSON.parse(str2);
+			console.log(str2);
+			console.log(obj2);
+		</script>
+	</body>
+</html>
