@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function aaa(){
+				var a=0;
+				function bbb(){
+					a++;
+					alert(a);
+				}
+				return bbb;
+			}
+			
+			var ccc=aaa();
+			ccc();
+			ccc();
+			ccc();
+			alert(a)
+		</script>
+	</body>
+</html>
