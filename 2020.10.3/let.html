@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 成为了window对象的属性
+			var name='Matt';
+			console.log(window.name);
+			// 无法成为全局对象的属性
+			let age=16;
+			console.log(window.age);
+			function tr(){
+				let age=20;
+				console.log(age);
+			}
+			console.log(age);
+			tr();
+			
+			// let可以防止for循环中的循环变量泄露到循环外部
+			for(var i=0;i<5;i++){
+				
+			}
+			console.log(i);
+			for(let j=0;j<5;j++){
+				
+			}
+			console.log(j);
+		</script>
+	</body>
+</html>

@@ -2270,10 +2270,20 @@ oDiv=null;
 + vue是一个渐进式的框架，可以将vue作为应用的一部分嵌入其中
 + vue全家桶：core + Vue-router + Vuex
 + 安装Vue方式：
-	- 方式一：CDN引入
+	- 方式一：CDN引入(2.6.12)
 ```
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <!-- 生产环境版本，优化了尺寸和速度 -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
+
+# 2020/10/3（今天在看红宝书，看了30页）
+### javascript
++ script标签属性：async="async"，立即开始下载脚本，但不阻止其他页面动作
++ {}内包裹的代码，被称为一个代码块
++ let可以声明一个只在代码块内生效的变量，不会对代码块外的同名变量产生影响
+	- let并不会让被声明的变量提升,在声明之前的执行被称为 暂时性死区
+	- let在同一个代码块内，不能重复声明同名变量(正是因为无法提升合并)
+	- 使用let在全局作用域中声明的变量不会成为window对象的属性（var则会）
+	- 在for循环中var的i会泄漏到循环外部，let则不会
