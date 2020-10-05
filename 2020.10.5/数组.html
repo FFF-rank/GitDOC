@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			const arr=[,,,,,];
+			arr.fill(5,-3,-1);
+			console.log(arr);
+			
+			const arr2=[0,1,2,3,4,5];
+			arr2.copyWithin(3,0,3);
+			console.log(arr2);
+			
+			console.log(arr2.toString());
+			console.log(arr2.join('*'));
+			arr2.pop();
+			console.log(arr2);
+			arr2.push(2,0);
+			console.log(arr2);
+			
+			var arr3=[0,1,2,3,4,5,6,2,8,9];
+			console.log(arr3.indexOf(2));
+			console.log(arr3.lastIndexOf(2));
+			var ages=[14,16,18,20,22];
+			//判定函数
+			function checkAdult(age){
+				return age>=18;
+			}
+			
+			console.log(ages.some(checkAdult));
+		</script>
+	</body>
+</html>
