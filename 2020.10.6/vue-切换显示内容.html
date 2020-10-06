@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#pane{
+				width: 200px;
+				height:200px;
+				background-color: pink;
+			}
+		</style>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="showPane">切换显示内容</button>
+			<div v-show="isShow" id="pane">
+				Hello Vue!
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					isShow:true
+				},
+				methods:{
+					showPane:function(){
+						this.isShow=!this.isShow;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

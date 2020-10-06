@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- <div id="app">
+			<h1>用户名：{{username}}</h1>
+			<h3 v-if="isVIP">用户类型：VIP</h3>
+			<h3 v-else-if="isGM" >用户类型：管理员</h3>
+			<h3 v-else >用户类型：普通用户</h3>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					username:"小明",
+					isVIP:false,
+					isGM:true
+				}
+			}); -->
+			
+			<div id="app2">
+				<h1 v-if="age1">老人</h1>
+				<h1 v-else-if="age2">青壮年</h1>
+				<h1 v-else-if="age3">少年</h1>
+				<h1 v-else-if="age4">幼儿</h1>
+				<h1 v-else >还没出生吧</h1>
+			</div>
+			<script type="text/javascript">
+				let age=20;
+				let app2=new Vue({
+					el:"#app2",
+					data:{
+						age1:age>=60,
+						age2:age>=16,
+						age3:age>=6,
+						age4:age>=0
+					}
+				});
+			</script>
+		</script>
+	</body>
+</html>

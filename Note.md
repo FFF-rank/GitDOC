@@ -2441,3 +2441,175 @@ console.log(ages.find(checkAdult));
 ### 框架和库的区别
 + 框架：框架是一套完整的解决方案，功能完善，但项目如果要更换框架，则需要重构整个项目
 + 库（插件）：只提供某一个小功能，如果某个库无法完成某些需求，可以很容易切换到其他库实现需求
+
+# 2020/10/6(今天晚上有事，进度有点慢)
+### 归并方法，迭代数组的所有相，并在此基础上构建一个最终返回值
++ 数组名.reduce(function(prev,cur,index,array){})，四个参数分别为：上一个归并值、当前项、当前项的索引、数组本身，当没有传入可选的第二个参数时（作为归并起点值），则第一次迭代将从数组的第二项开始，传给归并函数的第一个参数时数组的第一项，第二个参数是数组的第二项
++ 数组名.reduceRight(function(prev,cur,index,array){})，与reduce类似，不过顺序是从后往前
+
+### 对象的数据属性有4个特征描述他们的行为
++ configurable：表示属性是否可以通过delete删除并重新定义，是否可以修改他的特性们以及是否可以把它改为访问器属性，默认为true
++ enumberable：表示属性是否可以通过for-in循环返回，默认为true
++ writable：表示属性的值是否可以被修改，默认为true
++ value：属性实际的值，默认值为underfined
++ 要修改属性的默认特征，就必须使用Object.defineProperty()方法，此方法接收3个参数：要给其添加属性的对象、属性的名称和一个描述符对象（对象的属性可以包含上述4个特征），如下例：
+```
+let person={};
+Object.defineProperty(person,"name",{
+	writable:false,
+	value:"Nicholas"
+});
+console.log(person.name);//输出Nicholas
+person.name="Greg";
+console.log(person.name);//仍然输出Nicholas，因为writable被设为false
+```
+
+### 数据的访问器属性有4个特征描述他们的行为
++ configurable：表示属性是否可以通过delete删除并重新定义，是否可以修改他的特性们以及是否可以把它改为数据属性，默认为true
++ enumberable：表示属性是否可以通过for-in循环返回，默认为true
++ get：获取函数，在读取属性时调用，默认为undefined
++ set：设置函数，在写入属性时调用，默认为undefined
++ 实例如下,可通过year的访问器属性，记录内部数据属性year_被获取和设置的次数：
+```
+let book={
+	// 数据属性 year_，不希望被外部访问到
+	year_:2017,
+	// 数据属性：版本号，根据设置次数变化
+	dition:1,
+	//数据属性：访问次数，根据获取次数变化
+	count:0
+};
+// 访问器属性 year，为其设置获取函数和设置函数
+Object.defineProperty(book,"year",{
+	get(){
+		his.count++;
+		return this.year_;
+	},
+	set(newValue){
+		if(newValue!=this.year_){
+			this.year_=newValue;
+			this.edition++;
+		};
+	}
+});
+```
++ 定义多个属性，格式如下：
+```
+let book={};
+Object.defineProperties(book,{
+	year_:{
+		value:2017
+	},
+	year:{
+		get(){
+			return this.year_;
+		},
+		set(newValue){
+			if(newValue!=this.year_){
+				this.year_=newValue;
+			};
+		}
+	}
+});
+```
+
+### Vue.js可在DOM中用双花括号{{变量名}}的方式，声明一个变量
+
+### 每个Vue应用都是通过Vue函数创建一个新的Vue实例开始的，如下例：
+```
+<div id="app">
+	{{message}}
+</div>
+<script>
+	var app=new Vue({
+		el:"#app",//用于挂载要管理的el（元素）
+		data:{//定义Vue实例对象的属性
+			message:"Hello Vue!"
+		}
+	});
+</script>
+```
++ 通过创建Vue实例对象后，可以通过app.message的方式访问DOM中的message变量
++ 还可以通过 v-bind:元素属性 来绑定元素的属性
+```
+<div id="app-2">
+	//此处绑定了这个span元素的title属性，其值被绑定为message
+	<span v-bind:title="message">
+	鼠标悬停几秒钟查看此处动态绑定的提示信息
+	</span>
+</div>
+<script>
+	var app2=new Vue({
+		el:"#app-2",
+		data:{
+			message:"页面加载于"+new Date().toLocaleString()
+		}
+	});
+</script>
+```
++ 还可以通过 v-if 来绑定DOM结构，如下例
+```
+<div id="app">
+	<h1>用户名：{{username}}</h1>
+	<h3 v-if="isVIP">用户类型：VIP</h3>
+	<h3 v-else-if="isGM" >用户类型：管理员</h3>
+	<h3 v-else >用户类型：普通用户</h3>
+</div>
+<script type="text/javascript">
+	var app=new Vue({
+		el:"#app",
+		data:{
+			username:"小明",
+			isVIP:true，
+			isGM:false
+		}
+	});
+</script>
+```
++ 当变量isVIP的值为true时，DOM结构中显示v-if所在的元素，当isVIP的值为false，且isGM的值为false时，DOM结构中显示v-else所在的元素(前提是这三个元素中间不能有其他元素，不显示的内容直接从DOM中去除了)
+	- 还可为isVIP或isGM赋值一个表达式，通过表达式返回布尔值结果
+	- 若只是想实现隐藏(display:none)，可用v-show
++ 还可以通过 v-for 来遍历数组创建DOM元素，如下例
+```
+<div id="app-4">
+	<ol>
+		<li v-for="todo in todos">
+			{{todo}}
+		</li>
+	</ol>
+</div>
+<script>
+	var app4=new Vue({
+		el:"#app-4",
+		data:{
+			todos:[
+				"学习JavaScript",
+				"学习Vue",
+				"整个牛项目"
+			]
+		}
+	});
+	<!-- 可以通过对todos数组的操作，改变DOM的结构 -->
+	app4.todos.push("项目失败了");
+</script>
+```
+
+### vue实例对象的方法
+```
+<div id="app">
+	//@click即为元素添加点击事件
+	<button @click="方法名"></button>
+</div>
+<script>
+	var app=new Vue({
+		el:"#app",
+		methods:{//定义vue实例对象的方法
+			方法名：function(){
+				...
+			}
+		}
+	})
+
+```
+
+### 

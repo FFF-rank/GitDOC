@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#pane1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+			#pane2{
+				width: 200px;
+				height: 200px;
+				background-color: green;
+			}
+			#pane3{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+			}
+		</style>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="btn1">红</button>
+			<button @click="btn2">绿</button>
+			<button @click="btn3">蓝</button>
+			<div id="pane1" v-show="red"></div>
+			<div id="pane2" v-show="green"></div>
+			<div id="pane3" v-show="blue"></div>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					red:true,
+					green:false,
+					blue:false
+				},
+				methods:{
+					btn1:function(){
+						this.red=true;
+						this.green=false;
+						this.blue=false;
+					},
+					btn2:function(){
+						this.red=false;
+						this.green=true;
+						this.blue=false;
+					},
+					btn3:function(){
+						this.red=false;
+						this.green=false;
+						this.blue=true;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
