@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app" v-cloak >{{abc}}</div>
+		<script type="text/javascript">
+			setTimeout(function(){
+				var app = new Vue({
+					el:"#app",
+					data:{
+						abc:123
+					}
+				});
+			},3000);
+		</script>
+	</body>
+</html>

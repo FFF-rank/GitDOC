@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.red{
+				color:red;
+			}
+		</style>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(m,index) in movies" @click="colorClick(index)" :class="{red:currentIndex==index}">{{m}}</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					movies:['盗梦空间','星际穿越','信条'],
+					currentIndex:-1
+				},
+				methods:{
+					colorClick:function(index){
+						this.currentIndex=index;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

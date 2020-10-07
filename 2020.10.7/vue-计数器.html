@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			button{
+				font-family: 'weiruanyahei';
+				width: 50px;
+			}
+		</style>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>当前计数：{{count}}</h1>
+			<button v-on:click="btn1">+</button>
+			<button v-on:click="btn2">-</button>
+			<button v-on:click="btn3">复位</button>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					count:0
+				},
+				methods:{
+					btn1:function(){
+						this.count++;
+					},
+					btn2:function(){
+						this.count--;
+					},
+					btn3:function(){
+						this.count=0;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

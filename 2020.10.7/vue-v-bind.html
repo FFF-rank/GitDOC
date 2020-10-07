@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.red{
+				color:red;
+			}
+			.green{
+				color:green;
+			}
+			.line{
+				text-decoration: none;
+			}
+		</style>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<a :href="baidu" class="line" :class="{red:isRed,green:isGreen}">百度一下</a>
+			<!-- <img v-bind:src="url" alt=""> -->
+			<button @click="btn">换个颜色</button>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					// url:'../git说明1.jpg',
+					baidu:"https://www.baidu.com",
+					isRed:true,
+					isGreen:false
+				},
+				methods:{
+					btn:function(){
+						this.isRed=!this.isRed;
+						this.isGreen=!this.isGreen;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

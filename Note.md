@@ -2512,8 +2512,10 @@ Object.defineProperties(book,{
 	}
 });
 ```
++ 使用Object.getOwnPropertyDescriptor(对象名，属性名)可以取得指定属性的属性描述符，返回值是一个对象，对于访问器属性包含configurable、enumerable、get和set属性，对于数据属性包含configurable、enumerable、writable和value属性
++ 使用Object.getOwnPropertyDescriptor(对象名)可以取得所有属性的特征值，并以对象的形式返回
 
-### Vue.js可在DOM中用双花括号{{变量名}}的方式，声明一个变量
+### Vue.js可在DOM中用双花括号{{变量名}}的方式，声明一个变量（Mustache语法）
 
 ### 每个Vue应用都是通过Vue函数创建一个新的Vue实例开始的，如下例：
 ```
@@ -2612,4 +2614,55 @@ Object.defineProperties(book,{
 
 ```
 
-### 
+# 2020/10/7(今天主要是看vue了，红宝书里面很多内容感觉要后面边做项目边学才容易理解)
+### ECMAScript 6 新增特性：Map对象，实现了真正的键值存储机制，各种类型的值都可以是Map的key，不局限于字符串
++ 用Map构造函数的方法创建Map对象，new Map([[key1,value1],[key2,value2]])
++ 可用Map对象名.set(key,value)的方式新增键值对（按插入顺序排序，无法新增重复值）
++ 可用Map对象名.has(key)的方式返回是否有此key
++ 可用Map对象名.get(key)的方式返回此key对应的value
++ 可用Map对象名.delete(key)的方式删除此key对应的键值对
++ 可用Map对象名.forEach(function(value形参，key形参){...})的方式对Map对象中的每一对键值对进行遍历操作
++ 可用Map对象名.clear()的方式删除所有的键值对
++ 可用Map对象名.size返回键值对的数量
++ 可用Map对象名.entries()返回所有键值对的迭代器
++ 可用Map对象名.keys()返回所有key的迭代器
++ 可用Map对象名.values()返回所有value的迭代器
+
+### ECMAScript 6 新增特性：Set对象是一种类似于数组的数据结构，不同点在于其没有重复值
++ 用Set构造函数的方法创建Set对象，new Set([a,b,c])，括号中也可以放迭代器等任何可迭代的对象
++ 可用Set对象名.add(value)的方式新增值（按插入顺序排序，无法新增重复值）
++ 可用Set对象名.has(value)的方式返回是否有此value
++ 可用Set对象名.size返回值的数量
++ 可用Set对象名.delete(value)的方式删除此value，返回集合中是否存在要删除的值
++ 可用Set对象名.clear()的方式删除所有值
+
+### vue监听指令：'v-on：'，如 v-on：click="方法" 即监听点击事件
++ 'v-on：'可替换为'@'，这是一个语法糖
++ 一个题外话，需要依附于具体的对象的称为方法（mnethod），不需要依附于具体对象的称为函数（function），如这个指令中的方法需要依附于设置v-on的DOM对象
+
+### Vue的生命周期概念：Vue对象本身的进程，在不同的时间节点会回调不同的函数：beforeCreate、created、beforeMount、mounted、beforeDestroy、destroyed，在data更新时还会回调beforeUpdate和updated
++ 因此我们想在特定的生命周期阶段时执行特定的代码，只需要在这些回调函数中放入我们想执行的代码，到点儿就会执行
+
+### Mustache语法中，不仅可以写变量，也可以写一些简单的表达式，如：{{msg1 + " " + msg2}}
++ 当在DOM结构中使用了{{}}，但又不想使用Mustache语法时，可以为其父元素设置v-pre指令，即可原封不动地显示双花括号及其内容
+
+### vue的响应式：当挂载了DOM中的元素之后，vue对象的属性变化，会立即响应到DOM中的元素上
++ 当为元素设定v-once指令之后，就只会显示初始数值，不会进行响应
+
+### vue指令：v-html="想要放到元素内的代码"，此方法类似于.innerHTML()，可以在其中增加或修改DOM结构
+
+### vue指令：v-text="想要放到元素内的代码"，可以以文本的形式将内容放入元素中
++ 此方式不够灵活，不能配合元素内的常量使用，因此主要还是使用Mustache语法
+
+### vue指令：v-cloak，为元素添加，可以让vue在解析该元素内的{{}}之前，呈现特定的样式
++ 如在style中设置[v-cloak]{display:none;}，可让vue解析前该元素不可见
++ 当vue解析后，将会抹去v-cloak，此样式即失效，解析的内容才会呈现，避免了由于解析不及时，看到{{}}
++ 未来使用虚拟DOM之后此指令就没用了，不会看到{{}}
+
+### vue指令：v-bind：，绑定元素的属性用法为v-bind:src="url"，即为src属性的值绑定了一个变量url
++ v-bind：的语法糖为 ":" ，仅一个冒号
++ 绑定类名时，可以通过 ：class="{key1:value1,key2:value2}" 的方式，在vue对象中操作变量value1和value2的布尔值，设置是否有类名key1或key2
+	- 注意，一定要用花括号包裹键值对
+	- 在需要绑定的类名以外，还可以用常规的class=""再定义一些固定的类名，两者不会冲突
+	- 也可以将class=""的引号中放入一个函数调用的代码如getClass()，然后在methods中对此函数返回原先 带花括号的代码
+	- 也可以用数组的形式放置类名，如： ：class="[key1,key2]",放置两个类名的变量，再在data中对类名进行设置，同样数组也可以用函数的形式在methods中返回

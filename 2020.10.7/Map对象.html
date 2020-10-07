@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var map1=new Map([
+				['姓名','小明'],
+				['年龄','12']
+			]);
+			// map1.set('姓名','小明');
+			// map1.set('年龄','12');
+			console.log(map1);
+			console.log(map1.has('姓名'));
+			console.log(map1.get('姓名'));
+			map1.forEach(function(value,key){
+				console.log(key,value);
+			});
+			// map1.clear();
+			// map1.delete('姓名');
+			console.log(map1);
+			console.log(map1.size);
+			console.log(map1.entries());
+			console.log(map1.keys());
+			console.log(map1.values());
+		</script>
+	</body>
+</html>
