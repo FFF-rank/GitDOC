@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <p :style="{fontSize:whitch+'px',color:what}">字体大小</p> -->
+			<!-- <p :style="[style1,style2]">字体大小</p> -->
+			<p :style="getStyle()">字体大小</p>
+		</div>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					whitch:50,
+					what:'red'
+					// style1:{fontSize:'100px'},
+					// style2:{color:"red"}
+				},
+				methods:{
+					getStyle:function(){
+						return {fontSize:this.whitch+'px',color:this.what}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

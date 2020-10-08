@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>第1个按钮</button>
+		<button>第2个按钮</button>
+		<button>第3个按钮</button>
+		<button>第4个按钮</button>
+		<button>第5个按钮</button>
+		<script type="text/javascript">
+			var btn=document.querySelectorAll('button');
+			for(let i=0;i<btn.length;i++){
+				btn[i].addEventListener('click',function(){
+				alert('第'+ (i+1) +'个按钮被点击');	
+				});
+			};
+		</script>
+	</body>
+</html>

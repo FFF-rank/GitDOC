@@ -2570,7 +2570,7 @@ Object.defineProperties(book,{
 ```
 + 当变量isVIP的值为true时，DOM结构中显示v-if所在的元素，当isVIP的值为false，且isGM的值为false时，DOM结构中显示v-else所在的元素(前提是这三个元素中间不能有其他元素，不显示的内容直接从DOM中去除了)
 	- 还可为isVIP或isGM赋值一个表达式，通过表达式返回布尔值结果
-	- 若只是想实现隐藏(display:none)，可用v-show
+	- 若只是想实现隐藏(display:none)，可用v-show，尤其是需要频繁切换的使用v-show更为合适
 + 还可以通过 v-for 来遍历数组创建DOM元素，如下例
 ```
 <div id="app-4">
@@ -2595,6 +2595,9 @@ Object.defineProperties(book,{
 	app4.todos.push("项目失败了");
 </script>
 ```
++ 在v-for遍历的过程中，可将todo替换为（todo，index），当获取两个参数时，第二个参数就是遍历到的元素对应的索引值
++ 在v-for遍历对象时，如果只获取1个值，则只能获取value，第2个值为key，格式为（value，key）
+	- 非要获取对象的index的话，在第3个值
 
 ### vue实例对象的方法
 ```
@@ -2635,12 +2638,23 @@ Object.defineProperties(book,{
 + 可用Set对象名.size返回值的数量
 + 可用Set对象名.delete(value)的方式删除此value，返回集合中是否存在要删除的值
 + 可用Set对象名.clear()的方式删除所有值
++ 由于Set对象以类似数组方式存放数据，因此键名即是值，keys()==values(),entries()同理
++ 可用扩展运算符（...），以[...Set对象名]的方式，返回由Set对象转换的数组
++ 可用for(let i of Set对象名)的方式，遍历Set对象内的值
 
 ### vue监听指令：'v-on：'，如 v-on：click="方法" 即监听点击事件
 + 'v-on：'可替换为'@'，这是一个语法糖
++ 当事件监听的方法没有传入参数的时候，可以不写括号
+	- 如果方法要求传参数，却没有传，Vue会把事件对象传入
+	- 当既需要传参数又需要事件对象时，事件对象可以用 $event 传入
++ 事件修饰符 @事件名.stop="函数"，可以阻止事件向父级冒泡
++ 事件修饰符 @事件名.prevent="函数"，可以阻止默认事件
++ 事件修饰符 @keyUp/keyDown.按键的keyCode或keyAlias（按键别名）="函数"，可以监听特定的按键事件
++ 事件修饰符 @事件名.native，监听组件根元素的原生事件（后面讲到组件再补充）
++ 事件修饰符 @事件名.once="函数"，只触发一次函数
 + 一个题外话，需要依附于具体的对象的称为方法（mnethod），不需要依附于具体对象的称为函数（function），如这个指令中的方法需要依附于设置v-on的DOM对象
 
-### Vue的生命周期概念：Vue对象本身的进程，在不同的时间节点会回调不同的函数：beforeCreate、created、beforeMount、mounted、beforeDestroy、destroyed，在data更新时还会回调beforeUpdate和updated
+### Vue的生命周期概念：Vue对象本身的进程，在不同的时间节点会回调不同的生命周期函数：beforeCreate、created、beforeMount、mounted、beforeDestroy、destroyed，在data更新时还会回调beforeUpdate和updated
 + 因此我们想在特定的生命周期阶段时执行特定的代码，只需要在这些回调函数中放入我们想执行的代码，到点儿就会执行
 
 ### Mustache语法中，不仅可以写变量，也可以写一些简单的表达式，如：{{msg1 + " " + msg2}}
@@ -2666,3 +2680,74 @@ Object.defineProperties(book,{
 	- 在需要绑定的类名以外，还可以用常规的class=""再定义一些固定的类名，两者不会冲突
 	- 也可以将class=""的引号中放入一个函数调用的代码如getClass()，然后在methods中对此函数返回原先 带花括号的代码
 	- 也可以用数组的形式放置类名，如： ：class="[key1,key2]",放置两个类名的变量，再在data中对类名进行设置，同样数组也可以用函数的形式在methods中返回
+
+# 2020/10/8（今天学习了一下ES6，然后继续Vue）
+### ECMA5语法：严格模式，用字符串"use strict"进入，写在哪个作用域下，这个作用域下所有代码就遵循严格模式
+
+### ECMA6语法：let解构赋值(简化赋值方式，我觉得好像没啥用)
++ let [a,b,c]=[1,2,3]
++ let {a,b}={a:"111",b:"222"}
++ let {a,b=5}={a:1}
+
+### ECMA6语法：箭头函数
++ let foo=(a) =>a,等同于创建了一个输入参数为a，return a的函数foo，可以实现简单的返回操作
++ 当要实现复杂的函数体时，可用 let foo=(a) =>{let b=10; return a+b}的形式
++ 常规函数中的this指向的是输出时的作用域，即可能是作为其方法的对象，而箭头函数的this指向的是定义时的作用域（全局对象即是window）
+
+### vue设置元素样式 :style="{样式名：样式值字符串或变量}"，或直接调用函数返回样式内容
++ 也可用 :style="[变量1,变量2,...]"的方式，引入data中以对象形式保存的键值对
+
+### vue对象计算属性 computed，在DOM中调用计算属性中的函数时，不需要添加()，如下例：
+```
+<h2>{{fullName}}</h2>
+...
+computed:{
+	fullName:function(){
+		return this.firstName+''+this.lastName;
+	}
+}
+```
++ 以上方法，只是计算属性的语法糖，完整写法如下：
+```
+computed:{
+	fullName:{
+		set:function(newValue){
+			return newValue;
+		},
+		get:function(){
+			return this.firstName+''+this.lastName;
+		}
+	}
+}
+```
++ 通常在计算属性（如fullName，以对象的格式作为元素的属性）中，是没有set方法的，是一种只读属性，因此为了书写方便，才采用类似函数的写法
++ 使用computed和methods的区别，computed自带缓存，当多次调用一样的计算属性（公式、参数完全一样）时，可以省去重复的计算过程，提升性能，而methods则每次调用都会进行计算
+
+### ES6 对象字面量增强写法
++ 属性增强写法
+```
+const name="小明";
+const age=18;
+const obj={
+	//由于上面已经定义了变量name,因此下方的name会直接为对象obj创造一个属性name，其值也为name，即上面的变量name，age同理
+	name,
+	age
+}
+```
++ 函数增强写法
+```
+const obj={
+	run(){
+		...
+	},
+	eat(){
+		...
+	}
+	//如上直接定义了两个函数run和eat，可以省去 ：function
+}
+```
+
+### TypeScripe带类型检测，可以检测输入值的数据类型
+
+### Vue在把 虚拟DOM 渲染到DOM中时，会优先对同类元素进行修改后复用，此时可能会保留一些原来元素的属性，例如input的输入值value
++ 若想阻止Vue的复用，可以把同类元素的标识属性（key="..."）设为不同值
