@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model.trim="wow">
+			输入值为：{{wow}}。
+		</div>
+		<script type="text/javascript">
+			const app=new Vue({
+				el:"#app",
+				data:{
+					wow:""
+				}
+			});
+		</script>
+	</body>
+</html>

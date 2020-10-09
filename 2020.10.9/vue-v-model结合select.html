@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<select name="" id="" v-model="fruit">
+				<option value ="苹果">苹果</option>
+				<option value ="香蕉">香蕉</option>
+				<option value ="葡萄">葡萄</option>
+				<option value ="榴莲">榴莲</option>
+			</select>
+			你选择的水果是：{{fruit}}
+		</div>
+		<script type="text/javascript">
+			const app=new Vue({
+				el:"#app",
+				data:{
+					fruit:""
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-bind:value="message" v-on:input="keyIn($event)">
+			{{message}}
+		</div>
+			<script type="text/javascript">
+				let app=new Vue({
+					el:"#app",
+					data:{
+						message:"初始值"
+					},
+					methods:{
+						keyIn:function(event){
+							this.message=event.target.value;
+						}
+					}
+				});
+			</script>
+	</body>
+</html>

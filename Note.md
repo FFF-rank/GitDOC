@@ -2444,7 +2444,7 @@ console.log(ages.find(checkAdult));
 
 # 2020/10/6(今天晚上有事，进度有点慢)
 ### 归并方法，迭代数组的所有相，并在此基础上构建一个最终返回值
-+ 数组名.reduce(function(prev,cur,index,array){})，四个参数分别为：上一个归并值、当前项、当前项的索引、数组本身，当没有传入可选的第二个参数时（作为归并起点值），则第一次迭代将从数组的第二项开始，传给归并函数的第一个参数时数组的第一项，第二个参数是数组的第二项
++ 数组名.reduce(function(prev,cur,index,array){},ini)，四个参数分别为：上一个归并值、当前项、当前项的索引、数组本身，当没有传入可选的第二个参数时（ini,作为归并起点值），则第一次迭代将从数组的第二项开始，传给归并函数的第一个参数是数组的第一项，第二个参数是数组的第二项
 + 数组名.reduceRight(function(prev,cur,index,array){})，与reduce类似，不过顺序是从后往前
 
 ### 对象的数据属性有4个特征描述他们的行为
@@ -2749,5 +2749,124 @@ const obj={
 
 ### TypeScripe带类型检测，可以检测输入值的数据类型
 
-### Vue在把 虚拟DOM 渲染到DOM中时，会优先对同类元素进行修改后复用，此时可能会保留一些原来元素的属性，例如input的输入值value
+### Vue在把 虚拟DOM 渲染到DOM中时，diff算法会优先对同类元素进行修改后复用，此时可能会保留一些原来元素的属性，例如input的输入值value
 + 若想阻止Vue的复用，可以把同类元素的标识属性（key="..."）设为不同值
++ 由于这种复用特性，当往一堆元素中间插入一个同类元素，会把之后的每一个元素进行修改，使其变为上一个元素，进而实现插入，这样效率极低，因此官方建议为每一个元素建立一个 :key="能与每个元素一一对应的标识"，让每一个元素不可被复用，这样就可以直接生成一个新元素，效率提高
+
+# 2020/10/9(继续vue，这内容感觉好多，估计得两周才能把知识点学完)
+### 可变参数 function sum(...num){}，代表可以输入多个参数，将以数组的形式存放在变量num中
+
+### vue中通过数组索引直接修改数组中元素，无法做到响应式
++ push、pop、shift、unshift、splice等可以实现响应式
++ vue对象方法： Vur.set（this.数组名，索引值，修改后的值），此方法可以实现响应式
+
+### 过滤器filters，类似于methods，是Vue元素的方法，在DOM中以{{变量名 | 过滤器名}}的方式放置，在filters中会自动为过滤器函数传入一个参数，即DOM中过滤器前的变量
+
+### for循环的in和of
++ for(let i in arr)，遍历的是数组arr的索引值
++ for(let i of arr)，遍历的是数组arr的元素值
+
+### 视频里老师强调了：filter、map、reduce三个函数的好处，代码简洁、可读性强
+
+### vue指令：v-model，实现和表单信息的双向绑定，不管是变更输入框还是js代码的值，另一方都会随之改变
+```
+<div id="app">
+	<input type="text" v-model="message">
+	{{message}}
+</div>
+<script type="text/javascript">
+	let app=new Vue({
+		el:"#app",
+		data:{
+			message:"初始值"
+		}
+	});
+</script>
+```
++ 利用v-model可以实现不同radio的互斥
++ 利用v-model可以将checkbox的多选项添加到一个数组中
++ 利用v-model可以将select的选项双向绑定到Vue对象中
++ v-model.lazy，为v-model添加修饰符lazy，可以实现懒加载，只有在用户按下回车或输入框失去焦点时，才会将输入框的value同步到Vue对象中
++ v-model.number，在type="number"的input输入框中，默认会将输入的value转化为字符串类型，此时就需要通过修饰符number将其转为数值类型
++ v-model.trim，修饰符trim可以去除输入的字符串前后的空格
+
+### input元素的input事件，用于监听用户输入
+
+### 事件对象有一个属性target,可以返回触发事件的元素对象
+
+### Vue组件化思想，将页面拆分成一个个小的、可复用的组件，让代码方便组织和管理，拓展性也更强
++ 组件的使用分成三个步骤
+	- 创建组件构造器，调用Vue.extend()
+	- 注册组件，调用Vue.component()
+	- 使用组件，在Vue实例的作用范围内使用组件
++ 通过以下方式创建组件(全局或局部选其一)
+```
+<div id="app">
+	<!-- 3.使用组件（需在Vue实例对象绑定的元素下） -->
+	<my-cpn></my-cpn>
+</div>
+<script type="text/javascript">
+	// 1.创建组件构造器对象
+	const cpnC=Vue.extend({
+		// 模板
+		template:`
+		<div>
+			<h2>标题</h2>
+			<p>哈哈哈</p>
+		</div>`
+	});
+	// 2.注册组件
+	//此处注册的组件是全局组件，可以在多个Vue的实例下使用
+	Vue.component('my-cpn',cpnC)
+	// 创建Vue实例对象
+	const app=new Vue({
+		el:"#app",
+		//此处注册的组件是局部组件，只能在该Vue实例下使用
+		components:{
+			"my-cpn":cpnC
+		}
+	});
+</script>
+```
++ 还可以在父组件的组件构造器中，用components属性的方式，注册子组件，就可以在父组件构造器的模板中使用子组件
++ new Vue({...})也可以看成最顶层的根组件
++ 组件的语法糖：可将传入extend的对象直接传入注册属性component/components中，即可省去创建组件构造器对象的步骤，如Vue.component('标签名',{template:"<**>...<**>"})
++ 模板可以和组件抽离，有以下两种方法
+```
+//第一种写法
+<script type="text/x-template" id="cpn">
+	<div>
+		<h2>标题</h2>
+		<p>正文</p>
+	</div>
+</script>
+//第二种写法
+<template id="cpn">
+	<div>
+		<h2>标题</h2>
+		<p>正文</p>
+	</div>
+</template>
+//注册时调用模板方式
+Vue.component('cpn',{
+	template:"#cpn"
+});
+```
++ 组件模板不可以访问vue实例的信息，但可以访问组件对象内部的data属性，如下例：
+```
+<template id="cpn">
+	<div>
+		<h1>哈哈哈</h1>
+		<p>呵呵呵</p>
+		<p>{{content}}</p>
+	</div>
+</template>
+//组件中的data必须是一个函数，并且返回一个对象，信息作为该对象的属性保存
+Vue.component('cpn',{
+	template:"#cpn",
+	data:function(){
+		return {
+			content:"组件内部信息"
+		};
+	}
+});
