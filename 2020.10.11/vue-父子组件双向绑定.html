@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			{{num}}
+			<cpn :number="num" @changefather="change"></cpn>
+		</div>
+		<template id="tem">
+			<div>
+				<h1>{{number}}</h1>
+				<input type="number" :value="number" @input="changeNumber">
+			</div>
+		</template>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const cpn = {
+				template:"#tem",
+				data:function(){
+					return {
+						dnumber:this.number
+					};
+				},
+				props:{
+					number:Number
+				},
+				methods:{
+					changeNumber:function(event){
+						this.dnumber=event.target.value;
+						this.$emit('changefather',event)
+					}
+				}
+			};
+			const app = new Vue({
+				el:"#app",
+				data:{
+					num:0
+				},
+				components:{
+					cpn:cpn
+				},
+				methods:{
+					change:function(event){
+						this.num=Number(event.target.value);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

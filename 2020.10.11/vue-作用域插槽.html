@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn>
+				<template slot-scope="slot">
+					<span>{{slot.data.join('*')}}</span>
+				</template>
+			</cpn>
+			<cpn>
+				<template slot-scope="slot">
+					<span>{{slot.data.join('-')}}</span>
+				</template>
+			</cpn>
+		</div>
+		<template id="tem">
+			<div>
+				<h1>哈哈哈</h1>
+				<slot :data="list">
+					<ul>
+						<li v-for="item in list">{{item}}-</li>
+					</ul>
+				</slot>
+			</div>
+		</template>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app=new Vue({
+				el:"#app",
+				components:{
+					cpn:{
+						template:"#tem",
+						data:function(){
+								return {
+									list:[123,456,789]
+								};
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

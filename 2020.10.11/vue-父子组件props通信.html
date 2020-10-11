@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<cpn :cmovies="movies" :cmessage="message"></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<h1>哈哈哈</h1>
+				<p>666</p>
+				<h1>{{cmessage}}</h1>
+				<ul>
+					<li v-for="item in cmovies">{{item}}</li>
+				</ul>
+			</div>
+		</template>
+		<script type="text/javascript">
+			Vue.component('cpn',{
+				template:"#cpn",
+				//数组写法
+				//props:["cmovies","cmessage"]
+				//对象写法1，可对数据类型做限制
+				// props:{
+				// 	cmovies:Array,
+				// 	cmessage:String
+				// }
+				//对象写法2，还可为数据设置默认值
+				props:{
+					cmessage:{
+						type:String,
+						//当未为cpn的cmessage赋值时生效的默认值
+						default:"aaa",
+						// 必须为cmessage赋值
+						required:true
+					},
+					cmovies:{
+						type:Array,
+						// 当预设值为对象或数组时，必须使用函数返回值表示
+						default:function(){
+							return ["a","b","c"];
+						},
+						required:true
+					}
+				}
+			});
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"电影",
+					movies:['海王','海贼王','海扁王']
+				}
+			});
+		</script>
+	</body>
+</html>

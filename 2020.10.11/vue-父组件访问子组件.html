@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn ref="aaa"></cpn>
+			<cpn ref="bbb"></cpn>
+			<button @click="show">按钮</button>
+		</div>
+		<template id="tem">
+			<div>
+				<h1>666</h1>
+				<p>哈哈哈</p>
+			</div>
+		</template>
+		<script src="../vue.js.2.6.12.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const cpn={
+				template:"#tem",
+				data:function(){
+					return {
+						message:123
+					};
+				}
+			};
+			const app = new Vue({
+				el:"#app",
+				methods:{
+					show:function(){
+						console.log(this.$refs)
+					}
+				},
+				components:{
+					cpn:cpn
+				}
+			});
+		</script>
+	</body>
+</html>
