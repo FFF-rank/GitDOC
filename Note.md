@@ -2917,3 +2917,66 @@ Vue.component('cpn',{
 + 匿名函数解决方法：将每个模块的代码放入一个匿名（自调用）函数，最后return出一个对象，将需要引用的内容作为属性和方法添加到该对象上，并将该匿名函数赋值给一个模块对象（全局变量），后续当其他模块需要引用该模块内容时，就可对该模块对象进行操作
 
 ### 常见的模块化规范：CommonJS、AMD、CMD，也有ES6的Modules
+
+# 2020/10/12（今天尝试了一下学习webpack的配置，也学了一些基本的js文件、css文件、图片的打包，配置了半天实在是太繁琐了，这东西工作的时候应该不会这么用，先往后看一下；今天配置完webpack之后项目文件太大了，就不上传了）
+### 模块化有两个核心：导出和导入
++ CommonJS的导出
+```
+module.exports={
+	flag:true,
+	test(a,b){
+		return a+b
+	},
+	demo(a,b){
+		return a*b
+	}
+}
+```
++ CommonJS的导入
+```
+let {test,demo,flag}=require('模块文件url')
+```
++ ES6的导入和导出，export（导出）和import（导入）
+	- 再用script标签引用模块化js文件时，要将标签属性type的值设为module，表示模块化引用，这样各模块文件内的变量就不会冲突了，但也无法互相引用
+	- 详见"ES6的模块化实现"
+
+### webpack，从本质上来说，是一个现代的JacaScript应用的静态模块打包工具
++ webpack其中一个核心场景就是进行模块化开发，并且帮助处理模块间的依赖关系（不仅是js文件，css、图片、json文件等都可以当做模块来使用）
++ webpack为了正常运行，必须依赖node环境
+	- node环境为了正常执行代码，必须依赖各种包，而npm（node packages manager）工具被用来管理各种包
+
+### webpack安装
++ 查看node版本：打开cmd，输入 node -v
++ 全局安装webpack（视频中使用版本3.6.0，因为vue cli2.0依赖该版本）：打开cmd，输入 npm install webpack@3.6.0 -g （-g代表全局安装，可以在所有软件使用）
++ 局部安装webpack：打开cmd，输入 cd 对应目录（回车）npm install webpack@3.6.0 --save-dev （具体用法后续补充）
+
+### webpack项目下
++ src文件夹放置开发源码等
++ dist文件夹放置打包的东西
+
+### 使用webpack打包存在依赖的文件
++ 在IDE终端（或系统cmd）项目路径下，输入 webpack ./src/主js文件.js ./dist/打包js文件.js ，即可在dist文件夹下创建一个打包过的js文件，其已经处理完了主js文件对其他js模块的引用(不管是CommonJS还是ES6的模块化都可以)
++ 在html文件中只需 引用打包后的js文件即可
++ 当开发的主js文件变更之后需要重新打包
+
+### 将打包的输入和输出地址放在配置文件webpack.config.js中
++ npm init 和 npm install，安装一些项目需要的包
+
+### webpack中的loader，用于扩展一些功能，如加载css、图片，也包括将ES6转成ES5，将TypeScript转成ES5，将scss、less转成css，将.jsx、.vue文件转成js文件等
++ 使用步骤一：通过npm安装需要使用的loader（webpack官方网站可以查询到所有的loader）
++ 使用步骤二：在webpack.config.js中的modules关键字下进行配置
++ loader和webpack存在兼容问题，4.3.0的css-loader无法兼容3.6.0的webpack，退回2.0.2的css-loader后才能成功打包
+
+### css文件依赖：css-loader和style-loader
+
+### less文件依赖：less之前跳过了没学，这里记录一下webpack的这个功能
+
+### 图片文件依赖：url-loader，使用base64编译limit以下大小的文件；file-loader，直接引用limit以上的文件（图片路径可能有问题，如有需要要手动配置；webpack会自动在dist文件夹下创建一个以32位hash值命名的图片，防止图片名字重复）
+
+### babel-loader，将ES6语法转成ES5
+
+### 实在看不下去webpack了，再加上看到弹幕提到后面的Vue CLI也可以实现webpack的配置，直接跳到Vue CLI
+
+### CLI是Command-Line Interface，翻译为命令行界面，俗称脚手架
++ Vue CLI是一个官方发布的vue.js项目脚手架
++ 使用vue-cli可以快速搭建vue开发环境以及对应的webpack配置
