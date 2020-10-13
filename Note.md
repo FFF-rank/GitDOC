@@ -2911,7 +2911,7 @@ Vue.component('cpn',{
 + 但是，子组件的模板内的东西，其作用域只在子组件的作用域内，父组件同理
 + 综上可以总结，组件标签属性及标签内容的作用域为上一级组件，组件模板内的属性作用域为当前组件
 
-### 作用域插槽：父组件替换插槽的标签，但是内容由子组件来提供（此方法过于繁琐，知道有这么概念就好，最新版本的Vue已经引入了v-slot指令，后面再学习）,老方法的例子可见"vue-作用域插槽"
+### 作用域插槽：父组件替换插槽的标签，但是内容由子组件来提供（此方法过于繁琐，知道有这个概念就好，最新版本的Vue已经引入了v-slot指令，后面再学习）,老方法的例子可见"vue-作用域插槽"
 
 ### 模块化思想，将js代码分为多个模块，共同开发，为了让不同模块的代码不冲突，又能够按需要相互引用，传统做法如下：
 + 匿名函数解决方法：将每个模块的代码放入一个匿名（自调用）函数，最后return出一个对象，将需要引用的内容作为属性和方法添加到该对象上，并将该匿名函数赋值给一个模块对象（全局变量），后续当其他模块需要引用该模块内容时，就可对该模块对象进行操作
@@ -2980,3 +2980,44 @@ let {test,demo,flag}=require('模块文件url')
 ### CLI是Command-Line Interface，翻译为命令行界面，俗称脚手架
 + Vue CLI是一个官方发布的vue.js项目脚手架
 + 使用vue-cli可以快速搭建vue开发环境以及对应的webpack配置
+
+# 2020/10/13(今天都在讲概念，终于结束vue CLI了，视频和现在有2年的时间差，版本问题有点烦，今天文件同样过大，就不上传了)
+### 安装vue cli：npm install -g @vue/cli
+
+### Vue CLI2
++ 要在Vue CLI3使用CLI2，需要安装旧版本的模板：npm install -g @vue/cli-init
++ vue CLI2初始化项目：vue init webpack 项目名称（其实是项目文件夹名称），之后需要输入以下信息：
+	- Project name：（敲回车就默认使用项目文件夹名称）
+	- Project description：
+	- Author：（默认读取了全局的gitconfig）
+	- vue build：
+	- install vue-router：
+	- use ESlint to lint your code：
+	- set up unit test：
+	- setup e2e tests with Nightwatch：
+	- should we run npm install for you after the project has been created(recommended):
+
+### Vue CLI3+
++ vue CLI3+初始化项目：vue create 项目名称
++ cli3有一个隐藏配置的理念
++ 可以在终端任意路径键入 vue ui，进入图形化界面，查看插件、依赖、配置，也可从node_modules/@vue/cli-service/webpack.config.js查找配置信息
++ 也可以自定义配置文件，在目录下创建vue.config.js文件，通过module.exports输出要修改的配置
+
+### 以前要执行js代码，只能在浏览器上，node为js提供了可以脱离浏览器的运行环境
++ node是使用c++开发的，核心是V8引擎
++ v8引擎，原始js代码需要转换为字节码后再经浏览器运行，v8则是直接将js代码翻译为二进制代码运行
++ 运行方式：直接在终端该文件夹下输入node js文件名.js
+
+### 路由，决定数据端到端运送的路径
+
+### 后端渲染阶段
++ 后端渲染：页面是在服务器端进行渲染，用jsp/php等，不是javascript
++ 后端路由：在服务器端处理url和页面之间的映射关系
+
+### 前后端分离阶段，后端只负责提供数据，不负责任何阶段的内容渲染
++ 浏览器从静态资源服务器获得html+css+js代码，再通过Ajax向提供API接口的服务器请求动态数据，再由浏览器渲染出页面
+
+### 单页面富应用（SPA）阶段，在前后端分离的基础上，增加了一层前端路由
++ 整个网页只有一个html页面（前后端分离中每一个html页面都对应一套html+css+js）
++ 前端路由通过识别url，从js中抽取相应的组件渲染不同的页面（其实就是把原先不同页面的代码，变成了一个个组件，放在一份js代码中）
++ 前端路由的核心：改变url，但是页面不进行整体的刷新
