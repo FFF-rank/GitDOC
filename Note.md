@@ -20,10 +20,10 @@
 
 ### 常用单标签
 + 《!DOCTYPE html》：样本代码，声明代码的版本
-+ 《meta》通常用于优化页面被搜索的可能性，定义版权信息
++ 《meta》标签，主要用于设置网页中的一些元数据，通常用于优化页面被搜索的可能性，定义版权信息
     - 属性：charset（字符集，="UTF-8"）
     - 属性：name="属性"content="对属性具体描述的词汇"
-        * name=keywords，向搜索引擎说明页面关键字，后面放关键字（英文，隔开）
+        * name=keywords，向搜索引擎说明页面关键字，后面放关键字（英文，用 , 隔开）
         * name=description，向搜索引擎描述页面内容，后面放内容
         * name=generatop，描述生成的软件
         * name=author，描述设计者姓名
@@ -3021,3 +3021,57 @@ let {test,demo,flag}=require('模块文件url')
 + 整个网页只有一个html页面（前后端分离中每一个html页面都对应一套html+css+js）
 + 前端路由通过识别url，从js中抽取相应的组件渲染不同的页面（其实就是把原先不同页面的代码，变成了一个个组件，放在一份js代码中）
 + 前端路由的核心：改变url，但是页面不进行整体的刷新
+
+# 2020/10/14（在懵逼之中算是度过了艰难的配置阶段吧，今天还是用的昨天的项目，不上传；今天抽时间补一下移动端适配的一些东西，这两天再把less稍微了解一下）
+### 修改页面url，但不刷新页面的方法
++ 为location.hash赋值，但前面会加个#
++ 用history.pushState({},'','值')也可以，原理类似栈结构（实测chrome不行，firefox可以，在将路由实例的mode改为history后，chrome才可以）
+	- 用history.back（）可以回退
+	- 用history.forward（）可以前进
+	- 用history.go（-1）等价于history.back（）
+	- 用history.go（1）等价于history.forward（）
++ 用history.replaceState({},'','值')就可以了，因为原理是替换，所以不能回退
+
+### vue-router是vue.js官方的路由插件，和vue.js深度集成，适用于构建单页面应用
++ 安装vue-router：npm install vue-router --save
++ 在模块化工程中使用：
+	- 导入路由对象，并且调用Vue.use(VueRouter)
+	- 创建路由实例，并且传入路由映射配置
+	- 在Vue实例中挂载创建的路由实例
++ 使用vue-router的步骤
+	- 创建路由组件
+	- 配置路由映射：组件和路径映射关系
+	- 使用路由：通过《router-link to=''》(改变url的标签,默认会被渲染成a标签)和《router-view》（组件显示的位置）
+		* router-link标签属性tag，用于指定渲染成什么标签，如tag="button"，最终就将渲染成button标签
+		* router-link标签属性replace，让修改页面的方式变为replaceState，默认是pushState
+		* router-link标签属性active-class，为其赋值，则可改变选中时的类名，如果要修改全部标签的选中类名，则需要在路由实例中设置linkActiveClass的值
+
+### --save 和 -dev
++ --save：将保存配置信息到package.json的dependencies节点中
++ --save-dev：将保存配置信息到package.json的devDependencies节点中
++ dependencies：运行时的依赖，发布后，生产环境下还需要用的模块
++ devDependencies：开发时的依赖，里面的模块是开发时用的，发布时用不到它
+
+### 动态路由，根据动态数据，改变url，在routes中，可在path末尾用 :值/变量 的方式为url绑定，再为vue对象绑定相应的data属性，最后在router-link标签中绑定to属性使用值/变量
++ 为空的path设置redirect，指向某一路由，可设置初始路由
+
+### Vue对象的$router属性，指向其挂载的router（路由器）
++ $route，则指向routes[]中当前活跃的路由（route）
+
+### 路由的懒加载，当打包构建应用时，js包会变得很大，影响页面加载，因此可以把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，提升效率
++ 懒加载方式： const 路由名 = () => import('../components/路由名.vue')
+
+### 嵌套路由，在某一路由中如果还需要嵌套其他路由，需要在父级路由的模板中插入子级路由的router-link和router-view，同时在父级路由映射下，创建children属性，以数组形式存放所有子级路由的映射
+
+### 像素
++ 在前端开发中，像素分为两种：CSS像素 和 物理像素
++ 物理像素即系统的像素
++ CSS像素为网页代码的像素
++ 浏览器在显示网页时，需要将css像素转换为物理像素然后再呈现
+	- 1个css像素转换为几个物理像素，由浏览器决定，默认是1:1
+	- 当浏览器放大倍数设为200%时，就是将1个css像素放大为2个物理像素
++ 视口（viewport）：屏幕中用来显示网页的区域
++ 默认情况下，移动端的网页都会将视口设置为980像素（css像素），以确保PC端网页可以在移动端正常访问，如果网页宽度超过了980，移动端浏览器会自动对网页进行缩放
+	- 移动端网站缩放后的体验并不好，所以大部分网站都会专门为移动端设计网页
+	- 通过调整视口大小，来让css像素和物理像素的比例较为合适，
+	- 改变视口宽度，可以在meta标签中设置，name='viewport'，content='width=device-width,initial-scale=1.0'，能够将移动端视口设为设备的完美视口（比例为1:1、1:2等等，视频里说硬背就是了）
