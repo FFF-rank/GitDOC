@@ -642,7 +642,7 @@
 + 字符串名.charAt（9），返回位置为9的字符
 + 字符串名.charCodeAt（5），返回位置为5的字符的Unicode编码
 + 字符串名.concat（'啦啦啦'），在字符串后拼接 啦啦啦
-+ 字符串名.indexOf（'下',3),从位置为3开始，从前往后索引并返回 下 的位置
++ 字符串名.indexOf（'下',3),从位置为3开始，从前往后索引并返回 下 的位置,如果没找到，则返回-1
 + 字符串名.lastIndexOf（'下'，8），从位置为8开始，从后往前索引并返回 下 的位置
 + 字符串名.replace（'今天','明天'），将远字符串中的今天替换为明天
 + 字符串名.slice（2，5），从位置为2开始，返回5之前的字符（不包括5）
@@ -3116,3 +3116,66 @@ let {test,demo,flag}=require('模块文件url')
 + router-view也是一个组件，如果直接被包在keep-alive标签里面，对应的router-link的所有路径匹配到的视图组件都会被缓存(不会触发destroyed)
 + 属性:exclude="想排除在缓存之外的的组件的name"，如有多个，用逗号隔开
 + 属性:include="想缓存的组件的name"，如有多个，用逗号隔开，只有匹配的组件才会被缓存
+
+# 2020/10/16(今天封装了一个TabBar组件，练习了学到的vue组件和vue-router知识，然后学习了Promise处理异步程序)
+### 在输入路径时，@ 符号代表src文件夹（可在node_modules/@vue/cli-service/lib/config/base.js文件中的.alias中设置
+
+### 在终端窗口 Ctrl+C，可以停止当前npm run serve的项目
+
+### Promise，是异步编程的一种解决方案，通过链式编程的方式将异步编程的步骤分开，避免回调地狱
++ 用法为如下：
+```
+new Promise(function(resolve,reject){
+	setTimeout(function(){
+		resolve('Hello World');
+	},3000);
+}).then(function(data){
+	console.log(data);
+}).catch(function(err){
+	console.log(err);
+});
+```
++ 将异步函数setTimeout放在Promise中，传入两个参数，在异步操作中执行函数resolve，传入参数a（可以是需要等待异步操作之后才能获取的参数），就可在Promise函数中的异步函数执行完毕后，由then函数执行后续操作，并可在后续操作中接收参数a
++ 如果还有第二个异步操作，可在第一个then函数中return一个新的Promise，用resolve传出参数，在then之后再接一个then，接收参数并继续操作
++ 而reject函数为失败的时候调用，resolve函数为成功的时候调用，如下
+```
+new Promise(function(resolve,reject){
+	setTimeout(function(){
+		reject('error message');
+	},3000);
+}).then(function(data){
+	console.log(data);
+}).catch(function(err){
+	console.log(err);
+});
+```
++ 当有多个then时，没必要为每个步骤写一个catch，如果可以满足需求的话，只需要在末尾写一个即可，这样一旦有reject则会自动在链上寻找最近的catch
++ 第二种写法，在then中传入两个函数参数，以逗号隔开，第一个函数参数为成功时执行，第二个函数参数为失败时执行
++ 还有一些简写的写法，但已经简写得面目全非，我觉得不好（可读性极差，增加了将来新手的学习成本）
+
+### Promise中的异步操作会有三种状态：
++ pending：等待状态，比如正在进行网络请求，或者定时器没有到时间
++ fulfill：满足状态，当主动回调了resolve时，就处于该状态，并且会回调.then()
++ reject：拒绝状态，当主动回调了reject时，就处于该状态，并且会回调.catch()
+
+### Promise的all方法使用
+```
+var abc='';
+Promise.all([
+	new Promise(function(resolve,reject){
+		setTimeout(function(){
+			abc=new Date();
+			resolve(abc);
+		},1000);
+	}),
+	new Promise(function(resolve,reject){
+		setTimeout(function(){
+			abc=new Date();
+			resolve(abc);
+		},5000);
+	})
+]).then(function(data){
+	console.log(data);
+});
+```
++ 该方法会等待所有Promise内的异步操作都结束后，才跳转到then函数，并且会将多个resolve传出的参数放在一个数组中，传入then

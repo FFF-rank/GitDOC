@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var abc='';
+			Promise.all([
+				new Promise(function(resolve,reject){
+					setTimeout(function(){
+						abc=new Date();
+						resolve(abc);
+					},1000);
+				}),
+				new Promise(function(resolve,reject){
+					setTimeout(function(){
+						abc=new Date();
+						resolve(abc);
+					},5000);
+				})
+			]).then(function(data){
+				console.log(data);
+			});
+		</script>
+	</body>
+</html>
