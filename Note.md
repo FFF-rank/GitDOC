@@ -2687,6 +2687,7 @@ Object.defineProperties(book,{
 ### ECMA6语法：let解构赋值(简化赋值方式，我觉得好像没啥用)
 + let [a,b,c]=[1,2,3]
 + let {a,b}={a:"111",b:"222"}
+	- (过了一段时间回来补充)这个语法可以把对象中的属性有选择性地抽出，可以乱序，可以抽一部分，只要key对得上
 + let {a,b=5}={a:1}
 
 ### ECMA6语法：箭头函数
@@ -3179,3 +3180,48 @@ Promise.all([
 });
 ```
 + 该方法会等待所有Promise内的异步操作都结束后，才跳转到then函数，并且会将多个resolve传出的参数放在一个数组中，传入then
+
+# 2020/10/17（今天学习了vuex状态管理，明天还剩一个axios就结束vue的知识学习部分了，接下来就是跟着视频完整做一个项目）
+### Vuex是一个专为Vue.js应用程序开发的状态管理模式，它采用集中式存储管理应用的所有组件的状态
++ 可以简单地将其看成把需要多个组件共享的变量全部存储在一个对象里面，然后将这个对象放在顶层的Vue实例中，让其他组件可以使用，多个组件就可以共享这个对象中的所有变量属性
++ 而为了实现响应式的状态管理，Vue官方提供了插件Vuex
+
+### 有哪些状态需要在多个组件之间共享：
++ 用户的登录状态、用户名称、头像、地理位置信息
++ 商品的收藏、购物车中的物品
+
+### 安装Vuex插件：npm install vuex --save
+
+### 可以通过 $store.state.属性名 访问vuex的state属性下的某一属性值
++ 不建议通过以上访问方式直接修改属性值，因为无法跟踪修改记录
++ 为了跟踪组件的修改，需要安装浏览器插件vue.js devtools
+	- 安装完成后，在调试窗口中可以选择进入vue界面
++ 安装完devtools之后，通过mutations修改state就会被记录
+	- 修改方法：$store.commit('mutations中的方法')
++ actions：异步操作使用Mutations要通过此方法
+
+### Vuex核心概念
++ state：保存状态
+	- state中修改经初始化的数据可以实现响应式，但新增属性则无法实现响应式，此时必须使用Vue提供的方法：Vue.set(要添加属性的对象,要添加属性的key,要添加属性的值) ，才能实现新增属性的响应式
+	- 同理，删除也应用Vue.delete(要删除属性的对象,要删除属性的key)
++ getters：类似于组件的计算属性
+	- getters属性中的函数默认会传入2个参数指向state和getters
++ mutations：借助devtools进行修改记录
+	- mutations属性中的函数默认会传入1个参数指向state
+	- mutation类型常量，在大型项目中会很有帮助？（需要的时候再用吧，现在看来有点低效）在store文件夹创建一个mutation-types的js文件，设置一个常量，并为其赋一个变量名，当需要使用变量名的时候引用该常量
+	- 在通过mutation更新数据的时候，有时需要携带一些额外的参数，这些参数被称为载荷（Playload）
++ action：用于更好地追踪异步操作，当使用devtools时，可以捕捉到mutation的操作，但如果是异步操作，就难以追踪，因此需要增加action环节，通过action异步地去操作mutation
+	- 在组件中$store.dispatch('actions中的方法')，再由actions中的方法，异步地commitmutations中的方法
+	- actions中的方法默认传入的参数为context，可以认为代表$store
+	- actions同样允许有载荷
+	- 可以在异步操作中return一个Promise，在组件dispatch之后用then进行回调，这样就可以在异步操作执行完毕后通知组件进行下一步操作
++ modules：划分模块，由于单一状态树思想的存在，如果程序较复杂，状态会比较臃肿，因此在modules下还可以以属性(a)的形式，再放置多个对象，每个对象都可以有自己的state、mutations、actions、getters、modules，理论上可以一直往下套娃
+	- 访问时可以直接用$store.state.a的形式访问modules内的a的state，这是因为本质上a内的state还是放置于原先的state中
+	- mutations、actions、getters的访问直接查找相应方法即可（模块内的方法名不能和原mutations、actions、getters中的方法名重复，本质上应该还是放在一起的）
+		* mutations、getters默认传入的第一个参数state应该是同一模块的state
+		* 模块中的getters可以有第三个参数rootState，可以拿到根级state
+		* 模块中的actions传入的参数context，在使用commit时，只会调用同一模块的mutations，另外，context对象还有一些root的属性，可以拿到根state、根getters等
+
+### Vuex提出使用单一状态树，也可以翻译成单一数据源，即一个项目只创建一个store对象，便于管理和维护
+
+### store文件夹的目录组织，将store/index.js内的各个部分，拆分到不同文件中
