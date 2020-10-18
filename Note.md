@@ -3225,3 +3225,13 @@ Promise.all([
 ### Vuex提出使用单一状态树，也可以翻译成单一数据源，即一个项目只创建一个store对象，便于管理和维护
 
 ### store文件夹的目录组织，将store/index.js内的各个部分，拆分到不同文件中
+
+# 2020/10/18(今天出门了，加上鼻炎有点发作，晚上就不学了)
+### axios，vue官方推荐的ajax库，功能特点如下：
++ 在浏览器中发送XMLHttpRequests请求
++ 在node.js中发送http请求
++ 支持PromiseAPI
++ 拦截请求和响应
++ 转换请求和响应数据
+
+### 安装axios： npm install axios --save
