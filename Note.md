@@ -2938,7 +2938,7 @@ module.exports={
 let {test,demo,flag}=require('模块文件url')
 ```
 + ES6的导入和导出，export（导出）和import（导入）
-	- 再用script标签引用模块化js文件时，要将标签属性type的值设为module，表示模块化引用，这样各模块文件内的变量就不会冲突了，但也无法互相引用
+	- 在用script标签引用模块化js文件时，要将标签属性type的值设为module，表示模块化引用，这样各模块文件内的变量就不会冲突了，但也无法互相引用
 	- 详见"ES6的模块化实现"
 
 ### webpack，从本质上来说，是一个现代的JacaScript应用的静态模块打包工具
@@ -3235,3 +3235,106 @@ Promise.all([
 + 转换请求和响应数据
 
 ### 安装axios： npm install axios --save
+
+# 2020/10/19(今天把axios收尾了一下，然后开始vue项目，进行了初始化配置，又重新封装了一遍TabBar组件)
+### 在main.js中进行配置axios，其会自动return一个new Promise
+```
+import axios from 'axios'
+axios({
+	// 默认只传url的话会使用get请求
+	url:'http://123.207.32.32:8000/home/multidata',
+	method:'get',
+	//专门针对get请求的参数拼接
+	params:{
+		type:'pop',
+		page:1
+	}
+}).then(function(res){
+	console.log(res);
+})
+```
++ 常见配置选项如下：
+	- 请求地址 url:'/user'
+	- 请求类型 method:'get'，默认为get
+	- 请求根路径 baseURL:'http://www.mt.com/api'
+	- 请求前的数据处理 transformRequest:[function(data){}]
+	- 请求后的数据处理 transformResponse:[function(data){}]
+	- 自定义的请求头 headers:{'x-Requested-With':'XMLHttpRequest'}
+	- URL查询对象 params:{id:12},配合get使用
+	- 查询对象序列化函数 paramsSerializer:function(params){}
+	- request body, data:{key:'aa'}
+	- 超时设置 timeout:1000，单位毫秒
+	- 跨域是否带Token, withCredentials:false
+	- 自定义请求处理 adapter:function(resolve,reject,config){}
+	- 身份验证信息 auth:{uname:'',pwd:'12'}
+	- 相应的数据格式json/blob/document/arraybuffer/text/stream， responseType:'json'
++ 可以用axios.all，放入多个请求的数组，返回结果也是一个数组
++ 可以使用axios.spread((res1,res2)=>{...}),将数组展开为变量res1和res2
++ 可以使用axios.default.baseURL/timeout等来进行全局的配置，就不用在每个axios中单独设置了
+	- 当需要多种配置（如要访问多个服务器）时，可以创建axios实例，使用 const instance = axios.create({baseURL:...}) 的方式创建一个实例，使用不同的实例对象时，就可以实现不同实例对象下的全局配置
+
+### 在项目中只要引用了第三方的东西，尽量不要对其依赖过深，要封装成一个组件，这样日后一旦要更换，工作量小很多
+
+### 可以在请求发出成功和失败的时候拦截请求，以及响应返回成功和失败的时候拦截响应，进行一些操作
++ 请求拦截使用场景如下
+	- config中的一些信息不符合服务器要求
+	- 在发送网络请求到返回的过程中，希望出现一些转圈之类的效果
+	- 某些网络请求（比如登录（token）），必须携带一些特殊的信息，比如进入购物车必须先登录
++ 请求拦截代码如下：
+```
+//instance为axios实例
+instance.interceptors.request.use(function(config){
+	console.log(config);
+	return config
+},function(err){
+	console.log(err);
+});
+```
++ 响应拦截代码如下：
+```
+//instance为axios实例
+instance.interceptors.response.use(function(result){
+	console.log(result);
+	return result.data
+},function(err){
+	console.log(err);
+});
+```
+### 下面是创建项目后的准备工作
+
+### 划分目录结构
++ assets --资源文件夹
+	- img --图片文件夹
+	- css --样式文件夹
+		* normalize.css --第三方css初始化文件（来自github）
+		* base.css --本项目css初始化文件
++ components --公共组件文件夹
+	- common --可跨项目的公共组件文件夹
+	- content --和当前项目相关的公共组件文件夹
++ view --各视图组件文件夹
+	- home --主页组件文件夹
++ router --路由文件夹
++ store --状态管理文件夹
++ network --网络相关文件夹
++ common --公共js文件夹
+	- const.js --公共常量文件
+	- utils.js --公共方法文件
+
+### 引入第三方css初始化文件，和设置本项目的css初始化文件
+
+### 在根目录下设置vue.config.js和.editorconfig文件
++ vue.config.js用于配置路径别名等
++ .editorconfig文件用于配置代码书写规范，vue默认如下：
+```
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
+
+### 开始做项目了，可以把之前封装过的tabbar组件复制进来用（这里我就再敲一遍吧）
