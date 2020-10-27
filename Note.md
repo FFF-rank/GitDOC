@@ -1530,7 +1530,7 @@ function debounce(func,delay){
 + /^a/代表以a开头
 + /a$/代表以a结尾
 + /^a$/代表只能有1个a，当^和$同时出现时，代表必须与正则表达式完全一致
-+ /./表示任意字符,因为.作为特殊字符代表人已字符
++ /./表示任意字符,因为.作为特殊字符代表任意字符
 + 如要使用特殊字符的本体进行正则判断，需在前加转义字符\
 
 # 2020/9/19(今天出门了，后半夜才回来)
@@ -3230,7 +3230,7 @@ Promise.all([
 	- 在组件中$store.dispatch('actions中的方法')，再由actions中的方法，异步地commitmutations中的方法
 	- actions中的方法默认传入的参数为context，可以认为代表$store
 	- actions同样允许有载荷
-	- 可以在异步操作中return一个Promise，在组件dispatch之后用then进行回调，这样就可以在异步操作执行完毕后通知组件进行下一步操作
+	- 可以在异步操作中return一个Promise，在组件dispatch之后用then进行回调，这样就可以在异步操作执行完毕后通知组件进行下一步操作(mutation不行)
 + modules：划分模块，由于单一状态树思想的存在，如果程序较复杂，状态会比较臃肿，因此在modules下还可以以属性(a)的形式，再放置多个对象，每个对象都可以有自己的state、mutations、actions、getters、modules，理论上可以一直往下套娃
 	- 访问时可以直接用$store.state.a的形式访问modules内的a的state，这是因为本质上a内的state还是放置于原先的state中
 	- mutations、actions、getters的访问直接查找相应方法即可（模块内的方法名不能和原mutations、actions、getters中的方法名重复，本质上应该还是放在一起的）
@@ -3440,3 +3440,14 @@ this.$bus.$off('事件名'[,调用事件的监听函数]);
 + 此方法是为了复用
 
 # 2020/10/26(今天用vuex实现了购物车，并且终于成功完成了详情页商品切换的不刷新页面重新渲染)
+
+# 2020/10/27（今天完成了项目，开始看一些面试的东西了，接下来就以面试题为主吧，跟着再复习一遍之前学的。对了，css预处理器还是没学）
+### 插件 fastClick:用于减少移动端的点击延迟时间（300ms左右），由于移动端双击会缩放，因此需要300ms来检查用户是否在双击，而fastClick则是用来去除这个检查时间
++ 安装：npm install fastclick --save
+
+### 插件 vue-lazyload：图片懒加载
++ 安装：npm install vue-lazyload --save
+
+### vue响应式原理
++ vue内部如何监听数据的改变——用Object.defineProperty监听对象属性的get和set
++ 数据发生改变，vue如何知道要通知哪些人，界面发生刷新——发布订阅者模式，有使用过get或set的对象将被添加到订阅者中，一旦数据改变则会通知其更新视图
