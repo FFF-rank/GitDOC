@@ -2705,7 +2705,10 @@ Object.defineProperties(book,{
 ### ECMA6语法：箭头函数
 + let foo=(a) =>a,等同于创建了一个输入参数为a，return a的函数foo，可以实现简单的返回操作
 + 当要实现复杂的函数体时，可用 let foo=(a) =>{let b=10; return a+b}的形式
-+ 常规函数中的this指向的是输出时的作用域，即可能是作为其方法的对象，而箭头函数的this指向的是定义时的作用域（全局对象即是window）
++ 常规函数中的this指向，是在执行时绑定的（谁调用指谁）
+	- 全局函数中的this指向window
+	- 函数作为一个对象的方法被调用，函数中的的this，指向该对象
++ 箭头函数的this指向，是在定义时绑定的（箭头函数本身没有this，其内的this指向继承自函数外上下文的this（有this指向的最近外层上下文，注意，非函数的简单对象也是没有this的，也就是说只有非箭头函数的函数才有this，否则只能找到最外层的window），如果箭头函数为全局对象的方法，this的指向即是window）
 
 ### vue设置元素样式 :style="{样式名：样式值字符串或变量}"，或直接调用函数返回样式内容
 + 也可用 :style="[变量1,变量2,...]"的方式，引入data中以对象形式保存的键值对
@@ -3451,3 +3454,134 @@ this.$bus.$off('事件名'[,调用事件的监听函数]);
 ### vue响应式原理
 + vue内部如何监听数据的改变——用Object.defineProperty监听对象属性的get和set
 + 数据发生改变，vue如何知道要通知哪些人，界面发生刷新——发布订阅者模式，有使用过get或set的对象将被添加到订阅者中，一旦数据改变则会通知其更新视图
+
+# 2020/10/28（今天把less基本用法学习了一下，找了个面试题的视频看了一半）
+### 网页中字体最小为12px，设为更小值将会被强制改为12px
+
+### 原生css变量设置：
+```
+html{
+	--color:#fff;
+}
+.box{
+	background-color:var(--color);
+}
+```
++ 原生css变量对IE兼容性差
+
+### css预处理：less
++ 对变量的支持
++ 对mixin的支持
++ 非插件使用方法
+```
+<link rel="stylesheet/less" href="./less.less">
+<script src="../../Less.2.5.3.min.js" type="text/javascript" charset="utf-8"></script>
+```
++ VScode安装插件Easy LESS后使用方法:vscode会自动为less文件在同目录下输出一个同名的由less编译而成的css文件（更新less文件将同步更新css文件），此时直接引用此css文件即可
++ less中对于后代选择器的样式可以使用嵌套的写法（如需指定为子元素，则加个大于号）,如下
+```
+.box1{
+	width:100px;
+
+	.box2{
+		width:50px;
+	}
+
+	>.box3{
+		width:20px;
+	}
+}
+```
++ less中的注释不会被解析到css文件中
++ 变量的定义与使用
+```
+@a:100px;
+.box{
+	width:@a;
+}
+```
++ 当变量作为类名等部分值（如路径中的变量）使用时，调用时需要如下书写
+```
+@b:box2;
+.@{b}{
+	width:@a;
+}
+```
++ 变量重名时，使用最近的变量
++ 可在变量声明前就是用（也就是声明会提升），但不建议
++ 可以在同个选择器下引用其他样式，如下
+```
+.box{
+	width:100px;
+	height:$width * 2; //200px
+}
+```
++ 当要使用伪类/伪元素时，可以如下书写，用 & 表示大括号外的选择器
+```
+.box{
+	&:hover{
+		background-color: pink;
+	}
+}
+```
++ 引用别的选择器样式，写法如下：
+```
+.box5{
+	width:10px;
+}
+.box6{
+  .box5();
+  color:blue;
+}
+```
++ 创建一个函数（类似一个虚拟的选择器样式），自身不起作用，但可以被引用，写法如下：
+```
+.box5(){
+	width:10px;
+}
+.box6{
+  .box5();
+  color:blue;
+}
+```
++ 可对函数传参数，参数也可以赋默认值，不传参时就取默认值，写法如下
+```
+.box5(@w：100px,@h){
+	width:@w;
+	height:@h;
+}
+.box6{
+  .box5(10px,20px);
+  color:blue;
+}
+.box7{
+	.box5(@h:20px,@w:10px)
+}
+```
++ 可以用average()函数对两个颜色取平均色（把rgb三个十六进制数分别取平均值），如下
+```
+.box{
+	background-color:average(#ff0000,#0000ff); //#800080
+}
+```
++ 还有不少函数
++ less中数值可以直接四则运算
++ 可以用 @import "路径/文件.less" 的方式引入其他less文件
+
+### 属性：window.devicePixelRatio,返回物理像素与scc像素的比值
+
+### meta的 name="viewport" 对应的content值：
++ width 视口的宽度，为正整数或字符串"device-width"（设为设备显示屏宽度）
++ initial-scale 页面的初始缩放值，可带小数
++ minimum-scale 允许用户的最小缩放值，可带小数
++ maximum-scale 允许用户的最大缩放值，可带小数
++ height 视口的高度，较少使用
++ user-scalable 是否允许用户进行缩放，值为no或yes
+
+### rem适配
++ 1 rem = html元素的字体大小，即html根元素的font-size样式
++ 而移动设备的屏幕宽度可以通过window.innerwidth或document.documentElement.clientWidth获得
++ 将html的字体大小设为移动设备屏幕宽度，即可通过rem的方式，设置元素与屏幕宽度的比例
+
+### 用function声明函数，会将函数整体提升
++ 提升后的函数优先级高于变量，但会被赋值所覆盖

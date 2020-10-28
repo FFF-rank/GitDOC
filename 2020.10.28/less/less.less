@@ -1,0 +1,49 @@
+@a:100px;
+@b:box3;
+@c:red;
+@d:blue;
+
+.box{
+  width: @a;
+  height: 100px;
+  background-color: red;
+
+  .box2{
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+  }
+
+  >.@{b}{
+    width: 30px;
+    height: $width * 1.5;
+    background-color: green;
+  }
+
+  &:hover{
+    background-color: pink;
+  }
+}
+
+.box4{
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+
+  .box5(@w,@h){
+    width: @w;
+    height: @h;
+    background-color: red;
+  }
+
+  .box5{
+    width: @a;
+    height: @a;
+    background-color:average(@c,@d);
+  }
+
+  .box6{
+    .box5(200px,100px);
+    color:blue;
+  }
+}

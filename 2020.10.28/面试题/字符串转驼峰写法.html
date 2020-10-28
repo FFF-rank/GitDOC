@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 将输入的字符串转化为驼峰写法
+			// 输入get-element-by-id
+			let str="get-element-by-id";
+			let result=tuoFeng(str);
+			console.log(result);
+			
+			function tuoFeng(str){
+				let arr=str.split('-');
+				for(let i=1;i<arr.length;i++){
+					arr[i] = arr[i].charAt(0).toLocaleUpperCase()+arr[i].substr(1);
+				}
+				return arr.join('')
+			}
+		</script>
+	</body>
+</html>
