@@ -998,9 +998,12 @@
 		* min-width，大于等于，设置方式如@media (min-width:640px)
 		* max-width，小于等于
 		* 可同时设置多个大于等于，或多个小于等于，形成梯度，语句数序靠后的满足时优先执行（即设置断点、阈值）
-	- 媒体特性：device-width页面可见宽度
+	- 媒体特性：device-width设备宽度
 		* min-device-width，大于等于，设置方式如@media (min-width:640px)
 		* max-device-width，小于等于
+	- 媒体特性：aspect-ratio，页面可见区域的宽高比
+		* min-aspect-ratio:1/1，宽高比大于等于1
+		* max-aspect-ratio:1/1，宽高比小于等于1
 	- 媒体查询运算符
 		* and，并且，需两个条件均满足，如@media screen and (min-width:640px)
 		* ',',逗号，或者，只需一个满足即可
@@ -3714,3 +3717,5 @@ html{
 	- collect 收集/aggregate 聚集
 + 常量命名全部大写，单词用下划线隔开
 + 字符串统一使用单引号
+
+# 2020/10/30（写得有点吃力。。。前面学的忘得都差不多了，今天写了个架子，以及响应式布局，还有半个点击图片全屏）
